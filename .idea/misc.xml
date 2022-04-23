@@ -8,8 +8,14 @@
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/test.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/white_radius_16dp_background.xml" value="0.146875" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/white_radius_5dp_background.xml" value="0.2713541666666667" />
-        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_main.xml" value="0.12" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_main.xml" value="0.2692502532928065" />
+
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_errand.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_housework.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_make_errand.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_my_page.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_refrigerator.xml" value="0.12708333333333333" />
+
       </map>
     </option>
   </component>

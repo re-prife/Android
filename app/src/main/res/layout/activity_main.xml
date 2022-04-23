@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".view.MainActivity"
     android:orientation="vertical"
     android:background="#FFFFFF">
 
@@ -22,7 +22,14 @@
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_main_notice"
+                android:id="@+id/notice_img"
+                android:layout_marginRight="10dp"/>
             <TextView
+                android:layout_toRightOf="@id/notice_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="엄마의 잔소리"
@@ -30,6 +37,7 @@
                 android:textSize="15sp"
                 android:id="@+id/main_notice_title" />
             <TextView
+                android:layout_toRightOf="@id/notice_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="세부내용"
@@ -37,6 +45,12 @@
                 android:textSize="12sp"
                 android:id="@+id/main_notice_content"
                 android:layout_below="@id/main_notice_title"/>
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="39dp"
+                android:src="@drawable/icon_main_notice_change"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -71,6 +85,12 @@
                         android:text="냉장고"
                         android:textColor="#000000"
                         android:textSize="14sp" />
+                    <ImageView
+                        android:layout_marginTop="4dp"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/icon_move_prev"
+                        android:rotationY="180" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -89,6 +109,12 @@
                         android:text="집안일"
                         android:textColor="#000000"
                         android:textSize="14sp" />
+                    <ImageView
+                        android:layout_marginTop="4dp"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/icon_move_prev"
+                        android:rotationY="180" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -97,7 +123,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:id="@+id/button_errand"
-                android:padding="20dp"
+                android:padding="15dp"
                 android:background="@drawable/white_radius_20dp_background"
                 android:elevation="7dp"
                 android:layout_margin="7dp">
@@ -107,6 +133,12 @@
                     android:text="심부름"
                     android:textColor="#000000"
                     android:textSize="14sp" />
+                <ImageView
+                    android:layout_marginTop="4dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/icon_move_prev"
+                    android:rotationY="180" />
             </LinearLayout>
 
             <LinearLayout
@@ -131,10 +163,16 @@
                         android:text="심부름 시키기"
                         android:textColor="#000000"
                         android:textSize="14sp" />
+                    <ImageView
+                        android:layout_marginTop="4dp"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/icon_move_prev"
+                        android:rotationY="180" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/button_see_code"
+                    android:id="@+id/button_my_page"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="7dp"
@@ -147,9 +185,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="가족코드 보기"
+                        android:text="마이페이지"
                         android:textColor="#000000"
                         android:textSize="14sp" />
+                    <ImageView
+                        android:layout_marginTop="4dp"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/icon_move_prev"
+                        android:rotationY="180" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -195,7 +239,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/white_radius_16dp_background"
-                    android:layout_margin="4dp" />
+                    android:layout_margin="4dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
