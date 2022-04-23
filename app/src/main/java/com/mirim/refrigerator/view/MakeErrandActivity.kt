@@ -1,7 +1,8 @@
-package com.mirim.refrigerator
+package com.mirim.refrigerator.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mirim.refrigerator.R
 
 class MakeErrandActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

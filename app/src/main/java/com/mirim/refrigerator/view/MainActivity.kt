@@ -1,4 +1,4 @@
-package com.mirim.refrigerator
+package com.mirim.refrigerator.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -10,7 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MakeErrandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.HouseworkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.RefrigeratorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ErrandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
