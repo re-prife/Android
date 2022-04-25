@@ -21,6 +21,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
         binding.btnJoinGroup.setOnClickListener {
             //TODO : 존재하는 그룹 코드인지 확인
             var intent = Intent(applicationContext,MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
 

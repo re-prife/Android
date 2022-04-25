@@ -21,10 +21,12 @@ class SelectRegisterTypeActivity : AppCompatActivity() {
 
         binding.btnCreateGroup.setOnClickListener {
             var intent = Intent(applicationContext,ShowGroupCodeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         binding.btnJoinGroup.setOnClickListener {
             var intent = Intent(applicationContext,InputGroupCodeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
 
