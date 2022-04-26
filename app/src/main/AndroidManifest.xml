@@ -36,23 +36,17 @@
 
         </activity>
         <activity
-            android:name=".view.MyPageActivity"
+            android:name=".view.BottomAppBarActivity"
             android:exported="false" />
         <activity
-            android:name=".view.MakeErrandActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.HouseworkActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.RefrigeratorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.ErrandActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.MainActivity"
-            android:exported="true" />
+            android:name=".view.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

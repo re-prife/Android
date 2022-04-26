@@ -58,7 +58,7 @@
         app:layout_constraintRight_toLeftOf="@id/btn_create_group"
         android:layout_marginTop="120dp"
         android:textSize="35sp"
-        android:text="&lt;/&gt;"
+        android:text="/"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 
