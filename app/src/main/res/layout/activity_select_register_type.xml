@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:ignore="SmallSp">
+    tools:ignore="SmallSp"
+    tools:context=".view.login.SelectRegisterTypeActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -57,7 +58,7 @@
         app:layout_constraintRight_toLeftOf="@id/btn_create_group"
         android:layout_marginTop="120dp"
         android:textSize="35sp"
-        android:text="</>"
+        android:text="&lt;/&gt;"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 
