@@ -19,7 +19,7 @@ class ShowGroupCodeActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnSignin.setOnClickListener {
-            var intent = Intent(applicationContext,MainActivity::class.java)
+            var intent = Intent(applicationContext,HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }

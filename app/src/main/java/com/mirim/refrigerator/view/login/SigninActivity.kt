@@ -3,10 +3,8 @@ package com.mirim.refrigerator.view.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mirim.refrigerator.R
-import com.mirim.refrigerator.databinding.ActivityMainBinding
 import com.mirim.refrigerator.databinding.ActivitySigninBinding
-import com.mirim.refrigerator.view.MainActivity
+import com.mirim.refrigerator.view.HomeActivity
 
 class SigninActivity : AppCompatActivity() {
 
@@ -26,7 +24,7 @@ class SigninActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnSignin.setOnClickListener {
-            var intent = Intent(applicationContext,MainActivity::class.java)
+            var intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }

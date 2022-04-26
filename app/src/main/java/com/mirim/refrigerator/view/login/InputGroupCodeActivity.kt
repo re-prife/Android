@@ -3,9 +3,8 @@ package com.mirim.refrigerator.view.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityInputGroupCodeBinding
-import com.mirim.refrigerator.view.MainActivity
+import com.mirim.refrigerator.view.HomeActivity
 
 class InputGroupCodeActivity : AppCompatActivity() {
 
@@ -20,7 +19,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
         binding.btnJoinGroup.setOnClickListener {
             //TODO : 존재하는 그룹 코드인지 확인
-            var intent = Intent(applicationContext,MainActivity::class.java)
+            var intent = Intent(applicationContext,HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
