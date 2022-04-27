@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@id/txt_input_name_info"
         android:layout_marginTop="5dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_create_group"
         android:layout_width="330dp"
         android:layout_height="50dp"

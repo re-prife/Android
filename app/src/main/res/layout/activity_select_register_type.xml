@@ -47,7 +47,7 @@
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_join_group"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -58,7 +58,7 @@
         app:layout_constraintRight_toLeftOf="@id/btn_create_group"
         android:layout_marginTop="120dp"
         android:textSize="35sp"
-        android:text="/"
+        android:text="&lt;/&gt;"
         android:textColor="@color/white"
         android:textStyle="bold"/>
 
@@ -85,7 +85,7 @@
         app:layout_constraintRight_toRightOf="@id/txt_join_group" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_create_group"
         android:layout_width="90dp"
         android:layout_height="90dp"
