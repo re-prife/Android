@@ -29,6 +29,8 @@ class MyPageFragment: Fragment() {
         _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.userImage.clipToOutline = true
+
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         userViewModel.loadUsers(User("아빠", "김아빠", "email@naver.com"))
