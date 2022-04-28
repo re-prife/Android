@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffffff">
-
-    <RelativeLayout
+    android:layout_height="wrap_content"
+    android:background="#E5E5E5">
+    <LinearLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="130dp"
+        android:paddingTop="20dp"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="30dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="설정"
-            android:id="@+id/setting"
-            android:textSize="14sp"
-            android:textColor="#676767"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/background_radius_box"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="66dp"
-            android:layout_height="66dp"
+            android:id="@+id/user_image"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/sample_image"
-            android:layout_margin="3dp"
-            android:id="@+id/user_image"/>
-
-        <RelativeLayout
+            android:background="@drawable/image_circle" />
+        <LinearLayout
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="18dp"
-            android:layout_toRightOf="@id/user_image"
-            android:layout_centerVertical="true">
+            android:layout_gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/user_nickname"
@@ -51,16 +47,221 @@
                 android:layout_marginLeft="8dp"
                 android:textColor="#676767"
                 android:textSize="14sp" />
+        </LinearLayout>
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#676767"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="25dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill">
+                    <ImageView
+                        android:backgroundTint="#ffffff"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:minHeight="30dp"
+                        android:src="@drawable/icon_mypage_show_code"
+                        android:id="@+id/btn_group_code" />
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="그룹코드 보기"
+                        android:textSize="11sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_mypage_setting"
+                        android:id="@+id/btn_profile_setting" />
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="프로필 설정"
+                        android:textSize="11sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_mypage_contact"
+                        android:id="@+id/btn_contact" />
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="문의하기"
+                        android:textSize="11sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_mypage_version"
+                        android:id="@+id/btn_version" />
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="버전 정보"
+                        android:textSize="11sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_mypage_policy"
+                        android:id="@+id/btn_policy" />
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="개인정보처리방침"
+                        android:textSize="11sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill">
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/icon_mypage_logout"
+                        android:id="@+id/btn_logout" />
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="로그아웃"
+                        android:textSize="11sp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#AAAAAA" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mypage_king"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/user_email"
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_nickname"
-                android:text=""
-                android:textColor="#676767"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp"/>
-        </RelativeLayout>
-    </RelativeLayout>
-</LinearLayout>
+                android:textColor="@color/black"
+                android:text="너가 왕이니"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="#DDDDDD"
+                android:layout_marginBottom="30dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="#AAAAAA" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="가족 구성원"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="#DDDDDD"
+                android:layout_marginBottom="30dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginBottom="20dp"
+                android:background="#AAAAAA" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

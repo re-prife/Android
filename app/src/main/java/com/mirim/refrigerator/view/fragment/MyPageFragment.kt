@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.FragmentMyPageBinding
+import com.mirim.refrigerator.dialog.ShowCodeDialog
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.viewmodel.UserViewModel
 
@@ -31,6 +33,8 @@ class MyPageFragment: Fragment() {
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
+        binding.userImage.clipToOutline = true
+
         userViewModel.loadUsers(User("아빠", "김아빠", "email@naver.com"))
 
         userViewModel.getUser().observe(this, Observer<User>{
@@ -38,6 +42,11 @@ class MyPageFragment: Fragment() {
             binding.userName.text = it.name
             binding.userEmail.text = it.email
         })
+
+        binding.btnGroupCode.setOnClickListener {
+            val dialog = ShowCodeDialog("hajinhajin")
+            dialog.show(activity!!.supportFragmentManager, "")
+        }
 
 
         return view
