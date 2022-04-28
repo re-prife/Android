@@ -37,7 +37,7 @@ class MyPageFragment: Fragment() {
 
         userViewModel.loadUsers(User("아빠", "김아빠", "email@naver.com"))
 
-        userViewModel.getUser().observe(this, Observer<User>{
+        userViewModel.getUser().observe(viewLifecycleOwner, Observer<User>{
             binding.userNickname.text = it.nickname
             binding.userName.text = it.name
             binding.userEmail.text = it.email
@@ -45,7 +45,7 @@ class MyPageFragment: Fragment() {
 
         binding.btnGroupCode.setOnClickListener {
             val dialog = ShowCodeDialog("hajinhajin")
-            dialog.show(activity!!.supportFragmentManager, "")
+            dialog.show(requireActivity().supportFragmentManager, "")
         }
 
 

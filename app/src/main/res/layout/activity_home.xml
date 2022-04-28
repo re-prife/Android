@@ -45,12 +45,14 @@
                 android:textSize="12sp"
                 android:id="@+id/main_notice_content"
                 android:layout_below="@id/main_notice_title"/>
+
             <ImageView
+                android:id="@+id/write_notice"
                 android:layout_width="39dp"
                 android:layout_height="39dp"
-                android:src="@drawable/icon_main_notice_change"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_main_notice_change" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
