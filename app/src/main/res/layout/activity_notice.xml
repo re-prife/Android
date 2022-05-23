@@ -37,7 +37,8 @@
             <EditText
                 android:id="@+id/edit_notice_title"
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:textSize="15sp"
                 android:textColor="@color/black"
                 android:background="@drawable/background_edit_text_softer"
@@ -50,6 +51,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
             <EditText
+                android:padding="12dp"
                 android:id="@+id/edit_notice_content"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
