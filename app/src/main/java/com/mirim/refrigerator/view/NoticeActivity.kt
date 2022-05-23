@@ -20,10 +20,8 @@ class NoticeActivity : AppCompatActivity() {
         binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val noticeViewModel: NoticeViewModel by viewModels()
-
         binding.btnNoticeSubmit.setOnClickListener {
-            noticeViewModel.loadNotice(binding.editNoticeTitle.text.toString(), binding.editNoticeContent.text.toString())
+            // server 통신
             Toast.makeText(applicationContext, "공지가 등록되었습니다.", Toast.LENGTH_SHORT).show()
             finish()
         }

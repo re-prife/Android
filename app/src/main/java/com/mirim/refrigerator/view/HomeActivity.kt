@@ -14,13 +14,18 @@ import com.mirim.refrigerator.viewmodel.NoticeViewModel
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private val noticeViewModel : NoticeViewModel by viewModels()
 
+    companion object {
+        var noticeTitle: String = ""
+        var noticeContent: String = ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
-        val noticeViewModel : NoticeViewModel by viewModels()
+
 
         setContentView(view)
 
@@ -57,5 +62,4 @@ class HomeActivity : AppCompatActivity() {
         })
 
     }
-
 }
