@@ -33,27 +33,33 @@ class HomeActivity : AppCompatActivity() {
 
         binding.buttonRefrigerator.setOnClickListener {
             intent.putExtra("clicked button", "refrigerator")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         binding.buttonHousework.setOnClickListener {
             intent.putExtra("clicked button", "housework")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
 
         binding.buttonErrand.setOnClickListener {
             intent.putExtra("clicked button", "errand")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         binding.buttonMakeErrand.setOnClickListener {
             intent.putExtra("clicked button", "make errand")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         binding.buttonMyPage.setOnClickListener {
             intent.putExtra("clicked button", "my page")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         binding.writeNotice.setOnClickListener {
             var intent = Intent(applicationContext, NoticeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
         noticeViewModel.getNotice().observe(this, Observer<Notice> {

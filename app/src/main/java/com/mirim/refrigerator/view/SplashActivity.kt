@@ -21,6 +21,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed(Runnable {
             val intent = Intent(this, SigninActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
             finish()

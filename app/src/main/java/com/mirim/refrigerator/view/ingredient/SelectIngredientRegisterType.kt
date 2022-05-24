@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.databinding.ActivitySelectIngredientRegisterTypeBinding
+import com.mirim.refrigerator.view.BottomAppBarActivity
 
 class SelectIngredientRegisterType : AppCompatActivity() {
 
