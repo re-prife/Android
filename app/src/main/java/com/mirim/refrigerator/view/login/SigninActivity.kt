@@ -22,11 +22,13 @@ class SigninActivity : AppCompatActivity() {
             var intent = Intent(applicationContext,SignupActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
+            finish()
         }
         binding.btnSignin.setOnClickListener {
             var intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
+            finish()
         }
 
 

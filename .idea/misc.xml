@@ -15,6 +15,33 @@
         <entry key="..\:/Refripe/app/src/main/res/layout/activity_signin.xml" value="0.22" />
         <entry key="..\:/Refripe/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Refripe/app/src/main/res/layout/activity_signup_select_type.xml" value="0.33" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_config_button.xml" value="0.1" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text.xml" value="0.274" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text_ingredient.xml" value="0.274" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text_ingredient_left.xml" value="0.274" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text_ingredient_right.xml" value="0.274" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/acitivity_join_group.xml" value="0.24326635314236852" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_bottom_app_bar.xml" value="0.1851218469431381" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_create_group.xml" value="0.2697734074390765" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_home.xml" value="0.32834544677212485" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_ingredient_addition.xml" value="0.5" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_ingredient_register.xml" value="0.45446772124839674" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_input_group_code.xml" value="0.30055579307396324" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_main.xml" value="0.15391192817443353" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_qr_scan.xml" value="0.32834544677212485" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_select_ingredient_addition_type.xml" value="0.32834544677212485" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_select_ingredient_register_type.xml" value="0.45446772124839674" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_select_register_type.xml" value="0.30055579307396324" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_show_group_code.xml" value="0.2" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_signin.xml" value="0.33" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_signup.xml" value="0.2" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_signup_select_type.xml" value="0.2159042325780248" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_splash.xml" value="0.24326635314236852" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_test1.xml" value="0.24326635314236852" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/fragment_errand.xml" value="0.32834544677212485" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/fragment_housework.xml" value="0.32834544677212485" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/fragment_make_errand.xml" value="0.32834544677212485" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/fragment_my_page.xml" value="0.32834544677212485" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/main_color_bottom_radius_18dp_background.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/main_white_button_shadow_radius_20dp_background.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/test.xml" value="0.14166666666666666" />

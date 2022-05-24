@@ -14,6 +14,13 @@
             android:exported="false" />
         <activity
             android:name=".view.NoticeActivity"
+            android:name=".view.ingredient.SelectIngredientRegisterType"
+            android:exported="false" />
+        <activity
+            android:name=".view.ingredient.QrScanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ingredient.IngredientRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".view.login.InputGroupCodeActivity"
