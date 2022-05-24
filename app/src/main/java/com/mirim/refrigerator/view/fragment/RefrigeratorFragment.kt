@@ -1,5 +1,6 @@
 package com.mirim.refrigerator.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -9,6 +10,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mirim.refrigerator.R
+import com.mirim.refrigerator.RefrigeratorSearchActivity
 import com.mirim.refrigerator.databinding.FragmentRefrigeratorBinding
 import com.mirim.refrigerator.view.refrigeratorFragment.*
 
@@ -49,6 +51,7 @@ class RefrigeratorFragment: Fragment() {
             when (it.itemId) {
                 R.id.action_search -> {
                     Toast.makeText(context, "검색", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(context, RefrigeratorSearchActivity::class.java))
                     true
                 }
                 R.id.action_select -> {
