@@ -30,10 +30,7 @@ class SelectIngredientRegisterType : AppCompatActivity() {
         }
 
         binding.btnMovePrev.setOnClickListener {
-            var intent = Intent(applicationContext, BottomAppBarActivity::class.java)
-            intent.putExtra("clicked button", "refrigerator")
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
+            finish()
         }
     }
 }
