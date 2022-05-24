@@ -71,6 +71,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/main"
         app:borderWidth="0dp"
+        android:src="@drawable/home"
+        app:tint="@android:color/white"
         app:layout_anchor="@id/bar"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

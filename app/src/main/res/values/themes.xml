@@ -14,4 +14,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/second</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <style name="Your.Theme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarItemBackground">@null</item>
+    </style>
 </resources>

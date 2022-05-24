@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_circle.xml" value="0.437" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_config_button.xml" value="0.437" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text.xml" value="0.437" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/background_radius_box.xml" value="0.437" />
+        <entry key="..\:/Refripe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3995" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/acitivity_join_group.xml" value="0.33" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/acitivity_signup.xml" value="0.33" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_create_group.xml" value="0.25" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_signin.xml" value="0.22" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="..\:/Refripe/app/src/main/res/layout/activity_signup_select_type.xml" value="0.33" />
         <entry key="..\:/Refripe/app/src/main/res/drawable/background_config_button.xml" value="0.1" />
         <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text.xml" value="0.274" />
         <entry key="..\:/Refripe/app/src/main/res/drawable/background_edit_text_ingredient.xml" value="0.274" />
@@ -35,7 +47,42 @@
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/test.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/white_radius_16dp_background.xml" value="0.146875" />
         <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/drawable/white_radius_5dp_background.xml" value="0.2713541666666667" />
-        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_errand.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_housework.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_make_errand.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_my_page.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/hajin/Refrigerator/Refrigerator/app/src/main/res/layout/activity_refrigerator.xml" value="0.12708333333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/background_bottom_radius_box.xml" value="0.3145" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/background_circle.xml" value="0.3175" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/background_config_button.xml" value="0.3135" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/background_edit_text.xml" value="0.3545" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/background_edit_text_softer.xml" value="0.3145" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/background_radius_box.xml" value="0.3135" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/fragment_refrigerator1.xml" value="0.3145" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/fragment_refrigerator2.xml" value="0.3145" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/image_circle.xml" value="0.312" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/drawable/white_radius_20dp_background.xml" value="0.316" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_bottom_app_bar.xml" value="0.30885416666666665" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_create_group.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_home.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_input_group_code.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_mom_talking.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_notice.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_signin.xml" value="0.3104166666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_signup.xml" value="0.3104166666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/activity_splash.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/dialog_show_code.xml" value="0.3145833333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_housework.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_make_errand.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_my_page.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_refrigerator.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_refrigerator1.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_refrigerator2.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_refrigerator3.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/fragment_refrigerator4.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/layout/toolbar.xml" value="0.31145833333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Android/app/src/main/res/menu/refrigerator_menu.xml" value="0.31145833333333334" />
       </map>
     </option>
   </component>

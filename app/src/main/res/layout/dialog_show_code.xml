@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/white_radius_20dp_background"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:id="@+id/dialog">
+
+    <TextView
+        android:id="@+id/txt_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="60dp"
+        android:text="sdfsdf"
+        android:textColor="@color/black"
+        android:textSize="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main"
+        android:text="닫기"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+</LinearLayout>
