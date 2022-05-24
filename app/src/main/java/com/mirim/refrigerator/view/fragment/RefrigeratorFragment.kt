@@ -2,6 +2,7 @@ package com.mirim.refrigerator.view.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
@@ -47,11 +48,11 @@ class RefrigeratorFragment: Fragment() {
         binding.myToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_search -> {
-                    // Navigate to settings screen
+                    Toast.makeText(context, "검색", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.action_select -> {
-                    // Save profile changes
+                    Toast.makeText(context, "선택", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false

@@ -8,7 +8,8 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/myToolbar" />
+        android:id="@+id/myToolbar"
+        android:theme="@style/Your.Theme"/>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
