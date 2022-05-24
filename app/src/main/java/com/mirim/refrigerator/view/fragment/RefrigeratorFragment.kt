@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.RefrigeratorSearchActivity
 import com.mirim.refrigerator.databinding.FragmentRefrigeratorBinding
+import com.mirim.refrigerator.view.ingredient.SelectIngredientRegisterType
 import com.mirim.refrigerator.view.refrigeratorFragment.*
 
 
@@ -60,6 +61,10 @@ class RefrigeratorFragment: Fragment() {
                 }
                 else -> false
             }
+        }
+
+        binding.btnPlus.setOnClickListener {
+            startActivity(Intent(context, SelectIngredientRegisterType::class.java))
         }
 
         return view

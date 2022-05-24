@@ -10,10 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
+            android:name=".view.NoticeActivity"
+            android:exported="false" />
+        <activity
             android:name=".RefrigeratorSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.NoticeActivity"
             android:name=".view.ingredient.SelectIngredientRegisterType"
             android:exported="false" />
         <activity

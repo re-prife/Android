@@ -28,12 +28,8 @@ class SelectIngredientRegisterType : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        /* Todo : 식재료 관리 탭 연결
         binding.btnMovePrev.setOnClickListener {
-            var intent = Intent(applicationContext,식재료관리탭::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-        } */
+            finish()
+        }
     }
 }
