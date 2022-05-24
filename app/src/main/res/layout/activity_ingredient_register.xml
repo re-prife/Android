@@ -54,7 +54,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="80dp"
-                android:src="@drawable/sample_image"/>
+                android:src="@drawable/sample_image"
+                />
             <TextView
                 android:id="@+id/txt_name_info"
                 app:layout_constraintTop_toBottomOf="@+id/img_ingredient"
@@ -71,6 +72,10 @@
                 android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
@@ -92,6 +97,10 @@
                 android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
@@ -121,11 +130,15 @@
                     android:id="@+id/edit_bought_day"
                     android:layout_width="160dp"
                     android:layout_height="40dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:background="@drawable/background_edit_text_ingredient_left" />
                 <EditText
                     android:id="@+id/edit_end_day"
                     android:layout_width="160dp"
                     android:layout_height="40dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:background="@drawable/background_edit_text_ingredient_right" />
             </LinearLayout>
 
@@ -145,6 +158,10 @@
                 android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
@@ -166,6 +183,10 @@
                 android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
@@ -187,6 +208,12 @@
                 android:layout_width="320dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="3dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLines="3"
+                android:maxWidth="310dp"
+                android:inputType="text|textMultiLine"
+                android:imeOptions="actionDone"
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
@@ -202,10 +229,11 @@
     <LinearLayout
         android:id="@+id/layout_linear_btn"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:weightSum="10">
         <RelativeLayout
+            android:id="@+id/btn_save_ingredient"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="7"
@@ -219,6 +247,7 @@
                 android:textColor="@color/white"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/btn_cancel_ingredient"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
