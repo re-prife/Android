@@ -11,6 +11,11 @@
         android:theme="@style/Theme.Refrigerator">
         <activity
             android:name=".view.NoticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RefrigeratorSearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ingredient.SelectIngredientRegisterType"
             android:exported="false" />
         <activity
@@ -42,7 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".view.login.SigninActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".view.BottomAppBarActivity"
             android:exported="false" />
