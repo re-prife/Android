@@ -60,6 +60,7 @@ class BottomAppBarActivity : AppCompatActivity() {
 
         binding.fab.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
         }
 
 

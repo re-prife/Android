@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.databinding.ActivitySelectIngredientRegisterTypeBinding
+import com.mirim.refrigerator.view.BottomAppBarActivity
 
 class SelectIngredientRegisterType : AppCompatActivity() {
 
@@ -28,12 +29,11 @@ class SelectIngredientRegisterType : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-        /* Todo : 식재료 관리 탭 연결
         binding.btnMovePrev.setOnClickListener {
-            var intent = Intent(applicationContext,식재료관리탭::class.java)
+            var intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+            intent.putExtra("clicked button", "refrigerator")
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
-        } */
+        }
     }
 }

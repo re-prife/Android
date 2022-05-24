@@ -6,6 +6,8 @@ import android.os.Bundle
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.databinding.ActivityIngredientRegisterBinding
+import com.mirim.refrigerator.view.BottomAppBarActivity
+import com.mirim.refrigerator.view.fragment.RefrigeratorFragment
 
 class IngredientRegisterActivity : AppCompatActivity() {
 
@@ -26,7 +28,10 @@ class IngredientRegisterActivity : AppCompatActivity() {
             // TODO : 식재료 저장
         }
         binding.btnCancelIngredient.setOnClickListener {
-            // TODO : 식재료 관리 탭 연결
+            var intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+            intent.putExtra("clicked button", "refrigerator")
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
         }
 
 
