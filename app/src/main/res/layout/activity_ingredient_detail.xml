@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ingredient.IngredientDetailActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="65dp"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/main" />
+
+            <TextView
+                android:id="@+id/txt_ingredient_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:text="식재료 이름"
+                android:textColor="@color/black"
+                android:textSize="19sp" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:columnCount="2">
+
+                <TextView
+                    android:layout_columnWeight="2"
+                    android:layout_marginBottom="25dp"
+                    android:text="양"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_ingredient_amount"
+                    android:layout_columnWeight="5"
+                    android:text="200g"
+                    android:textColor="#676767"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="25dp"
+                    android:text="구매일자"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_ingredient_buy_date"
+                    android:layout_columnWeight="2"
+                    android:text="2022-02-01"
+                    android:textColor="#676767"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="25dp"
+                    android:text="유통기한"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_ingredient_expiry_date"
+                    android:layout_columnWeight="2"
+                    android:text="2022-05-26"
+                    android:textColor="#676767"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="25dp"
+                    android:text="카테고리"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_ingredient_category"
+                    android:layout_columnWeight="2"
+                    android:text="채소"
+                    android:textColor="#676767"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:layout_marginBottom="25dp"
+                    android:text="보관방법"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_ingredient_store"
+                    android:layout_columnWeight="2"
+                    android:text="실온"
+                    android:textColor="#676767"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_columnSpan="2"
+                    android:layout_columnWeight="1"
+                    android:text="메모"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/edit_ingredient_memo"
+                    android:layout_height="150dp"
+                    android:layout_columnSpan="2"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/background_edit_text_ingredient" />
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_modify"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/background_button_main_color"
+            android:text="수정"
+            android:textColor="@color/white"
+            android:stateListAnimator="@null"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@drawable/background_button_top_line"
+            android:text="삭제"
+            android:textColor="@color/main"
+            android:stateListAnimator="@null"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

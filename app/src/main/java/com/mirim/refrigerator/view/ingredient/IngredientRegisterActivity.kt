@@ -16,11 +16,12 @@ class IngredientRegisterActivity : AppCompatActivity() {
         val view = binding.root
 
 
-        binding.btnMovePrev.setOnClickListener {
+        binding.toolbar.btnBack.setOnClickListener {
             var intent = Intent(applicationContext,SelectIngredientRegisterTypeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
+        binding.toolbar.toolbarTitle.text = "식재료 등록"
         binding.btnSaveIngredient.setOnClickListener {
             // TODO : 식재료 저장
         }
