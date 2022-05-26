@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.RefrigeratorSearchActivity
 import com.mirim.refrigerator.databinding.FragmentRefrigeratorBinding
-import com.mirim.refrigerator.view.ingredient.SelectIngredientRegisterType
+import com.mirim.refrigerator.view.HomeActivity
+import com.mirim.refrigerator.view.ingredient.IngredientRegisterActivity
+import com.mirim.refrigerator.view.ingredient.QrScanActivity
+import com.mirim.refrigerator.view.ingredient.SelectIngredientActivity
+import com.mirim.refrigerator.view.ingredient.SelectIngredientRegisterTypeActivity
 import com.mirim.refrigerator.view.refrigeratorFragment.*
 
 
@@ -56,7 +57,8 @@ class RefrigeratorFragment: Fragment() {
                     true
                 }
                 R.id.action_select -> {
-                    Toast.makeText(context, "선택", Toast.LENGTH_SHORT).show()
+                    var intent = Intent(context, SelectIngredientActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
@@ -64,7 +66,9 @@ class RefrigeratorFragment: Fragment() {
         }
 
         binding.btnPlus.setOnClickListener {
-            startActivity(Intent(context, SelectIngredientRegisterType::class.java))
+            val intent = Intent(context, IngredientRegisterActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
         }
 
         return view

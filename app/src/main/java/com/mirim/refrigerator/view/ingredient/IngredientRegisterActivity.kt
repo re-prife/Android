@@ -3,11 +3,8 @@ package com.mirim.refrigerator.view.ingredient
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mirim.refrigerator.R
-import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.databinding.ActivityIngredientRegisterBinding
 import com.mirim.refrigerator.view.BottomAppBarActivity
-import com.mirim.refrigerator.view.fragment.RefrigeratorFragment
 
 class IngredientRegisterActivity : AppCompatActivity() {
 
@@ -20,7 +17,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
 
 
         binding.btnMovePrev.setOnClickListener {
-            var intent = Intent(applicationContext,SelectIngredientRegisterType::class.java)
+            var intent = Intent(applicationContext,SelectIngredientRegisterTypeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }

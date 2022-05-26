@@ -7,7 +7,7 @@ import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.databinding.ActivitySelectIngredientRegisterTypeBinding
 
-class SelectIngredientRegisterType : AppCompatActivity() {
+class SelectIngredientRegisterTypeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySelectIngredientRegisterTypeBinding
 

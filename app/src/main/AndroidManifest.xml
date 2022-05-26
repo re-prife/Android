@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
+            android:name=".view.ingredient.SelectIngredientActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.NoticeActivity"
             android:exported="false" />
         <activity
             android:name=".RefrigeratorSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ingredient.SelectIngredientRegisterType"
+            android:name=".view.ingredient.SelectIngredientRegisterTypeActivity"
             android:exported="false" />
         <activity
             android:name=".view.ingredient.QrScanActivity"
