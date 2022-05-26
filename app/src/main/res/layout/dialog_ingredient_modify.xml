@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="25dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식재료 수량 수정"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="35dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_move_prev"
+            android:layout_margin="10dp"
+            android:id="@+id/btn_prev"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_ingredient_name"
+            android:text="양파"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:textColor="#525252" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/background_edit_text_ingredient_amount"
+            android:text="2개"
+            android:id="@+id/edit_modify_amount"
+            android:textColor="#525252"
+            android:textSize="16sp"
+            android:gravity="right"
+            android:padding="15dp"/>
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_move_next"
+            android:id="@+id/btn_next"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/background_button_main_color"
+        android:text="확인"
+        android:id="@+id/btn_confirm"
+        android:textColor="@color/white"
+        android:layout_marginTop="15dp"/>
+
+
+</LinearLayout>

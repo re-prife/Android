@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySelectIngredientBinding
 import com.mirim.refrigerator.dialog.IngredientDeleteDialog
+import com.mirim.refrigerator.dialog.IngredientModifyDialog
 import com.mirim.refrigerator.dialog.ShowCodeDialog
 
 class SelectIngredientActivity : AppCompatActivity() {
@@ -23,6 +24,8 @@ class SelectIngredientActivity : AppCompatActivity() {
 
         binding.btnModify.setOnClickListener {
             Toast.makeText(applicationContext, "수정", Toast.LENGTH_SHORT).show()
+            val dialog = IngredientModifyDialog(emptyList(), emptyList())
+            dialog.show(supportFragmentManager, "")
 
         }
 
