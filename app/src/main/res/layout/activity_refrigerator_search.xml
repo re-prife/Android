@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
         <ImageView
             android:layout_marginRight="10dp"
             android:layout_width="20dp"
@@ -34,13 +35,6 @@
             android:src="@drawable/icon_search"
             android:id="@+id/btn_search"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#AAAAAA" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"

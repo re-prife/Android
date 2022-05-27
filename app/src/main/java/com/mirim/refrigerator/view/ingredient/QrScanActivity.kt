@@ -14,9 +14,10 @@ class QrScanActivity : AppCompatActivity() {
         binding = ActivityQrScanBinding.inflate(layoutInflater)
         val view = binding.root
 
-        binding.btnMovePrev.setOnClickListener {
+        binding.toolbar.btnBack.setOnClickListener {
             finish()
         }
+
 
         setContentView(view)
 

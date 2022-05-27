@@ -10,13 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
+            android:name=".view.ingredient.IngredientModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ingredient.IngredientDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ingredient.SelectIngredientActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.NoticeActivity"
             android:exported="false" />
         <activity
             android:name=".RefrigeratorSearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ingredient.SelectIngredientRegisterType"
+            android:name=".view.ingredient.SelectIngredientRegisterTypeActivity"
             android:exported="false" />
         <activity
             android:name=".view.ingredient.QrScanActivity"
@@ -50,15 +59,12 @@
             android:exported="true" />
         <activity
             android:name=".view.BottomAppBarActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.HomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

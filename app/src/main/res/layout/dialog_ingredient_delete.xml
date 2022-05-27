@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="25dp"
+    android:background="@drawable/white_radius_20dp_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="식재료 삭제"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="17dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="55dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_ingredient_name"
+            android:text="재료 이름"
+            android:textSize="15sp"
+            android:textColor="#525252" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="을 삭제하시겠습니까?"
+            android:textSize="15sp"
+            android:textColor="#525252" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="확인"
+            android:background="@drawable/background_button_main_color"
+            android:id="@+id/btn_confirm"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_weight="1"
+            android:background="@drawable/background_button_top_line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/main"
+            android:text="취소"
+            android:id="@+id/btn_cancel"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -218,12 +218,13 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:background="@color/main">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="저장"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/btn_cancel_ingredient"

@@ -76,14 +76,14 @@
                     android:gravity="center"
                     android:layout_columnWeight="1"
                     android:orientation="vertical"
-                    android:layout_gravity="fill">
+                    android:layout_gravity="fill"
+                    android:id="@+id/btn_group_code">
                     <ImageView
                         android:backgroundTint="#ffffff"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:minHeight="30dp"
-                        android:src="@drawable/icon_mypage_show_code"
-                        android:id="@+id/btn_group_code" />
+                        android:src="@drawable/icon_mypage_show_code" />
                     <TextView
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
@@ -99,12 +99,12 @@
                     android:gravity="center"
                     android:layout_columnWeight="1"
                     android:orientation="vertical"
-                    android:layout_gravity="fill">
+                    android:layout_gravity="fill"
+                    android:id="@+id/btn_profile_setting">
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/icon_mypage_setting"
-                        android:id="@+id/btn_profile_setting" />
+                        android:src="@drawable/icon_mypage_setting" />
                     <TextView
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
@@ -120,12 +120,12 @@
                     android:gravity="center"
                     android:layout_columnWeight="1"
                     android:orientation="vertical"
-                    android:layout_gravity="fill">
+                    android:layout_gravity="fill"
+                    android:id="@+id/btn_contact">
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/icon_mypage_contact"
-                        android:id="@+id/btn_contact" />
+                        android:src="@drawable/icon_mypage_contact" />
                     <TextView
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
@@ -146,12 +146,12 @@
                     android:gravity="center"
                     android:layout_columnWeight="1"
                     android:orientation="vertical"
-                    android:layout_gravity="fill">
+                    android:layout_gravity="fill"
+                    android:id="@+id/btn_version">
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/icon_mypage_version"
-                        android:id="@+id/btn_version" />
+                        android:src="@drawable/icon_mypage_version" />
                     <TextView
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
@@ -167,12 +167,12 @@
                     android:gravity="center"
                     android:layout_columnWeight="1"
                     android:orientation="vertical"
-                    android:layout_gravity="fill">
+                    android:layout_gravity="fill"
+                    android:id="@+id/btn_policy">
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/icon_mypage_policy"
-                        android:id="@+id/btn_policy" />
+                        android:src="@drawable/icon_mypage_policy" />
                     <TextView
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
@@ -188,12 +188,12 @@
                     android:gravity="center"
                     android:layout_columnWeight="1"
                     android:orientation="vertical"
-                    android:layout_gravity="fill">
+                    android:layout_gravity="fill"
+                    android:id="@+id/btn_logout">
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/icon_mypage_logout"
-                        android:id="@+id/btn_logout" />
+                        android:src="@drawable/icon_mypage_logout" />
                     <TextView
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
