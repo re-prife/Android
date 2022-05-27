@@ -1,5 +1,6 @@
 package com.mirim.refrigerator.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.FragmentMyPageBinding
 import com.mirim.refrigerator.dialog.ShowCodeDialog
 import com.mirim.refrigerator.model.User
+import com.mirim.refrigerator.view.mypage.ProfileModifyActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
 
 class MyPageFragment: Fragment() {
@@ -46,6 +48,10 @@ class MyPageFragment: Fragment() {
         binding.btnGroupCode.setOnClickListener {
             val dialog = ShowCodeDialog("hajinhajin")
             dialog.show(requireActivity().supportFragmentManager, "")
+        }
+
+        binding.btnProfileSetting.setOnClickListener {
+            startActivity(Intent(context, ProfileModifyActivity::class.java))
         }
 
 

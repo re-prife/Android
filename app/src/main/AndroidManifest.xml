@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
+            android:name=".view.mypage.PasswordModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.mypage.ProfileModifyActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ingredient.IngredientModifyActivity"
             android:exported="false" />
         <activity
@@ -63,9 +69,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

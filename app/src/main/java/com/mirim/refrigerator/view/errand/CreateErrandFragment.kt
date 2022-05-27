@@ -14,6 +14,6 @@ class CreateErrandFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_create_errand, container, false)
+        return inflater.inflate(R.layout.activity_create_errand, container, false)
     }
 }

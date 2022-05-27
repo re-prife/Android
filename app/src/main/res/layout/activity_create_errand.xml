@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".view.errand.CreateErrandFragment">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

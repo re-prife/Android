@@ -210,7 +210,7 @@
     <LinearLayout
         android:id="@+id/layout_linear_btn"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent">
         <RelativeLayout
             android:id="@+id/btn_save_ingredient"
