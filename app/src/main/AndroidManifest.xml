@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
+            android:name=".view.housework.RegisterHouseworkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.mypage.PolicyActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.mypage.PasswordModifyActivity"
             android:exported="false" />
         <activity
@@ -46,7 +52,7 @@
             android:name=".view.login.SelectRegisterTypeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ShowGroupCodeActivity"
+            android:name=".view.login.ShowGroupCodeActivity"
             android:exported="false" />
         <activity
             android:name=".view.SplashActivity"
