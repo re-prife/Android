@@ -1,10 +1,12 @@
 package com.mirim.refrigerator.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityBottomAppBarBinding
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
+import com.mirim.refrigerator.view.errand.CreateErrandActivity
 import com.mirim.refrigerator.view.fragment.ErrandFragment
 import com.mirim.refrigerator.view.fragment.HouseworkFragment
 import com.mirim.refrigerator.view.fragment.MyPageFragment
@@ -33,7 +35,10 @@ class BottomAppBarActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction().add(R.id.frame, ErrandFragment()).commit()
             }
             "make errand" -> {
-                supportFragmentManager.beginTransaction().add(R.id.frame, ErrandFragment()).commit()
+                var intent = Intent(applicationContext,CreateErrandActivity::class.java)
+                intent.putExtra("route",1)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(intent)
             }
             "my page" -> {
                 supportFragmentManager.beginTransaction().add(R.id.frame, MyPageFragment()).commit()

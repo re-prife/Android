@@ -50,6 +50,7 @@ class HomeActivity : AppCompatActivity() {
         binding.buttonMakeErrand.setOnClickListener {
             intent.putExtra("clicked button", "make errand")
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            intent.putExtra("route",0)
             startActivity(intent)
         }
         binding.buttonMyPage.setOnClickListener {

@@ -28,7 +28,7 @@ class SelectIngredientRegisterTypeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnMovePrev.setOnClickListener {
+        binding.toolbar.btnBack.setOnClickListener {
             finish()
         }
     }

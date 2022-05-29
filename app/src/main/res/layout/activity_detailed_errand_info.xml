@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.errand.DetailedErrandInfoActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <TextView
+        android:id="@+id/txt_toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="심부름 세부"
+        android:textColor="@color/black"
+        app:layout_constraintRight_toRightOf="@id/toolbar"
+        app:layout_constraintLeft_toLeftOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"/>
+
+
+    <TextView
+        android:id="@+id/txt_requester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="요청자"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/deep_deep_gray"/>
+    <TextView
+        android:id="@+id/symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&gt;"
+        android:textColor="@color/deep_deep_gray"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@+id/txt_requester"
+        app:layout_constraintTop_toTopOf="@+id/txt_requester"
+        app:layout_constraintBottom_toBottomOf="@id/txt_requester"
+        app:layout_constraintRight_toLeftOf="@id/txt_accepter"
+        android:layout_marginLeft="10dp"/>
+    <TextView
+        android:id="@+id/txt_accepter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수락자"
+        app:layout_constraintLeft_toRightOf="@id/symbol"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toTopOf="@+id/txt_requester"
+        android:textColor="@color/deep_deep_gray"/>
+
+    <TextView
+        android:id="@+id/txt_errand_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="올때 메로나"
+        app:layout_constraintLeft_toLeftOf="@+id/txt_requester"
+        app:layout_constraintTop_toBottomOf="@+id/txt_requester"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <TextView
+        app:layout_constraintHorizontal_weight="1"
+        android:id="@+id/txt_errand_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:text="이것은 테스트문구입니다. 지금 열려있는 이 앱은 냉장고 식재료와 집안일을 가족간 공유 및 관리할 수 있는 기능들을 제공합니다. 이것은 테스트문구입니다. 지금 열려있는 이 앱은 냉장고 식재료와 집안일을 가족간 공유 및 관리할 수 있는 기능들을 제공합니다. 이것은 테스트문구입니다. 지금 열려있는 이 앱은 냉장고 식재료와 집안일을 가족간 공유 및 관리할 수 있는 기능들을 제공합니다. "
+        app:layout_constraintLeft_toLeftOf="@+id/txt_errand_title"
+        app:layout_constraintTop_toBottomOf="@+id/txt_errand_title"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/txt_errand_requested_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022.04.11 요청됨"
+        app:layout_constraintRight_toRightOf="@+id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/txt_errand_content"
+        android:layout_marginTop="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/main"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/btn_cancel_errand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소하기"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
