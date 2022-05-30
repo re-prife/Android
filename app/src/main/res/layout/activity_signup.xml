@@ -15,10 +15,13 @@
         android:layout_weight="17"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="650dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
         android:background="@drawable/background_radius_box"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
 
         <TextView
             android:id="@+id/text_signup"
@@ -43,8 +46,8 @@
         <EditText
             android:id="@+id/edit_name"
             android:inputType="textPersonName"
-            android:layout_width="310dp"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_edit_text"
             android:padding="10dp"
@@ -63,8 +66,8 @@
         <EditText
             android:id="@+id/edit_nickname"
             android:inputType="text"
-            android:layout_width="310dp"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_edit_text"
             android:padding="10dp"
@@ -83,8 +86,8 @@
         <EditText
             android:id="@+id/edit_email"
             android:inputType="textEmailAddress"
-            android:layout_width="310dp"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_edit_text"
             android:padding="10dp"
@@ -103,8 +106,8 @@
         <EditText
             android:id="@+id/edit_password"
             android:inputType="textVisiblePassword"
-            android:layout_width="310dp"
-            android:layout_height="55dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_edit_text"
             android:padding="10dp"

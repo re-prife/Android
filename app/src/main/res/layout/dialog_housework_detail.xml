@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="카테고리"
+        android:textSize="12sp"
+        android:textColor="@color/main"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        android:layout_marginTop="35dp"
+        android:id="@+id/txt_housework_category"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="설거지"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_housework_category"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        android:layout_marginTop="3dp"
+        android:id="@+id/txt_housework_name"/>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="4"
+        app:layout_constraintTop_toBottomOf="@id/txt_housework_name"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
+        android:layout_marginTop="20dp"
+        android:id="@+id/txt_housework_grid">
+        <TextView
+            android:text="담당자"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp" />
+        <TextView
+            android:text="아빠"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp"
+            android:id="@+id/txt_housework_assignee"/>
+        <TextView
+            android:text="수행일자"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp"
+            android:layout_marginRight="24dp" />
+        <TextView
+            android:text="2022.05.27"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp"
+            android:id="@+id/txt_housework_perform_date"/>
+        <TextView
+            android:text="등록일자"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp" />
+        <TextView
+            android:text="2022.05.28"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp"
+            android:id="@+id/txt_housework_register_date"/>
+        <TextView
+            android:text="수정일자"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp" />
+        <TextView
+            android:text="2022.05.29"
+            android:textColor="@color/deep_deep_gray"
+            android:textSize="13sp"
+            android:id="@+id/txt_housework_modify_date"/>
+    </GridLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/txt_housework_grid"
+        android:layout_marginTop="75dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="인증받기"
+            android:textStyle="bold"
+            android:background="@drawable/background_button_main_color"
+            android:textColor="@color/white"
+            android:id="@+id/btn_approve"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="삭제"
+            android:textColor="@color/main"
+            android:background="@drawable/background_button_top_line"
+            android:id="@+id/btn_delete"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

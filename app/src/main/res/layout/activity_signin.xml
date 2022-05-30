@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_radius_box"
         android:paddingBottom="30dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:paddingRight="40dp"
+        android:paddingLeft="40dp">
         <TextView
             android:id="@+id/text_signin"
             android:layout_width="wrap_content"
@@ -42,8 +44,8 @@
         <EditText
             android:id="@+id/edit_email"
             android:inputType="textEmailAddress"
-            android:layout_width="310dp"
-            android:layout_height="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_edit_text"
             android:padding="10dp"
@@ -64,8 +66,8 @@
         <EditText
             android:id="@+id/edit_password"
             android:inputType="textPassword"
-            android:layout_width="310dp"
-            android:layout_height="65dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_edit_text"
             android:padding="10dp"

@@ -16,7 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_radius_box"
-        android:layout_weight="4">
+        android:layout_weight="4"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
         <TextView
             android:id="@+id/text_group_code_info"
             android:layout_width="wrap_content"
@@ -43,15 +45,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signin"
-            android:layout_width="290dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="90dp"
             android:background="@drawable/background_config_button"
             android:text="홈으로 이동하기"
             android:textColor="@color/white"
+            android:layout_marginBottom="30dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_group_code"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

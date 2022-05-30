@@ -58,7 +58,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:background="@drawable/background_button_main_color"
         android:text="확인"
         android:id="@+id/btn_confirm"
