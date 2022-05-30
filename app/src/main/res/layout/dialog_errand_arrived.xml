@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="심부름 요청 도착!"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="35dp"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="심부름 내용입니다."
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/deep_deep_gray"
         app:layout_constraintTop_toBottomOf="@+id/txt_info"
         app:layout_constraintLeft_toLeftOf="@id/txt_info"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="To.엄마, 아빠"
         android:textColor="@color/deep_deep_gray"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_title"
         android:layout_marginTop="20dp"
@@ -46,11 +46,11 @@
         android:layout_marginTop="15dp"
         android:id="@+id/layout_linear_btn"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         app:layout_constraintTop_toBottomOf="@+id/txt_accepter"
         app:layout_constraintBottom_toBottomOf="parent">
         <RelativeLayout
-            android:id="@+id/btn_save_ingredient"
+            android:id="@+id/btn_accept"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -63,7 +63,7 @@
                 android:textColor="@color/white"/>
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/btn_cancel_ingredient"
+            android:id="@+id/btn_ignore"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="5"
