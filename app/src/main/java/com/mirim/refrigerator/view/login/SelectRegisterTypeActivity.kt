@@ -3,9 +3,7 @@ package com.mirim.refrigerator.view.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySelectRegisterTypeBinding
-import com.mirim.refrigerator.view.ShowGroupCodeActivity
 
 class SelectRegisterTypeActivity : AppCompatActivity() {
 
@@ -20,7 +18,7 @@ class SelectRegisterTypeActivity : AppCompatActivity() {
 
 
         binding.btnCreateGroup.setOnClickListener {
-            var intent = Intent(applicationContext,ShowGroupCodeActivity::class.java)
+            var intent = Intent(applicationContext, ShowGroupCodeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
@@ -29,6 +27,5 @@ class SelectRegisterTypeActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
-
     }
 }

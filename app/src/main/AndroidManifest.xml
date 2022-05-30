@@ -10,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator">
         <activity
-            android:name=".view.errand.DetailedErrandInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.errand.CreateErrandActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.ingredient.IngredientModifyActivity"
             android:exported="false" />
         <activity
@@ -69,7 +63,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>

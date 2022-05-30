@@ -12,4 +12,7 @@
     <color name="gray">#E5E5E5</color>
     <color name="deep_gray">#C4C4C4</color>
     <color name="deep_deep_gray">#696969</color>
+    <color name="status_green">#00A907</color>
+    <color name="status_orange">#F9A04F</color>
+    <color name="status_red">#FF0000</color>
 </resources>

@@ -1,11 +1,10 @@
-package com.mirim.refrigerator.view
+package com.mirim.refrigerator.view.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityShowGroupCodeBinding
-import com.mirim.refrigerator.databinding.ActivitySplashBinding
+import com.mirim.refrigerator.view.HomeActivity
 
 class ShowGroupCodeActivity : AppCompatActivity() {
 
@@ -19,7 +18,7 @@ class ShowGroupCodeActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnSignin.setOnClickListener {
-            var intent = Intent(applicationContext,HomeActivity::class.java)
+            var intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
