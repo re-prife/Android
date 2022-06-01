@@ -57,6 +57,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
     // qr코드 스캔
-    implementation 'com.budiyev.android:code-scanner:2.3.2'
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
 
 }
