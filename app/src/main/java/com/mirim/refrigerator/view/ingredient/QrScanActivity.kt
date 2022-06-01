@@ -51,21 +51,21 @@ class QrScanActivity : AppCompatActivity(), ConfirmBarcodeScanDialog.Listener {
 
     /* 카메라 초기화 설정 (sharedPreferences 사용) */
     private fun initScanner() {
-        codeScanner = CodeScanner(this,binding.scannerQRCode).apply {
-            camera = if(Settings.getInstance(requireContext()).isBackCamera) {
-                CodeScanner.CAMERA_BACK
-            } else {
-                CodeScanner.CAMERA_FRONT
-            }
-            formats = listOf(BarcodeFormat.QR_CODE)
-            scanMode = ScanMode.SINGLE
-            isAutoFocusEnabled = true
-            isTouchFocusEnabled = false
-
-            // TODO : handleScannedBarcode 구현, showError dialog 구현
-            // decodeCallback = DecodeCallback(::handleScannedBarcode)
-            // errorCallback = ErrorCallback(::showError)
-        }
+//        codeScanner = CodeScanner(this,binding.scannerQRCode).apply {
+//            camera = if(Settings.getInstance(requireContext()).isBackCamera) {
+//                CodeScanner.CAMERA_BACK
+//            } else {
+//                CodeScanner.CAMERA_FRONT
+//            }
+//            formats = listOf(BarcodeFormat.QR_CODE)
+//            scanMode = ScanMode.SINGLE
+//            isAutoFocusEnabled = true
+//            isTouchFocusEnabled = false
+//
+//            TODO : handleScannedBarcode 구현, showError dialog 구현
+//            decodeCallback = DecodeCallback(::handleScannedBarcode)
+//            errorCallback = ErrorCallback(::showError)
+//        }
     }
 
     override fun onBarcodeConfirmed(barcode: Barcode) {
