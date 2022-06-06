@@ -4,18 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySigninBinding
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.SigninRequest
 import com.mirim.refrigerator.server.responses.SigninResponse
+import com.mirim.refrigerator.view.HomeActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SigninActivity : AppCompatActivity() {
 
-    private val TAG : String = "SigninActivity"
+    private val TAG : String = "TAG_SigninActivity"
     private lateinit var binding: ActivitySigninBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +36,6 @@ class SigninActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSignin.setOnClickListener {
-            /*
-            var intent = Intent(applicationContext, HomeActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-            overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
-            finish()
-             */
             checkSignin()
         }
 
@@ -51,18 +46,23 @@ class SigninActivity : AppCompatActivity() {
     private fun checkSignin(){
         val emailValue = binding.editEmail.text.toString()
         val pwValue = binding.editPassword.text.toString()
-        var check : Boolean = false
+        var check : Boolean = true
 
-        if(emailValue.isEmpty()) {
-            // TODO : 이메일 입력 필요 알림
-            Log.d(TAG,"이메일 입력 필요")
-        } else if(pwValue.isEmpty()) {
-            // TODO : 비밀번호 입력 필요 알림
-            Log.d(TAG,"비밀번호 입력 필요")
-        } else if(pwValue.length < 5){
-            // TODO : 비밀번호 조건 일치 필요 알림
-            Log.d(TAG,"비밀번호 조건 필요")
-        } else check = true
+        // 조건 확인
+        when {
+            emailValue.isEmpty() -> {
+                binding.editEmail.error = "이메일을 입력하세요."
+                check = false
+            }
+            !emailValue.contains('@') -> {
+                binding.editEmail.error = "이메일 양식을 확인해주세요."
+                check = false
+            }
+            pwValue.isEmpty() -> {
+                binding.editPassword.error = "비밀번호를 입력하세요."
+                check = false
+            }
+        }
 
 
         if(check) {
@@ -83,17 +83,29 @@ class SigninActivity : AppCompatActivity() {
                 Log.d(TAG,response.body()?.status.toString())
 
                 when(body?.status) {
-                    200 -> null // TODO : 로그인 성공
-                    400 -> null // TODO : 로그인 실패 - request 형식 오류
-                    403 -> null // TODO : 로그인 실패 - 회원 정보 불일치
-                    404 -> null // TODO : 로그인 실패 - email 존재하지 않음
+                    200 -> {
+                        val intent = Intent(applicationContext, HomeActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
+                        finish()
+                    }
+                    400 -> {
+                        Toast.makeText(applicationContext,"입력 형식을 확인해주세요.", Toast.LENGTH_SHORT).show()
+                    }
+                    403 -> {
+                        Toast.makeText(applicationContext,"비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show()
+                    }
+                    404 -> {
+                        Toast.makeText(applicationContext,"입력하신 계정은 존재하지 않습니다",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                 Log.d(TAG,t.message.toString())
                 Log.d(TAG,"fail")
-                // TODO : fail된 경우 처리
+                Toast.makeText(applicationContext,"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
             }
 
         })
