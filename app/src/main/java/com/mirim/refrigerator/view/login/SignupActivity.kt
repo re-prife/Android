@@ -93,13 +93,13 @@ class SignupActivity : AppCompatActivity() {
                 call: Call<SignupResponse>,
                 response: Response<SignupResponse>
             ) {
+                val body = response.raw()
+                Log.d(TAG,body.code().toString())
 
-                var body = response.body()
-                Log.d(TAG,response.toString())
-                Log.d(TAG,response.body()?.status.toString())
 
-                when(body?.status) {
+                when(body.code()) {
                     201 -> {
+                        Log.d(TAG,"201")
                         val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
@@ -108,9 +108,11 @@ class SignupActivity : AppCompatActivity() {
                     }
                     400 -> {
                         Toast.makeText(applicationContext,"입력 형식을 확인해주세요.",Toast.LENGTH_SHORT).show()
+                        Log.d(TAG,"400")
                     }
                     409 -> {
                         Toast.makeText(applicationContext,"이미 등록된 계정입니다.",Toast.LENGTH_SHORT).show()
+                        Log.d(TAG,"409")
                     }
 
                 }

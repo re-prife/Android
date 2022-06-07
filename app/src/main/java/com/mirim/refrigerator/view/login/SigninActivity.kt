@@ -11,6 +11,7 @@ import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.SigninRequest
 import com.mirim.refrigerator.server.responses.SigninResponse
 import com.mirim.refrigerator.view.HomeActivity
+import com.mirim.refrigerator.viewmodel.UserViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -78,12 +79,11 @@ class SigninActivity : AppCompatActivity() {
                 call: Call<SigninResponse>,
                 response: Response<SigninResponse>
             ) {
-                var body = response.body()
-                Log.d(TAG,response.toString())
-                Log.d(TAG,response.body()?.status.toString())
+                var body = response.raw()
 
-                when(body?.status) {
+                when(body.code()) {
                     200 -> {
+                        // TODO : 유저 객체 생성
                         val intent = Intent(applicationContext, HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
