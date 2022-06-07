@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySignupBinding
 import com.mirim.refrigerator.model.User
@@ -32,10 +33,12 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         val view = binding.root
+        // TODO
+        Log.d(TAG, "-SignupActivity-")
 
         setContentView(view)
 
-        userViewModel = UserViewModel()
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         binding.btnSignin.setOnClickListener {
             var intent = Intent(applicationContext,SigninActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -99,6 +102,7 @@ class SignupActivity : AppCompatActivity() {
                 response: Response<SignupResponse>
             ) {
                 val body = response.raw()
+                Log.d(TAG,response.toString())
 
                 when(body.code()) {
                     201 -> {

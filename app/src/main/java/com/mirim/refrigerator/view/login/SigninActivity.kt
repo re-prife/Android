@@ -83,7 +83,8 @@ class SigninActivity : AppCompatActivity() {
             ) {
                 val raw = response.raw()
                 val body = response.body()
-                Log.d(TAG,body.toString())
+                Log.d(TAG+": raw",raw.toString())
+                Log.d(TAG+": body",body.toString())
 
                 when(raw.code()) {
                     200 -> {

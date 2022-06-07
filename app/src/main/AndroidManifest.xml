@@ -48,6 +48,9 @@
             android:name=".view.login.InputGroupCodeActivity"
             android:exported="false" />
         <activity
+            android:name=".view.login.InputGroupNameActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.login.SelectRegisterTypeActivity"
             android:exported="false" />
         <activity

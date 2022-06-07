@@ -3,6 +3,7 @@ package com.mirim.refrigerator.view.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.mirim.refrigerator.databinding.ActivitySelectRegisterTypeBinding
 
 class SelectRegisterTypeActivity : AppCompatActivity() {
@@ -15,17 +16,22 @@ class SelectRegisterTypeActivity : AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
+        // TODO
+        Log.d("TAG-SelectRegister", "-SelectRegisterTypeActivity-")
 
 
         binding.btnCreateGroup.setOnClickListener {
-            var intent = Intent(applicationContext, ShowGroupCodeActivity::class.java)
+            val intent = Intent(applicationContext, InputGroupNameActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
+
         binding.btnJoinGroup.setOnClickListener {
-            var intent = Intent(applicationContext,InputGroupCodeActivity::class.java)
+            val intent = Intent(applicationContext,InputGroupCodeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
     }
+
+
 }

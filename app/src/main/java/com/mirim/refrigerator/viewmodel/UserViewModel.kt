@@ -19,10 +19,15 @@ class UserViewModel : ViewModel() {
     fun getUserId() : String? {
         return user.value?.userId
     }
+    fun setGroupId(groupId : String) {
+        user.value?.groupId = groupId
+    }
+    fun getGroupId() : String? {
+        return user.value?.groupId
+    }
 
     init {
         Log.d(TAG, "MyNumberViewModel - 생성자 호출")
-        user.value = User("닉네임", "이름", "이메일","1","1")
     }
 
 
