@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.ActivityInputGroupCodeBinding
+import com.mirim.refrigerator.databinding.ActivityInputGroupNameBinding
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.CreateGroupRequest
 import com.mirim.refrigerator.server.request.JoinGroupRequest
@@ -16,21 +17,24 @@ import com.mirim.refrigerator.server.responses.JoinGroupResponse
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
 import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.app.Companion.user
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InputGroupCodeActivity : AppCompatActivity() {
+class InputGroupNameActivity : AppCompatActivity() {
 
-    private val TAG : String = "TAG_InputGroupCodeActivity"
-    private lateinit var binding: ActivityInputGroupCodeBinding
+    private val TAG : String = "TAG_InputGroupNameActivity"
+    private lateinit var binding: ActivityInputGroupNameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityInputGroupCodeBinding.inflate(layoutInflater)
+        binding = ActivityInputGroupNameBinding.inflate(layoutInflater)
         val view = binding.root
 
         setContentView(view)
+        // TODO
+        Log.d(TAG, "-InputGroupNameActivity-")
 
         binding.btnJoinGroup.setOnClickListener {
             checkJoinGroup()
@@ -39,37 +43,39 @@ class InputGroupCodeActivity : AppCompatActivity() {
     }
 
     private fun checkJoinGroup(){
-        val groupCodeValue : String = binding.edittxtInputCode.text.toString().trim()
+        val groupNameValue : String = binding.edittxtInputName.text.toString().trim()
         var check : Boolean = true
 
         // 조건 확인
-        if(groupCodeValue.isEmpty()) {
-            binding.edittxtInputCode.error = "그룹 코드를 입력해주세요."
+        if(groupNameValue.isEmpty()) {
+            binding.edittxtInputName.error = "그룹 이름을 입력해주세요."
             check = false
         }
 
         if(check) {
-            val data = JoinGroupRequest(groupCodeValue)
+            Log.d(TAG,"그룹 이름 : "+groupNameValue)
+            val data = CreateGroupRequest(groupNameValue)
             progressCreateGroup(data)
         }
 
     }
-    private fun progressCreateGroup(data : JoinGroupRequest) {
-        Log.d(TAG,app.user.userId.toString())
-        RetrofitService.serviceAPI.joinGroup(app.user.userId.toString(),data).enqueue(object : Callback<JoinGroupResponse> {
+    private fun progressCreateGroup(data : CreateGroupRequest) {
+        Log.d(TAG, user.userId.toString())
+        RetrofitService.serviceAPI.createGroup(user.userId.toString(),data).enqueue(object : Callback<CreateGroupResponse> {
             override fun onResponse(
-                call: Call<JoinGroupResponse>,
-                response: Response<JoinGroupResponse>
+                call: Call<CreateGroupResponse>,
+                response: Response<CreateGroupResponse>
             ) {
                 val raw = response.raw()
-                app.user.groupId = response.body()?.groupId
                 Log.d(TAG,response.toString())
 
-                when(raw.code()) {
-                    200 -> {
 
-                        Log.d(TAG,"그룹 참여 성공")
-                        val intent = Intent(applicationContext,HomeActivity::class.java)
+                when(raw.code()) {
+                    201 -> {
+                        user.groupId = response.body()?.groupId
+                        Log.d(TAG,"그룹 생성 성공, 그룹 이름 : ${data.groupName}, 그룹 코드 : ${user.groupId}")
+
+                        val intent = Intent(applicationContext,ShowGroupCodeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
@@ -86,7 +92,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
             }
 
-            override fun onFailure(call: Call<JoinGroupResponse>, t: Throwable) {
+            override fun onFailure(call: Call<CreateGroupResponse>, t: Throwable) {
 
             }
         })

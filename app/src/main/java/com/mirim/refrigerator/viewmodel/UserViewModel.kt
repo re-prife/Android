@@ -16,10 +16,18 @@ class UserViewModel : ViewModel() {
     fun getUser(): LiveData<User> {
         return user
     }
+    fun getUserId() : Int? {
+        return user.value?.userId
+    }
+    fun setGroupId(groupId : Int) {
+        user.value?.groupId = groupId
+    }
+    fun getGroupId() : Int? {
+        return user.value?.groupId
+    }
 
     init {
         Log.d(TAG, "MyNumberViewModel - 생성자 호출")
-        user.value = User("닉네임", "이름", "이메일")
     }
 
 
@@ -28,6 +36,7 @@ class UserViewModel : ViewModel() {
         user.value?.nickname=u.nickname
         user.value?.name=u.name
         user.value?.email=u.email
-
+        user.value?.groupId = u.groupId
+        user.value?.userId = u.userId
     }
 }

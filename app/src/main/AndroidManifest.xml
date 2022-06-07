@@ -3,23 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mirim.refrigerator">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 권한 설정 -->
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- 권한 설정 -->
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false"/>
-
+        android:required="false" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Refrigerator">
+        android:theme="@style/Theme.Refrigerator"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".viewmodel.app"
+            android:exported="false" />
         <activity
             android:name=".view.ingredient.IngredientModifyActivity"
             android:exported="false" />
@@ -48,6 +49,9 @@
             android:name=".view.login.InputGroupCodeActivity"
             android:exported="false" />
         <activity
+            android:name=".view.login.InputGroupNameActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.login.SelectRegisterTypeActivity"
             android:exported="false" />
         <activity
@@ -74,9 +78,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
