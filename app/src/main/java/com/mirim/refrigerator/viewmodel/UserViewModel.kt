@@ -16,10 +16,13 @@ class UserViewModel : ViewModel() {
     fun getUser(): LiveData<User> {
         return user
     }
+    fun getUserId() : String? {
+        return user.value?.userId
+    }
 
     init {
         Log.d(TAG, "MyNumberViewModel - 생성자 호출")
-        user.value = User("닉네임", "이름", "이메일")
+        user.value = User("닉네임", "이름", "이메일","1","1")
     }
 
 
@@ -28,6 +31,7 @@ class UserViewModel : ViewModel() {
         user.value?.nickname=u.nickname
         user.value?.name=u.name
         user.value?.email=u.email
-
+        user.value?.groupId = u.groupId
+        user.value?.userId = u.userId
     }
 }
