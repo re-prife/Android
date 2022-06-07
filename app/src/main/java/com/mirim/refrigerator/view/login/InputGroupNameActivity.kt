@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.ActivityInputGroupCodeBinding
+import com.mirim.refrigerator.databinding.ActivityInputGroupNameBinding
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.CreateGroupRequest
 import com.mirim.refrigerator.server.request.JoinGroupRequest
@@ -18,18 +19,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InputGroupCodeActivity : AppCompatActivity() {
+class InputGroupNameActivity : AppCompatActivity() {
 
-    private val TAG : String = "TAG_InputGroupCodeActivity"
-    private lateinit var binding: ActivityInputGroupCodeBinding
+    private val TAG : String = "TAG_InputGroupNameActivity"
+    private lateinit var binding: ActivityInputGroupNameBinding
     private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityInputGroupCodeBinding.inflate(layoutInflater)
+        binding = ActivityInputGroupNameBinding.inflate(layoutInflater)
         val view = binding.root
 
         setContentView(view)
+        // TODO
+        Log.d(TAG, "-InputGroupNameActivity-")
 
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         binding.btnJoinGroup.setOnClickListener {
@@ -39,36 +42,37 @@ class InputGroupCodeActivity : AppCompatActivity() {
     }
 
     private fun checkJoinGroup(){
-        val groupCodeValue : String = binding.edittxtInputCode.text.toString().trim()
+        val groupNameValue : String = binding.edittxtInputName.text.toString().trim()
         var check : Boolean = true
 
         // 조건 확인
-        if(groupCodeValue.isEmpty()) {
-            binding.edittxtInputCode.error = "그룹 코드를 입력해주세요."
+        if(groupNameValue.isEmpty()) {
+            binding.edittxtInputName.error = "그룹 이름을 입력해주세요."
             check = false
         }
 
         if(check) {
-            val data = JoinGroupRequest(groupCodeValue)
+            Log.d(TAG,"그룹 이름 : "+groupNameValue)
+            val data = CreateGroupRequest(groupNameValue)
             progressCreateGroup(data)
-            userViewModel.setGroupId(data.groupInviteCode)
         }
 
     }
-    private fun progressCreateGroup(data : JoinGroupRequest) {
+    private fun progressCreateGroup(data : CreateGroupRequest) {
         Log.d(TAG,userViewModel.getUserId().toString())
-        RetrofitService.serviceAPI.joinGroup(userViewModel.getUserId().toString(),data).enqueue(object : Callback<JoinGroupResponse> {
+        RetrofitService.serviceAPI.createGroup(userViewModel.getUserId().toString(),data).enqueue(object : Callback<CreateGroupResponse> {
             override fun onResponse(
-                call: Call<JoinGroupResponse>,
-                response: Response<JoinGroupResponse>
+                call: Call<CreateGroupResponse>,
+                response: Response<CreateGroupResponse>
             ) {
                 val raw = response.raw()
                 Log.d(TAG,response.toString())
 
                 when(raw.code()) {
                     200 -> {
-                        Log.d(TAG,"그룹 참여 성공")
-                        val intent = Intent(applicationContext,SigninActivity::class.java)
+                        Log.d(TAG,"그룹 생성 성공, 그룹 이름 : ${data.groupName}, 그룹 코드 : ${userViewModel.getGroupId()}")
+
+                        val intent = Intent(applicationContext,ShowGroupCodeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }
@@ -85,7 +89,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
             }
 
-            override fun onFailure(call: Call<JoinGroupResponse>, t: Throwable) {
+            override fun onFailure(call: Call<CreateGroupResponse>, t: Throwable) {
 
             }
         })
