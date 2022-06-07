@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySigninBinding
+import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.SigninRequest
 import com.mirim.refrigerator.server.responses.SigninResponse
@@ -20,6 +21,7 @@ class SigninActivity : AppCompatActivity() {
 
     private val TAG : String = "TAG_SigninActivity"
     private lateinit var binding: ActivitySigninBinding
+    private lateinit var userViewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +30,9 @@ class SigninActivity : AppCompatActivity() {
         setContentView(view)
 
 
-
+        userViewModel = UserViewModel()
         binding.btnSignup.setOnClickListener{
-            var intent = Intent(applicationContext,SignupActivity::class.java)
+            val intent = Intent(applicationContext,SignupActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
@@ -79,11 +81,15 @@ class SigninActivity : AppCompatActivity() {
                 call: Call<SigninResponse>,
                 response: Response<SigninResponse>
             ) {
-                var body = response.raw()
+                val raw = response.raw()
+                val body = response.body()
+                Log.d(TAG,body.toString())
 
-                when(body.code()) {
+                when(raw.code()) {
                     200 -> {
-                        // TODO : 유저 객체 생성
+                        val user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId )
+
+                        userViewModel.loadUsers(user)
                         val intent = Intent(applicationContext, HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)

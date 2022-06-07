@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySignupBinding
+import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.SignupRequest
 import com.mirim.refrigerator.server.responses.SignupResponse
+import com.mirim.refrigerator.viewmodel.UserViewModel
 import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +25,7 @@ class SignupActivity : AppCompatActivity() {
 
     val TAG = "TAG_SIGNUPACTIVITY"
     private lateinit var binding: ActivitySignupBinding
+    private lateinit var userViewModel : UserViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,7 @@ class SignupActivity : AppCompatActivity() {
 
         setContentView(view)
 
+        userViewModel = UserViewModel()
         binding.btnSignin.setOnClickListener {
             var intent = Intent(applicationContext,SigninActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -83,23 +87,24 @@ class SignupActivity : AppCompatActivity() {
 
         if(check){
             val data = SignupRequest(emailValue,nameValue,nickValue,pwValue)
-            progressSignup(data)
+            progressSignup(data,User(nickValue,nameValue,emailValue,null,null))
+
         }
     }
 
-    private fun progressSignup(data : SignupRequest) {
+    private fun progressSignup(data : SignupRequest, userData : User) {
         RetrofitService.serviceAPI.signup(data).enqueue(object : Callback<SignupResponse> {
             override fun onResponse(
                 call: Call<SignupResponse>,
                 response: Response<SignupResponse>
             ) {
                 val body = response.raw()
-                Log.d(TAG,body.code().toString())
-
 
                 when(body.code()) {
                     201 -> {
-                        Log.d(TAG,"201")
+
+                        userViewModel.loadUsers(userData)
+
                         val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
@@ -108,11 +113,9 @@ class SignupActivity : AppCompatActivity() {
                     }
                     400 -> {
                         Toast.makeText(applicationContext,"입력 형식을 확인해주세요.",Toast.LENGTH_SHORT).show()
-                        Log.d(TAG,"400")
                     }
                     409 -> {
                         Toast.makeText(applicationContext,"이미 등록된 계정입니다.",Toast.LENGTH_SHORT).show()
-                        Log.d(TAG,"409")
                     }
 
                 }
