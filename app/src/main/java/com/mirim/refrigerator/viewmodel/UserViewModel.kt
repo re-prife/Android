@@ -16,13 +16,13 @@ class UserViewModel : ViewModel() {
     fun getUser(): LiveData<User> {
         return user
     }
-    fun getUserId() : String? {
+    fun getUserId() : Int? {
         return user.value?.userId
     }
-    fun setGroupId(groupId : String) {
+    fun setGroupId(groupId : Int) {
         user.value?.groupId = groupId
     }
-    fun getGroupId() : String? {
+    fun getGroupId() : Int? {
         return user.value?.groupId
     }
 

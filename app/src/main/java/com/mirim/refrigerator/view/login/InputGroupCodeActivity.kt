@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.ActivityInputGroupCodeBinding
 import com.mirim.refrigerator.network.RetrofitService
@@ -14,6 +15,7 @@ import com.mirim.refrigerator.server.responses.CreateGroupResponse
 import com.mirim.refrigerator.server.responses.JoinGroupResponse
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import com.mirim.refrigerator.viewmodel.app
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +24,6 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
     private val TAG : String = "TAG_InputGroupCodeActivity"
     private lateinit var binding: ActivityInputGroupCodeBinding
-    private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,6 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         binding.btnJoinGroup.setOnClickListener {
             checkJoinGroup()
         }
@@ -51,24 +51,25 @@ class InputGroupCodeActivity : AppCompatActivity() {
         if(check) {
             val data = JoinGroupRequest(groupCodeValue)
             progressCreateGroup(data)
-            userViewModel.setGroupId(data.groupInviteCode)
         }
 
     }
     private fun progressCreateGroup(data : JoinGroupRequest) {
-        Log.d(TAG,userViewModel.getUserId().toString())
-        RetrofitService.serviceAPI.joinGroup(userViewModel.getUserId().toString(),data).enqueue(object : Callback<JoinGroupResponse> {
+        Log.d(TAG,app.user.userId.toString())
+        RetrofitService.serviceAPI.joinGroup(app.user.userId.toString(),data).enqueue(object : Callback<JoinGroupResponse> {
             override fun onResponse(
                 call: Call<JoinGroupResponse>,
                 response: Response<JoinGroupResponse>
             ) {
                 val raw = response.raw()
+                app.user.groupId = response.body()?.groupId
                 Log.d(TAG,response.toString())
 
                 when(raw.code()) {
                     200 -> {
+
                         Log.d(TAG,"그룹 참여 성공")
-                        val intent = Intent(applicationContext,SigninActivity::class.java)
+                        val intent = Intent(applicationContext,HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
                     }

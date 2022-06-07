@@ -13,6 +13,7 @@ import com.mirim.refrigerator.server.request.SigninRequest
 import com.mirim.refrigerator.server.responses.SigninResponse
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import com.mirim.refrigerator.viewmodel.app
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +22,6 @@ class SigninActivity : AppCompatActivity() {
 
     private val TAG : String = "TAG_SigninActivity"
     private lateinit var binding: ActivitySigninBinding
-    private lateinit var userViewModel : UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +29,6 @@ class SigninActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
-        userViewModel = UserViewModel()
         binding.btnSignup.setOnClickListener{
             val intent = Intent(applicationContext,SignupActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -90,7 +88,7 @@ class SigninActivity : AppCompatActivity() {
                     200 -> {
                         val user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId )
 
-                        userViewModel.loadUsers(user)
+                        app.user = user
                         val intent = Intent(applicationContext, HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)

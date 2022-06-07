@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.R
@@ -17,6 +18,7 @@ import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.SignupRequest
 import com.mirim.refrigerator.server.responses.SignupResponse
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import com.mirim.refrigerator.viewmodel.app
 import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +28,7 @@ class SignupActivity : AppCompatActivity() {
 
     val TAG = "TAG_SIGNUPACTIVITY"
     private lateinit var binding: ActivitySignupBinding
-    private lateinit var userViewModel : UserViewModel
+    //private val userViewModel: UserViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +40,6 @@ class SignupActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         binding.btnSignin.setOnClickListener {
             var intent = Intent(applicationContext,SigninActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
@@ -90,24 +91,30 @@ class SignupActivity : AppCompatActivity() {
 
         if(check){
             val data = SignupRequest(emailValue,nameValue,nickValue,pwValue)
-            progressSignup(data,User(nickValue,nameValue,emailValue,null,null))
+            progressSignup(data)
 
         }
     }
 
-    private fun progressSignup(data : SignupRequest, userData : User) {
+    private fun progressSignup(data : SignupRequest) {
         RetrofitService.serviceAPI.signup(data).enqueue(object : Callback<SignupResponse> {
             override fun onResponse(
                 call: Call<SignupResponse>,
                 response: Response<SignupResponse>
             ) {
-                val body = response.raw()
+                val raw = response.raw()
+                val body = response.body()
                 Log.d(TAG,response.toString())
+                Log.d(TAG,response.body().toString())
+                Log.d(TAG,response.body()?.userId.toString())
 
-                when(body.code()) {
+                when(raw.code()) {
                     201 -> {
 
-                        userViewModel.loadUsers(userData)
+                        val userData = User(body?.userNickname,body?.userName,body?.userEmail,body?.userId,null)
+
+                        app.user = userData
+                        Log.d("로그인 성공", app.user.userId.toString())
 
                         val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

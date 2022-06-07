@@ -40,7 +40,7 @@ class MyPageFragment: Fragment() {
 
         binding.userImage.clipToOutline = true
 
-        userViewModel.loadUsers(User("아빠", "김아빠", "email@naver.com","1","1"))
+        userViewModel.loadUsers(User("아빠", "김아빠", "email@naver.com",1,1))
 
         userViewModel.getUser().observe(viewLifecycleOwner, Observer<User>{
             binding.userNickname.text = it.nickname

@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.ActivityShowGroupCodeBinding
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import com.mirim.refrigerator.viewmodel.app
 
 class ShowGroupCodeActivity : AppCompatActivity() {
 
     private val TAG : String = "TAG_ShowGroupCodeActivity"
     private lateinit var binding: ActivityShowGroupCodeBinding
-    private lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,10 +21,10 @@ class ShowGroupCodeActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-        binding.textGroupCode.text = userViewModel.getGroupId()
+
+        binding.textGroupCode.text = app.user.groupId.toString()
         binding.btnSignin.setOnClickListener {
-            val intent = Intent(applicationContext, SigninActivity::class.java)
+            val intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
