@@ -1,17 +1,9 @@
 package com.mirim.refrigerator.network
 
-import com.mirim.refrigerator.server.request.CreateGroupRequest
-import com.mirim.refrigerator.server.request.JoinGroupRequest
-import com.mirim.refrigerator.server.request.SigninRequest
-import com.mirim.refrigerator.server.request.SignupRequest
-import com.mirim.refrigerator.server.responses.CreateGroupResponse
-import com.mirim.refrigerator.server.responses.JoinGroupResponse
-import com.mirim.refrigerator.server.responses.SigninResponse
-import com.mirim.refrigerator.server.responses.SignupResponse
+import com.mirim.refrigerator.server.request.*
+import com.mirim.refrigerator.server.responses.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ServiceAPI {
 
@@ -41,5 +33,29 @@ interface ServiceAPI {
         @Body groupCode : JoinGroupRequest
     ):Call<JoinGroupResponse>
 
+    // 식재료 조회
+    @GET("/groups/{groupId}/ingredients")
+    fun getIngredients(
+        @Path("groupId") groupId: Int?
+    ):Call<List<IngredientsResponse>>
+    @GET("/groups/{groupId}/ingredients")
+    fun getIngredients(
+        @Path("groupId") groupId: Int?,
+        @Query("saveType") saveType: String
+    ):Call<List<IngredientsResponse>>
+
+    // 식재료 생성
+    @POST("/groups/{groupId}/ingredients")
+    fun createIngredients(
+        @Path("groupId") groupId: Int?,
+        @Body ingredient: CreateIngredientRequest
+    ): Call<CreateIngredientResponse>
+
+    // 식재료 수정
+    @PUT("groups/{groupId}/ingredients/{ingredientId}")
+    fun updateIngredients(
+        @Path("groupId") groupId: Int?,
+        @Path("ingredientId") ingredientId: Int?
+    )
 
 }

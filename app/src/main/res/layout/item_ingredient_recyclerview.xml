@@ -31,7 +31,9 @@
         app:layout_constraintLeft_toRightOf="@+id/image_ingredient_status"
         android:id="@+id/txt_ingredient_name_item"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="1dp" />
+        android:layout_marginTop="1dp"
+        android:singleLine="true"
+        android:ellipsize="marquee"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
