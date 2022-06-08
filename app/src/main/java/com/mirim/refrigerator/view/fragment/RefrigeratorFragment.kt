@@ -66,7 +66,7 @@ class RefrigeratorFragment: Fragment() {
         }
 
         binding.btnPlus.setOnClickListener {
-            val intent = Intent(context, IngredientRegisterActivity::class.java)
+            val intent = Intent(context, SelectIngredientRegisterTypeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
