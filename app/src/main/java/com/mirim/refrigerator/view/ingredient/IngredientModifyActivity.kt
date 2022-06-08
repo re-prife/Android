@@ -13,7 +13,7 @@ class IngredientModifyActivity : AppCompatActivity() {
         binding = ActivityIngredientModifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val ingredient = intent.getParcelableExtra<Ingredient>("ingredient")
+        val ingredient:Ingredient? = intent.getBundleExtra("bundle")?.getParcelable("ingredient")
 
         binding.editName.setText(ingredient?.ingredientName)
         binding.editAmount.setText(ingredient?.ingredientCount)

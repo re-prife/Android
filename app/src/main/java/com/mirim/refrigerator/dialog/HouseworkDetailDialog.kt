@@ -10,8 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.mirim.refrigerator.databinding.DialogHouseworkDetailBinding
 import com.mirim.refrigerator.databinding.DialogIngredientDeleteBinding
+import com.mirim.refrigerator.model.Housework
 
-class HouseworkDetailDialog(var category: String, var name: String, var assignee: String, var performDate: String, var registerDate: String, var modifyDate: String) :DialogFragment() {
+class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
     lateinit var binding: DialogHouseworkDetailBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -20,12 +21,12 @@ class HouseworkDetailDialog(var category: String, var name: String, var assignee
             val builder = AlertDialog.Builder(context)
             binding = DialogHouseworkDetailBinding.inflate(requireActivity().layoutInflater)
 
-            binding.txtHouseworkCategory.text = category
-            binding.txtHouseworkName.text = name
-            binding.txtHouseworkAssignee.text = assignee
-            binding.txtHouseworkPerformDate.text = performDate
-            binding.txtHouseworkRegisterDate.text = registerDate
-            binding.txtHouseworkModifyDate.text = modifyDate
+            binding.txtHouseworkCategory.text = Housework.categoryKoreanConverter(housework?.choreCategory)
+            binding.txtHouseworkName.text = housework?.choreTitle
+            binding.txtHouseworkAssignee.text = housework?.userId.toString()
+            binding.txtHouseworkPerformDate.text = housework?.choreDate?.joinToString("-")
+//            binding.txtHouseworkRegisterDate.text = registerDate
+//            binding.txtHouseworkModifyDate.text = modifyDate
 
             binding.btnApprove.setOnClickListener {
                 Toast.makeText(context, "인증받기", Toast.LENGTH_SHORT).show()

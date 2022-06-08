@@ -58,4 +58,11 @@ interface ServiceAPI {
         @Path("ingredientId") ingredientId: Int?
     )
 
+    // 집안일 전체 조회
+    @GET("/groups/{groupId}/chores")
+    fun getChores(
+        @Path("groupId") groupId: Int?,
+        @Query("date") date: String?
+    ) : Call<HouseworkResponse>
+
 }

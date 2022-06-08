@@ -15,7 +15,7 @@ class IngredientDetailActivity : AppCompatActivity() {
         binding = ActivityIngredientDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val ingredient = intent.getParcelableExtra<Ingredient>("ingredient")
+        val ingredient: Ingredient? = intent.getBundleExtra("bundle")?.getParcelable("ingredient")
 
         binding.toolbar.toolbarTitle.text = "식재료 세부"
         binding.toolbar.btnBack.setOnClickListener {
@@ -32,7 +32,9 @@ class IngredientDetailActivity : AppCompatActivity() {
 
         binding.btnModify.setOnClickListener {
             val intent = Intent(applicationContext, IngredientModifyActivity::class.java)
-            intent.putExtra("ingredient", ingredient)
+            val b = Bundle()
+            b.putParcelable("ingredient", ingredient)
+            intent.putExtra("bundle", b)
             startActivity(intent)
 
         }
