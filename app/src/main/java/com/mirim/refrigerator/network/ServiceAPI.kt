@@ -65,4 +65,18 @@ interface ServiceAPI {
         @Query("date") date: String?
     ) : Call<HouseworkResponse>
 
+    // 집안일 하루 조회
+    @GET("/groups/{groupId}/chores/one-day")
+    fun getChoresOneDay(
+        @Path("groupId") groupId: Int?,
+        @Query("date") date: String?
+    ) : Call<HouseworkResponse>
+
+    // 집안일 생성
+    @POST("groups/{groupId}/chores")
+    fun createChore(
+        @Path("groupId") groupId: Int?,
+        @Body housework: CreateHouseworkRequest
+    )
+
 }

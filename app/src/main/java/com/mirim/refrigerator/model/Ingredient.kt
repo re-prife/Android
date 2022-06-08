@@ -7,7 +7,7 @@ import java.io.Serializable
 class Ingredient(
     val ingredientCategory: String?,
     val ingredientCount : String?,
-    val ingredientExpirationDate: IntArray?,
+    val ingredientExpirationDate: String?,
     val ingredientMemo: String?,
     val ingredientName: String?,
     val ingredientPurchaseDate: String?,
@@ -17,7 +17,7 @@ class Ingredient(
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        parcel.createIntArray(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -85,7 +85,7 @@ class Ingredient(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(ingredientCategory)
         parcel.writeString(ingredientCount)
-        parcel.writeIntArray(ingredientExpirationDate)
+        parcel.writeString(ingredientExpirationDate)
         parcel.writeString(ingredientMemo)
         parcel.writeString(ingredientName)
         parcel.writeString(ingredientPurchaseDate)

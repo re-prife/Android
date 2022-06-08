@@ -38,18 +38,16 @@ class IngredientRegisterActivity : AppCompatActivity() {
             var ingredientKeepType = binding.editKeepType.text.toString()
             var ingredientMemo = binding.editMemo.text.toString()
 
-            createIngredient(CreateIngredientRequest(ingredientName, ingredientAmount, ingredientPurchaseDate, ingredientExpirationDate,
-            ingredientCategory, ingredientKeepType, ingredientMemo))
+            createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = ingredientPurchaseDate, ingredientExpirationDate = ingredientExpirationDate,
+            ingredientCategory = ingredientCategory, ingredientSaveType = ingredientKeepType, ingredientMemo = ingredientMemo))
         }
         binding.btnCancelIngredient.setOnClickListener {
-            var intent = Intent(applicationContext, BottomAppBarActivity::class.java)
-            intent.putExtra("clicked button", "refrigerator")
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
+            finish()
         }
 
         setContentView(view)
     }
+
     fun createIngredient(data: CreateIngredientRequest) {
         RetrofitService.serviceAPI.createIngredients(app.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
@@ -57,12 +55,16 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 response: Response<CreateIngredientResponse>
             ) {
                 var status = response.raw().code()
-                Log.d("IngredientRegisterActivity", ""+status)
-                Log.d("IngredientRegisterActivity", response.toString())
+//                Log.d("IngredientRegisterActivity", ""+status)
+//                Log.d("IngredientRegisterActivity", response.toString())
+                if(status == 201) {
+                    Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
             }
 
             override fun onFailure(call: Call<CreateIngredientResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(applicationContext, "실패하였습니다.", Toast.LENGTH_SHORT).show()
             }
 
         })

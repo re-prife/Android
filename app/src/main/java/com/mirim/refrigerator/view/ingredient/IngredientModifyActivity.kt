@@ -18,7 +18,7 @@ class IngredientModifyActivity : AppCompatActivity() {
         binding.editName.setText(ingredient?.ingredientName)
         binding.editAmount.setText(ingredient?.ingredientCount)
         binding.editBoughtDay.setText(ingredient?.ingredientPurchaseDate)
-        //binding.editEndDay.setText(ingredient?.ingredientExpirationDate)
+        binding.editEndDay.setText(ingredient?.ingredientExpirationDate)
         binding.editCategory.setText(Ingredient.typeKoreanConverter(ingredient?.ingredientCategory))
         binding.editKeepType.setText(Ingredient.storeKoreanConverter(ingredient?.ingredientSaveType))
         binding.editMemo.setText(ingredient?.ingredientMemo)

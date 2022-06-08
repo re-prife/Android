@@ -54,8 +54,14 @@ class HouseworkFragment: Fragment() {
 
         binding.txtTodayDate.text = todayDate
 
-        Log.d("HouseWorkFragment-Date", todayDate+" " + todayMonth)
-        getChores();
+        getChores(todayDate);
+
+        binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            var dateStr = LocalDate.of(year, month+1, dayOfMonth).format(formatter)
+            binding.txtTodayDate.text = dateStr
+            getChores(dateStr);
+        }
+
 
         binding.btnAddHousework.setOnClickListener {
             var intent = Intent(context, RegisterHouseworkActivity::class.java)
@@ -66,8 +72,8 @@ class HouseworkFragment: Fragment() {
         return view
     }
 
-    fun getChores() {
-        RetrofitService.serviceAPI.getChores(app.user.groupId, todayMonth).enqueue(object : Callback<HouseworkResponse> {
+    fun getChores(date: String) {
+        RetrofitService.serviceAPI.getChoresOneDay(app.user.groupId, date).enqueue(object : Callback<HouseworkResponse> {
             override fun onResponse(
                 call: Call<HouseworkResponse>,
                 response: Response<HouseworkResponse>
@@ -77,7 +83,6 @@ class HouseworkFragment: Fragment() {
                     binding.recyclerHousework.layoutManager = LinearLayoutManager(context)
                     binding.recyclerHousework.setHasFixedSize(false)
                     binding.recyclerHousework.adapter = HouseworkAdapter(context, chores)
-
                 }
             }
 

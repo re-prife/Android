@@ -25,7 +25,7 @@ class IngredientDetailActivity : AppCompatActivity() {
         binding.txtIngredientName.text = ingredient?.ingredientName
         binding.txtIngredientAmount.text = ingredient?.ingredientCount
         binding.txtIngredientBuyDate.text = ingredient?.ingredientPurchaseDate
-        // binding.txtIngredientExpiryDate.text = ingredient?.ingredientExpirationDate?.joinToString("-")
+        binding.txtIngredientExpiryDate.text = ingredient?.ingredientExpirationDate
         binding.txtIngredientCategory.text = Ingredient.typeKoreanConverter(ingredient?.ingredientCategory)
         binding.txtIngredientStore.text = Ingredient.storeKoreanConverter(ingredient?.ingredientSaveType)
         binding.txtIngredientMemo.text = ingredient?.ingredientMemo
