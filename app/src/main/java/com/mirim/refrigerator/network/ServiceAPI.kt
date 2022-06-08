@@ -1,9 +1,6 @@
 package com.mirim.refrigerator.network
 
-import com.mirim.refrigerator.server.request.CreateGroupRequest
-import com.mirim.refrigerator.server.request.JoinGroupRequest
-import com.mirim.refrigerator.server.request.SigninRequest
-import com.mirim.refrigerator.server.request.SignupRequest
+import com.mirim.refrigerator.server.request.*
 import com.mirim.refrigerator.server.responses.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -46,5 +43,19 @@ interface ServiceAPI {
         @Path("groupId") groupId: Int?,
         @Query("saveType") saveType: String
     ):Call<List<IngredientsResponse>>
+
+    // 식재료 생성
+    @POST("/groups/{groupId}/ingredients")
+    fun createIngredients(
+        @Path("groupId") groupId: Int?,
+        @Body ingredient: CreateIngredientRequest
+    ): Call<CreateIngredientResponse>
+
+    // 식재료 수정
+    @PUT("groups/{groupId}/ingredients/{ingredientId}")
+    fun updateIngredients(
+        @Path("groupId") groupId: Int?,
+        @Path("ingredientId") ingredientId: Int?
+    )
 
 }

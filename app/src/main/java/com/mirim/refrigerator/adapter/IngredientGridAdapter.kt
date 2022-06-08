@@ -1,6 +1,8 @@
 package com.mirim.refrigerator.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,8 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.model.Ingredient
+import com.mirim.refrigerator.view.ingredient.IngredientDetailActivity
+import java.io.Serializable
 import java.util.zip.Inflater
 
 class IngredientGridAdapter(val context: Context?, val ingredients: List<Ingredient>): BaseAdapter() {
@@ -35,6 +39,7 @@ class IngredientGridAdapter(val context: Context?, val ingredients: List<Ingredi
         txtIngredientName.isSelected = true
         //TODO() : "이미지 연결"
         //TODO("유통기한 상태 파악")
+
 
         return view
     }
