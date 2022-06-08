@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.mirim.refrigerator.IngredientType
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mirim.refrigerator.adapter.IngredientTypeAdapter
 import com.mirim.refrigerator.databinding.FragmentRefrigerator1Binding
 import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.IngredientsResponse
-import com.mirim.refrigerator.server.responses.SigninResponse
 import com.mirim.refrigerator.view.ingredient.IngredientDetailActivity
 import com.mirim.refrigerator.viewmodel.app
 import retrofit2.Call
@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class Fragment1 : Fragment() {
     lateinit var binding: FragmentRefrigerator1Binding
-    var ingredientMap = HashMap<String, ArrayList<IngredientsResponse>>()
+    var ingredientMap = HashMap<String, ArrayList<Ingredient>>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,14 +52,23 @@ class Fragment1 : Fragment() {
                         Log.d("Fragment1", response.body().toString())
                         for(ingredient in response.body()!!) {
                             Log.d("Fragment1", ingredient.toString())
-                            if(ingredientMap.contains(ingredient.ingredientSaveType)) {
-                                ingredientMap.get(ingredient.ingredientSaveType)?.add(ingredient)
+
+                            val item = Ingredient(ingredient.ingredientCategory, ingredient.ingredientCount, ingredient.ingredientExpirationDate, "",
+                            ingredient.ingredientName, "", ingredient.ingredientSaveType, ingredient.ingredientImageName)
+                            if(ingredientMap.contains(ingredient.ingredientCategory)) {
+                                ingredientMap.get(ingredient.ingredientCategory)?.add(item)
                             }
                             else {
-                                ingredientMap.set(ingredient.ingredientSaveType, arrayListOf<IngredientsResponse>(ingredient))
+                                ingredientMap.set(ingredient.ingredientCategory, arrayListOf<Ingredient>(item))
                             }
                         }
+
                         Log.d("Fragment1", ingredientMap.toString())
+
+                        binding.recyclerIngredientAll.layoutManager = LinearLayoutManager(context)
+                        binding.recyclerIngredientAll.setHasFixedSize(false)
+
+                        binding.recyclerIngredientAll.adapter = IngredientTypeAdapter(context, ingredientMap.keys.toList(), ingredientMap.values.toList())
                     }
                 }
 

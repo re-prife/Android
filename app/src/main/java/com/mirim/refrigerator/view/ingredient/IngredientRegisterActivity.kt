@@ -17,9 +17,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
 
 
         binding.toolbar.btnBack.setOnClickListener {
-            var intent = Intent(applicationContext,SelectIngredientRegisterTypeActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
+           finish()
         }
         binding.toolbar.toolbarTitle.text = "식재료 등록"
         binding.btnSaveIngredient.setOnClickListener {

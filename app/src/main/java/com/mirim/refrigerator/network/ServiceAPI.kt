@@ -41,5 +41,10 @@ interface ServiceAPI {
     fun getIngredients(
         @Path("groupId") groupId: Int?
     ):Call<List<IngredientsResponse>>
+    @GET("/groups/{groupId}/ingredients")
+    fun getIngredients(
+        @Path("groupId") groupId: Int?,
+        @Query("saveType") saveType: String
+    ):Call<List<IngredientsResponse>>
 
 }
