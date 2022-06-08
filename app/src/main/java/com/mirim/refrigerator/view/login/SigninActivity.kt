@@ -86,8 +86,7 @@ class SigninActivity : AppCompatActivity() {
 
                 when(raw.code()) {
                     200 -> {
-                        val user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId )
-
+                        val user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId, body?.userImagePath)
                         app.user = user
                         val intent = Intent(applicationContext, HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

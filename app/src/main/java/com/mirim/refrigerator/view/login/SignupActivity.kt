@@ -111,7 +111,7 @@ class SignupActivity : AppCompatActivity() {
                 when(raw.code()) {
                     201 -> {
 
-                        val userData = User(body?.userNickname,body?.userName,body?.userEmail,body?.userId,null)
+                        val userData = User(body?.userNickname,body?.userName,body?.userEmail,body?.userId,null, "")
 
                         app.user = userData
                         Log.d("로그인 성공", app.user.userId.toString())

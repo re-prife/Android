@@ -8,7 +8,7 @@ class Ingredient(
     val ingredientName: String,
     val ingredientPurchaseDate: String,
     val ingredientSaveType: String,
-    val ingredientImageName: String,
+    val ingredientImageName: String?,
 ) {
     companion object {
         fun typeKoreanConverter(english: String) : String {

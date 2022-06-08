@@ -29,7 +29,10 @@ class IngredientGridAdapter(val context: Context?, val ingredients: List<Ingredi
         val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.item_ingredient_recyclerview, null)
 
-        view.findViewById<TextView>(R.id.txt_ingredient_name_item).text = ingredient.ingredientName
+        val txtIngredientName = view.findViewById<TextView>(R.id.txt_ingredient_name_item)
+
+        txtIngredientName.text = ingredient.ingredientName
+        txtIngredientName.isSelected = true
         //TODO() : "이미지 연결"
         //TODO("유통기한 상태 파악")
 

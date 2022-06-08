@@ -8,5 +8,6 @@ data class SigninResponse (
     var userName : String,
     var userNickname : String,
     var userEmail : String,
+    var userImagePath: String,
     var groupId : Int,
 )
