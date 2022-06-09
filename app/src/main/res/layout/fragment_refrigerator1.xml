@@ -7,10 +7,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler_ingredient_all" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="식재료 수정"
-        android:id="@+id/modify"/>
 
 </LinearLayout>

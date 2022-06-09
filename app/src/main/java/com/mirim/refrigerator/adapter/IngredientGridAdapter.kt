@@ -37,6 +37,10 @@ class IngredientGridAdapter(val context: Context?, val ingredients: List<Ingredi
 
         txtIngredientName.text = ingredient.ingredientName
         txtIngredientName.isSelected = true
+        //black, red, yellow, green
+        val statusView = view.findViewById<View>(R.id.image_ingredient_status)
+        statusView.setBackgroundTintList(context.getResources().getColorStateList(Ingredient.statusColor(ingredient.ingredientColor)))
+
         //TODO() : "이미지 연결"
         //TODO("유통기한 상태 파악")
 

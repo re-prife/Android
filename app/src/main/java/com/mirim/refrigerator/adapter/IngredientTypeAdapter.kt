@@ -2,6 +2,7 @@ package com.mirim.refrigerator.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,9 @@ class IngredientTypeAdapter(val context: Context?, val ingredientTypes: List<Str
 
             gridIngredient.setOnItemClickListener { parent, view, position, id ->
                 val intent = Intent(context, IngredientDetailActivity::class.java)
-                intent.putExtra("ingredient", ingredients[position])
+                var b = Bundle()
+                b.putParcelable("ingredient", ingredients[position])
+                intent.putExtra("bundle", b)
                 context?.startActivity(intent)
             }
         }

@@ -2,26 +2,40 @@ package com.mirim.refrigerator.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mirim.refrigerator.R
+import com.mirim.refrigerator.adapter.IngredientTypeAdapter
+import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.server.responses.IngredientsResponse
+import com.mirim.refrigerator.viewmodel.app
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.Serializable
 
 class Ingredient(
     val ingredientCategory: String?,
     val ingredientCount : String?,
-    val ingredientExpirationDate: IntArray?,
+    val ingredientExpirationDate: String?,
     val ingredientMemo: String?,
     val ingredientName: String?,
     val ingredientPurchaseDate: String?,
     val ingredientSaveType: String?,
     val ingredientImageName: String?,
+    val ingredientId: Long,
+    val ingredientColor: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
-        parcel.createIntArray(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readLong(),
         parcel.readString()
     ) {
     }
@@ -80,17 +94,30 @@ class Ingredient(
                 else -> "ROOM_TEMP"
             }
         }
+
+        fun statusColor(status: String?) : Int {
+            return when(status) {
+                "red" -> R.color.status_red
+                "yellow" -> R.color.status_orange
+                "green" -> R.color.status_green
+                "black" -> R.color.black
+                else -> R.color.status_green
+            }
+        }
+
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(ingredientCategory)
         parcel.writeString(ingredientCount)
-        parcel.writeIntArray(ingredientExpirationDate)
+        parcel.writeString(ingredientExpirationDate)
         parcel.writeString(ingredientMemo)
         parcel.writeString(ingredientName)
         parcel.writeString(ingredientPurchaseDate)
         parcel.writeString(ingredientSaveType)
         parcel.writeString(ingredientImageName)
+        parcel.writeLong(ingredientId)
+        parcel.writeString(ingredientColor)
     }
 
     override fun describeContents(): Int {

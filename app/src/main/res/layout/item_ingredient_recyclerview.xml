@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
+        android:layout_marginRight="5dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/sample_image"
@@ -17,7 +18,7 @@
         android:background="@drawable/background_circle"
         app:layout_constraintTop_toBottomOf="@id/image_ingredient_item"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="3dp"
         android:backgroundTint="@color/status_green"
         android:layout_marginTop="6dp"
         android:id="@+id/image_ingredient_status"/>
@@ -33,7 +34,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginTop="1dp"
         android:singleLine="true"
-        android:ellipsize="marquee"/>
+        android:ellipsize="marquee" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
