@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityIngredientDetailBinding
 import com.mirim.refrigerator.model.Ingredient
@@ -42,6 +43,7 @@ class IngredientDetailActivity : AppCompatActivity() {
         binding.txtIngredientCategory.text = Ingredient.typeKoreanConverter(ingredient?.ingredientCategory)
         binding.txtIngredientStore.text = Ingredient.storeKoreanConverter(ingredient?.ingredientSaveType)
         binding.txtIngredientMemo.text = ingredient?.ingredientMemo
+        Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
 
         binding.btnModify.setOnClickListener {
             val intent = Intent(applicationContext, IngredientModifyActivity::class.java)

@@ -22,10 +22,11 @@
                 android:id="@+id/toolbar"
                 layout="@layout/toolbar" />
 
-            <LinearLayout
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/main" />
+                android:background="@color/white"
+                android:id="@+id/image_ingredient"/>
 
             <TextView
                 android:id="@+id/txt_ingredient_name"

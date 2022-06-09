@@ -45,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId))
+        userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId, app.user.userImagePath))
 
         // 각 달의 왕들을 받아옴 (userId포함)
         // onResponse의 200일 경우 userId에 대하여 회원 상세 조회, 프로필 사진과 별명 불러옴
