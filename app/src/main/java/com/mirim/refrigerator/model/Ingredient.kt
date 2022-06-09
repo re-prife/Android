@@ -22,7 +22,8 @@ class Ingredient(
     val ingredientPurchaseDate: String?,
     val ingredientSaveType: String?,
     val ingredientImageName: String?,
-    val ingredientId: Long
+    val ingredientId: Long,
+    val ingredientColor: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -33,7 +34,8 @@ class Ingredient(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readLong()
+        parcel.readLong(),
+        parcel.readString()
     ) {
     }
 
@@ -104,6 +106,7 @@ class Ingredient(
         parcel.writeString(ingredientSaveType)
         parcel.writeString(ingredientImageName)
         parcel.writeLong(ingredientId)
+        parcel.writeString(ingredientColor)
     }
 
     override fun describeContents(): Int {

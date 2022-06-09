@@ -67,7 +67,7 @@ class IngredientModifyActivity : AppCompatActivity() {
         }
 
         binding.btnCancelIngredient.setOnClickListener {
-            deleteIngredient(DeleteIngredientsRequest(ingredient.ingredientId))
+            Toast.makeText(applicationContext, "취소", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -92,20 +92,5 @@ class IngredientModifyActivity : AppCompatActivity() {
         })
     }
 
-    fun deleteIngredient(data: DeleteIngredientsRequest) {
-        RetrofitService.serviceAPI.deleteIngredients(app.user.groupId, listOf(data)).enqueue(object : Callback<DeleteIngredientsResponse> {
-            override fun onResponse(
-                call: Call<DeleteIngredientsResponse>,
-                response: Response<DeleteIngredientsResponse>
-            ) {
-                Log.d("IngredientModifyActivity-deleteIngredient", response.toString())
-            }
 
-            override fun onFailure(call: Call<DeleteIngredientsResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-    }
 }

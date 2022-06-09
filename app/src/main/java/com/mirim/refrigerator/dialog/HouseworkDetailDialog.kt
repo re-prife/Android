@@ -41,6 +41,7 @@ class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
 
             binding.btnDelete.setOnClickListener {
                 deleteChore();
+                Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
             }
 

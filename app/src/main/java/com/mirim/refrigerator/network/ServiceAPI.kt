@@ -1,6 +1,7 @@
 package com.mirim.refrigerator.network
 
 import com.mirim.refrigerator.model.Housework
+import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.server.request.*
 import com.mirim.refrigerator.server.responses.*
 import retrofit2.Call
@@ -38,12 +39,12 @@ interface ServiceAPI {
     @GET("/groups/{groupId}/ingredients")
     fun getIngredients(
         @Path("groupId") groupId: Int?
-    ):Call<List<IngredientsResponse>>
+    ):Call<List<Ingredient>>
     @GET("/groups/{groupId}/ingredients")
     fun getIngredients(
         @Path("groupId") groupId: Int?,
         @Query("saveType") saveType: String
-    ):Call<List<IngredientsResponse>>
+    ):Call<List<Ingredient>>
 
     // 식재료 생성
     @POST("/groups/{groupId}/ingredients")

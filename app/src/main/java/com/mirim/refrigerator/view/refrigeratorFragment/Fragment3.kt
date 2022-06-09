@@ -37,10 +37,10 @@ class Fragment3 : Fragment() {
 
     fun getIngredientFridge() {
         RetrofitService.serviceAPI.getIngredients(app.user.groupId, "FRIDGE")
-            .enqueue(object : Callback<List<IngredientsResponse>> {
+            .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
-                    call: Call<List<IngredientsResponse>>,
-                    response: Response<List<IngredientsResponse>>
+                    call: Call<List<Ingredient>>,
+                    response: Response<List<Ingredient>>
                 ) {
                     if(response.isSuccessful && response.body() != null) {
                         Log.d("Fragment2", "성공")
@@ -57,7 +57,8 @@ class Fragment3 : Fragment() {
                                 ingredientPurchaseDate = ingredient.ingredientPurchaseDate,
                                 ingredientSaveType = ingredient.ingredientSaveType,
                                 ingredientImageName = ingredient.ingredientImageName,
-                                ingredientId = ingredient.ingredientId!!
+                                ingredientId = ingredient.ingredientId!!,
+                                ingredientColor = ingredient.ingredientColor
                             )
                             if(ingredientMap.contains(ingredient.ingredientCategory)) {
                                 ingredientMap.get(ingredient.ingredientCategory)?.add(item)
@@ -76,7 +77,7 @@ class Fragment3 : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<List<IngredientsResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<List<Ingredient>>, t: Throwable) {
                     Log.d("Fragment1", "실패")
                 }
 
