@@ -7,11 +7,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mirim.refrigerator.R
-import com.mirim.refrigerator.RefrigeratorSearchActivity
+import com.mirim.refrigerator.view.ingredient.RefrigeratorSearchActivity
 import com.mirim.refrigerator.databinding.FragmentRefrigeratorBinding
-import com.mirim.refrigerator.view.HomeActivity
-import com.mirim.refrigerator.view.ingredient.IngredientRegisterActivity
-import com.mirim.refrigerator.view.ingredient.QrScanActivity
 import com.mirim.refrigerator.view.ingredient.SelectIngredientActivity
 import com.mirim.refrigerator.view.ingredient.SelectIngredientRegisterTypeActivity
 import com.mirim.refrigerator.view.refrigeratorFragment.*

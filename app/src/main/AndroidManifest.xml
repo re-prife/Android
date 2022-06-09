@@ -35,7 +35,7 @@
             android:name=".view.NoticeActivity"
             android:exported="false" />
         <activity
-            android:name=".RefrigeratorSearchActivity"
+            android:name=".view.ingredient.RefrigeratorSearchActivity"
             android:exported="false" />
         <activity
             android:name=".view.ingredient.SelectIngredientRegisterTypeActivity"
