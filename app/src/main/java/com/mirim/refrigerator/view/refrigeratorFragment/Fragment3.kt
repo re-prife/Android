@@ -48,13 +48,22 @@ class Fragment3 : Fragment() {
                         for(ingredient in response.body()!!) {
                             Log.d("Fragment2", ingredient.toString())
 
-                            val item = Ingredient(ingredient.ingredientCategory, ingredient.ingredientCount, ingredient.ingredientExpirationDate, "",
-                                ingredient.ingredientName, "", ingredient.ingredientSaveType, ingredient.ingredientImageName)
+                            val item = Ingredient(
+                                ingredientCategory = ingredient.ingredientCategory,
+                                ingredientCount = ingredient.ingredientCount,
+                                ingredientExpirationDate = ingredient.ingredientExpirationDate,
+                                ingredientMemo = ingredient.ingredientImageName,
+                                ingredientName = ingredient.ingredientName,
+                                ingredientPurchaseDate = ingredient.ingredientPurchaseDate,
+                                ingredientSaveType = ingredient.ingredientSaveType,
+                                ingredientImageName = ingredient.ingredientImageName,
+                                ingredientId = ingredient.ingredientId!!
+                            )
                             if(ingredientMap.contains(ingredient.ingredientCategory)) {
                                 ingredientMap.get(ingredient.ingredientCategory)?.add(item)
                             }
                             else {
-                                ingredientMap.set(ingredient.ingredientCategory, arrayListOf<Ingredient>(item))
+                                ingredientMap.set(ingredient.ingredientCategory!!, arrayListOf<Ingredient>(item))
                             }
                         }
 

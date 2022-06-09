@@ -49,8 +49,6 @@ class HouseworkFragment: Fragment() {
         val current = LocalDate.now()
         val formatter = DateTimeFormatter.ISO_LOCAL_DATE
         todayDate = current.format(formatter)
-        val formatter2 = DateTimeFormatter.ofPattern("yyyy-MM")
-        todayMonth = current.format(formatter2)
 
         binding.txtTodayDate.text = todayDate
 
@@ -73,20 +71,22 @@ class HouseworkFragment: Fragment() {
     }
 
     fun getChores(date: String) {
-        RetrofitService.serviceAPI.getChoresOneDay(app.user.groupId, date).enqueue(object : Callback<HouseworkResponse> {
+        RetrofitService.serviceAPI.getChoresOneDay(app.user.groupId, date).enqueue(object : Callback<List<Housework>> {
             override fun onResponse(
-                call: Call<HouseworkResponse>,
-                response: Response<HouseworkResponse>
+                call: Call<List<Housework>>,
+                response: Response<List<Housework>>
             ) {
+                Log.d("HouseworkFragment-getChores", response.toString())
                 if(response.isSuccessful && response.body() != null) {
-                    chores = response.body()?.data
+                    chores = response.body()
                     binding.recyclerHousework.layoutManager = LinearLayoutManager(context)
                     binding.recyclerHousework.setHasFixedSize(false)
                     binding.recyclerHousework.adapter = HouseworkAdapter(context, chores)
                 }
             }
 
-            override fun onFailure(call: Call<HouseworkResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<Housework>>, t: Throwable) {
+                Log.d("HouseworkFragment-getChores Fail", t.toString())
             }
 
         })

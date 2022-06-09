@@ -1,5 +1,6 @@
 package com.mirim.refrigerator.network
 
+import com.mirim.refrigerator.model.Housework
 import com.mirim.refrigerator.server.request.*
 import com.mirim.refrigerator.server.responses.*
 import retrofit2.Call
@@ -55,8 +56,9 @@ interface ServiceAPI {
     @PUT("groups/{groupId}/ingredients/{ingredientId}")
     fun updateIngredients(
         @Path("groupId") groupId: Int?,
-        @Path("ingredientId") ingredientId: Int?
-    )
+        @Path("ingredientId") ingredientId: Long?,
+        @Body ingredient: CreateIngredientRequest
+    ): Call<CreateIngredientResponse>
 
     // 집안일 전체 조회
     @GET("/groups/{groupId}/chores")
@@ -70,13 +72,27 @@ interface ServiceAPI {
     fun getChoresOneDay(
         @Path("groupId") groupId: Int?,
         @Query("date") date: String?
-    ) : Call<HouseworkResponse>
+    ) : Call<List<Housework>>
+
+    // 식재료 삭제
+    @DELETE("groups/{groupId}/ingredients")
+    fun deleteIngredients(
+        @Path("groupId") groupId: Int?,
+        @Body ingredients: List<DeleteIngredientsRequest>
+    ) : Call<DeleteIngredientsResponse>
 
     // 집안일 생성
     @POST("groups/{groupId}/chores")
     fun createChore(
         @Path("groupId") groupId: Int?,
-        @Body housework: CreateHouseworkRequest
-    )
+        @Body chore: CreateHouseworkRequest
+    ) : Call<Response>
+
+    // 집안일 삭제
+    @DELETE("groups/{groupId}/chores/{choreId}")
+    fun deleteChore(
+        @Path("groupId") groupId: Int?,
+        @Path("choreId") choreId: Int?
+    ) : Call<Response>
 
 }

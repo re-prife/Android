@@ -8,7 +8,8 @@ class IngredientsResponse(
     var ingredientCount: String?,
     var ingredientImageName: String?,
     var ingredientMemo: String?,
-    var ingredientPurchaseDate: String?
+    var ingredientPurchaseDate: String?,
+    var ingredientId: Long?
 ) {
 
 }

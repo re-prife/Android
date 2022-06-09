@@ -2,6 +2,15 @@ package com.mirim.refrigerator.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mirim.refrigerator.adapter.IngredientTypeAdapter
+import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.server.responses.IngredientsResponse
+import com.mirim.refrigerator.viewmodel.app
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.Serializable
 
 class Ingredient(
@@ -13,6 +22,7 @@ class Ingredient(
     val ingredientPurchaseDate: String?,
     val ingredientSaveType: String?,
     val ingredientImageName: String?,
+    val ingredientId: Long
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -22,7 +32,8 @@ class Ingredient(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readLong()
     ) {
     }
 
@@ -80,6 +91,7 @@ class Ingredient(
                 else -> "ROOM_TEMP"
             }
         }
+
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -91,6 +103,7 @@ class Ingredient(
         parcel.writeString(ingredientPurchaseDate)
         parcel.writeString(ingredientSaveType)
         parcel.writeString(ingredientImageName)
+        parcel.writeLong(ingredientId)
     }
 
     override fun describeContents(): Int {

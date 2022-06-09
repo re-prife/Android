@@ -36,7 +36,7 @@ class IngredientDetailActivity : AppCompatActivity() {
             b.putParcelable("ingredient", ingredient)
             intent.putExtra("bundle", b)
             startActivity(intent)
-
+            finish()
         }
 
 

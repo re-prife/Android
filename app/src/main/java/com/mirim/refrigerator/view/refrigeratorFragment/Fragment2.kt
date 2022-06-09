@@ -33,6 +33,7 @@ class Fragment2 : Fragment() {
 
         getIngredientFreezer()
 
+
         return view
     }
     fun getIngredientFreezer() {
@@ -46,15 +47,24 @@ class Fragment2 : Fragment() {
                         Log.d("Fragment2", "성공")
                         Log.d("Fragment2", response.body().toString())
                         for(ingredient in response.body()!!) {
-                            Log.d("Fragment2", ingredient.toString())
+                            Log.d("Fragment2", ""+ingredient.ingredientId)
 
-                            val item = Ingredient(ingredient.ingredientCategory, ingredient.ingredientCount, ingredient.ingredientExpirationDate, "",
-                                ingredient.ingredientName, "", ingredient.ingredientSaveType, ingredient.ingredientImageName)
+                            val item = Ingredient(
+                                ingredientCategory = ingredient.ingredientCategory,
+                                ingredientCount = ingredient.ingredientCount,
+                                ingredientExpirationDate = ingredient.ingredientExpirationDate,
+                                ingredientMemo = ingredient.ingredientImageName,
+                                ingredientName = ingredient.ingredientName,
+                                ingredientPurchaseDate = ingredient.ingredientPurchaseDate,
+                                ingredientSaveType = ingredient.ingredientSaveType,
+                                ingredientImageName = ingredient.ingredientImageName,
+                                ingredientId = ingredient.ingredientId!!
+                            )
                             if(ingredientMap.contains(ingredient.ingredientCategory)) {
                                 ingredientMap.get(ingredient.ingredientCategory)?.add(item)
                             }
                             else {
-                                ingredientMap.set(ingredient.ingredientCategory, arrayListOf<Ingredient>(item))
+                                ingredientMap.set(ingredient.ingredientCategory!!, arrayListOf<Ingredient>(item))
                             }
                         }
 
@@ -73,4 +83,5 @@ class Fragment2 : Fragment() {
 
             });
     }
+
 }
