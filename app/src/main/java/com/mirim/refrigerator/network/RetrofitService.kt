@@ -3,6 +3,7 @@ package com.mirim.refrigerator.network
 import com.mirim.refrigerator.server.NullOnEmptyConverter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 class RetrofitService {
 
@@ -17,6 +18,7 @@ class RetrofitService {
 
     companion object {
         var serviceAPI : ServiceAPI
+        var familyAPI : FamilyAPI
         val BASE_URL : String = "http://52.204.65.160:8080/"
         val retrofit : Retrofit
             get() = Retrofit.Builder()
@@ -26,6 +28,7 @@ class RetrofitService {
                 .build()
         init {
             serviceAPI = retrofit.create(ServiceAPI::class.java)
+            familyAPI = retrofit.create(FamilyAPI::class.java)
         }
     }
 }

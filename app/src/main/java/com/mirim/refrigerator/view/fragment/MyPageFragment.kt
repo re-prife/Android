@@ -8,19 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.FragmentMyPageBinding
 import com.mirim.refrigerator.dialog.ShowCodeDialog
+import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.model.User
+import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.view.mypage.PolicyActivity
 import com.mirim.refrigerator.view.mypage.ProfileModifyActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import com.mirim.refrigerator.viewmodel.app
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyPageFragment: Fragment() {
-    private lateinit var userViewModel: UserViewModel
     var _binding: FragmentMyPageBinding? = null
+    private val userViewModel : UserViewModel by viewModels()
     private val binding get() = _binding!!
 
     companion object {
@@ -36,17 +41,18 @@ class MyPageFragment: Fragment() {
         _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
-
         binding.userImage.clipToOutline = true
 
-        userViewModel.loadUsers(User("아빠", "김아빠", "email@naver.com",1,1, "/image.png"))
-
+        userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId,app.user.userImagePath))
         userViewModel.getUser().observe(viewLifecycleOwner, Observer<User>{
             binding.userNickname.text = it.nickname
             binding.userName.text = it.name
             binding.userEmail.text = it.email
         })
+
+
+        setFamilyMember()
+
 
         binding.btnGroupCode.setOnClickListener {
             val dialog = ShowCodeDialog("hajinhajin")
@@ -62,7 +68,7 @@ class MyPageFragment: Fragment() {
         }
 
         binding.btnPolicy.setOnClickListener {
-            startActivity(Intent(context, PolicyActivity::class.java))
+            startActivity(Intent(activity, PolicyActivity::class.java))
         }
 
         binding.btnContact.setOnClickListener {
@@ -79,5 +85,34 @@ class MyPageFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setFamilyMember() {
+        RetrofitService.familyAPI.getFamilyList(userViewModel.getGroupId(),userViewModel.getUserId()).enqueue(object : Callback<List<FamilyMember>> {
+            override fun onResponse(
+                call: Call<List<FamilyMember>>,
+                response: Response<List<FamilyMember>>
+            ) {
+                val body = response.body()
+                Log.d(TAG,response.body().toString())
+                // 다른 멤버 존재 여부 확인
+                if(body == null) {
+                    // 존재하지 않으면..
+                } else {
+                    userViewModel.setFamilyList(response.body()!!)
+                    // 가족 리스트
+                    for(i in 0 until userViewModel.getFamily().size)
+                        Log.d(TAG,userViewModel.getFamily().get(i).name+" : "+userViewModel.getFamily().get(i).nickname)
+                    // 존재하면 recyclerview
+                }
+
+
+
+            }
+
+            override fun onFailure(call: Call<List<FamilyMember>>, t: Throwable) {
+
+            }
+        })
     }
 }
