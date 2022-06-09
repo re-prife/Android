@@ -5,13 +5,20 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.mirim.refrigerator.databinding.DialogHouseworkDetailBinding
 import com.mirim.refrigerator.databinding.DialogIngredientDeleteBinding
+import com.mirim.refrigerator.model.Housework
+import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.server.responses.Response
+import com.mirim.refrigerator.viewmodel.app
+import retrofit2.Call
+import retrofit2.Callback
 
-class HouseworkDetailDialog(var category: String, var name: String, var assignee: String, var performDate: String, var registerDate: String, var modifyDate: String) :DialogFragment() {
+class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
     lateinit var binding: DialogHouseworkDetailBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -20,12 +27,12 @@ class HouseworkDetailDialog(var category: String, var name: String, var assignee
             val builder = AlertDialog.Builder(context)
             binding = DialogHouseworkDetailBinding.inflate(requireActivity().layoutInflater)
 
-            binding.txtHouseworkCategory.text = category
-            binding.txtHouseworkName.text = name
-            binding.txtHouseworkAssignee.text = assignee
-            binding.txtHouseworkPerformDate.text = performDate
-            binding.txtHouseworkRegisterDate.text = registerDate
-            binding.txtHouseworkModifyDate.text = modifyDate
+            binding.txtHouseworkCategory.text = Housework.categoryKoreanConverter(housework?.choreCategory)
+            binding.txtHouseworkName.text = housework?.choreTitle
+            binding.txtHouseworkAssignee.text = housework?.userId.toString()
+            binding.txtHouseworkPerformDate.text = housework?.choreDate
+            binding.txtHouseworkRegisterDate.text = housework?.createdDate
+            binding.txtHouseworkModifyDate.text = housework?.modifiedDate
 
             binding.btnApprove.setOnClickListener {
                 Toast.makeText(context, "인증받기", Toast.LENGTH_SHORT).show()
@@ -33,7 +40,8 @@ class HouseworkDetailDialog(var category: String, var name: String, var assignee
             }
 
             binding.btnDelete.setOnClickListener {
-                Toast.makeText(context, "삭제", Toast.LENGTH_SHORT).show()
+                deleteChore();
+                Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
             }
 
@@ -46,6 +54,19 @@ class HouseworkDetailDialog(var category: String, var name: String, var assignee
 
         }?: throw IllegalStateException("Activity cannot be null")
 
+
+    }
+    fun deleteChore() {
+        RetrofitService.serviceAPI.deleteChore(app.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
+            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
+                Log.d("HouseworkDetailDialog-deleteChore", response.toString())
+            }
+
+            override fun onFailure(call: Call<Response>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
     }
 

@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityIngredientRegisterBinding
+import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.CreateIngredientRequest
 import com.mirim.refrigerator.server.responses.CreateGroupResponse
@@ -25,6 +28,14 @@ class IngredientRegisterActivity : AppCompatActivity() {
         binding = ActivityIngredientRegisterBinding.inflate(layoutInflater)
         val view = binding.root
 
+        val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_category, android.R.layout.simple_spinner_item)
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerCategory.adapter = categoryAdapter
+
+        val saveTypeAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_saveType, android.R.layout.simple_spinner_item)
+        saveTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerKeepType.adapter = saveTypeAdapter
+
         binding.toolbar.btnBack.setOnClickListener {
            finish()
         }
@@ -34,35 +45,33 @@ class IngredientRegisterActivity : AppCompatActivity() {
             var ingredientAmount = binding.editAmount.text.toString()
             var ingredientPurchaseDate = binding.editBoughtDay.text.toString()
             var ingredientExpirationDate = binding.editEndDay.text.toString()
-            var ingredientCategory = binding.editCategory.text.toString()
-            var ingredientKeepType = binding.editKeepType.text.toString()
+            var ingredientCategory = Ingredient.typeEnglishConverter(binding.spinnerCategory.selectedItem.toString())
+            var ingredientKeepType = Ingredient.storeEnglishConverter(binding.spinnerKeepType.selectedItem.toString())
             var ingredientMemo = binding.editMemo.text.toString()
 
-            createIngredient(CreateIngredientRequest(ingredientName, ingredientAmount, ingredientPurchaseDate, ingredientExpirationDate,
-            ingredientCategory, ingredientKeepType, ingredientMemo))
+            createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = ingredientPurchaseDate, ingredientExpirationDate = ingredientExpirationDate,
+            ingredientCategory = ingredientCategory, ingredientSaveType = ingredientKeepType, ingredientMemo = ingredientMemo))
         }
         binding.btnCancelIngredient.setOnClickListener {
-            var intent = Intent(applicationContext, BottomAppBarActivity::class.java)
-            intent.putExtra("clicked button", "refrigerator")
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
+            finish()
         }
 
         setContentView(view)
     }
+
     fun createIngredient(data: CreateIngredientRequest) {
         RetrofitService.serviceAPI.createIngredients(app.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>
             ) {
-                var status = response.raw().code()
-                Log.d("IngredientRegisterActivity", ""+status)
-                Log.d("IngredientRegisterActivity", response.toString())
+                Log.d("IngredientRegisterActivity-createIngredient", response.toString())
+                Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+                finish()
             }
 
             override fun onFailure(call: Call<CreateIngredientResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(applicationContext, "실패하였습니다.", Toast.LENGTH_SHORT).show()
             }
 
         })

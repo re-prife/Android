@@ -132,7 +132,7 @@
             <TextView
                 android:id="@+id/txt_category_info"
                 app:layout_constraintTop_toBottomOf="@+id/layout_linear_days"
-                app:layout_constraintLeft_toLeftOf="@id/edit_category"
+                app:layout_constraintLeft_toLeftOf="@id/spinner_category"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
@@ -140,9 +140,9 @@
                 android:text="카테고리"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
-            <EditText
+            <Spinner
                 android:textSize="15sp"
-                android:id="@+id/edit_category"
+                android:id="@+id/spinner_category"
                 android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
@@ -157,8 +157,8 @@
 
             <TextView
                 android:id="@+id/txt_keep_type_info"
-                app:layout_constraintTop_toBottomOf="@+id/edit_category"
-                app:layout_constraintLeft_toLeftOf="@id/edit_keep_type"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_category"
+                app:layout_constraintLeft_toLeftOf="@id/spinner_keep_type"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
@@ -166,9 +166,9 @@
                 android:text="보관방법"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
-            <EditText
+            <Spinner
                 android:textSize="15sp"
-                android:id="@+id/edit_keep_type"
+                android:id="@+id/spinner_keep_type"
                 android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
@@ -183,7 +183,7 @@
 
             <TextView
                 android:id="@+id/txt_memo_info"
-                app:layout_constraintTop_toBottomOf="@+id/edit_keep_type"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_keep_type"
                 app:layout_constraintLeft_toLeftOf="@id/edit_memo"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="20dp"

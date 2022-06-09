@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirim.refrigerator.adapter.IngredientTypeAdapter
@@ -30,22 +31,19 @@ class Fragment1 : Fragment() {
     ): View? {
         binding = FragmentRefrigerator1Binding.inflate(inflater, container, false)
         val view = binding.root
+        Toast.makeText(context, "데이터를 불러오는 중입니다.", Toast.LENGTH_SHORT).show()
 
         getIngredientAll();
 
-        binding.modify.setOnClickListener {
-            startActivity(Intent(context, IngredientDetailActivity::class.java))
-
-        }
         return view
     }
 
     fun getIngredientAll() {
         RetrofitService.serviceAPI.getIngredients(app.user.groupId)
-            .enqueue(object : Callback<List<IngredientsResponse>> {
+            .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
-                    call: Call<List<IngredientsResponse>>,
-                    response: Response<List<IngredientsResponse>>
+                    call: Call<List<Ingredient>>,
+                    response: Response<List<Ingredient>>
                 ) {
                     if(response.isSuccessful && response.body() != null) {
                         Log.d("Fragment1", "성공")
@@ -53,13 +51,23 @@ class Fragment1 : Fragment() {
                         for(ingredient in response.body()!!) {
                             Log.d("Fragment1", ingredient.toString())
 
-                            val item = Ingredient(ingredient.ingredientCategory, ingredient.ingredientCount, ingredient.ingredientExpirationDate, "",
-                            ingredient.ingredientName, "", ingredient.ingredientSaveType, ingredient.ingredientImageName)
+                            val item = Ingredient(
+                                ingredientCategory = ingredient.ingredientCategory,
+                                ingredientCount = ingredient.ingredientCount,
+                                ingredientExpirationDate = ingredient.ingredientExpirationDate,
+                                ingredientMemo = ingredient.ingredientImageName,
+                                ingredientName = ingredient.ingredientName,
+                                ingredientPurchaseDate = ingredient.ingredientPurchaseDate,
+                                ingredientSaveType = ingredient.ingredientSaveType,
+                                ingredientImageName = ingredient.ingredientImageName,
+                                ingredientId = ingredient.ingredientId!!,
+                                ingredientColor = ingredient.ingredientColor
+                            )
                             if(ingredientMap.contains(ingredient.ingredientCategory)) {
                                 ingredientMap.get(ingredient.ingredientCategory)?.add(item)
                             }
                             else {
-                                ingredientMap.set(ingredient.ingredientCategory, arrayListOf<Ingredient>(item))
+                                ingredientMap.set(ingredient.ingredientCategory!!, arrayListOf<Ingredient>(item))
                             }
                         }
 
@@ -72,7 +80,7 @@ class Fragment1 : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<List<IngredientsResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<List<Ingredient>>, t: Throwable) {
                     Log.d("Fragment1", "실패")
                 }
 

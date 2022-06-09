@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RefrigeratorSearchActivity"
+    tools:context=".view.ingredient.RefrigeratorSearchActivity"
     android:orientation="vertical"
     android:padding="10dp">
     <LinearLayout
@@ -35,9 +35,9 @@
             android:src="@drawable/icon_search"
             android:id="@+id/btn_search"/>
     </LinearLayout>
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/main" />
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_ingredient_search" />
 
 </LinearLayout>

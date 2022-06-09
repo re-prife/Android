@@ -58,7 +58,6 @@ class UserViewModel : ViewModel() {
 
 
      fun loadUsers(u: User) {
-        // Do an asynchronous operation to fetch users.
         user.value = u
     }
 }

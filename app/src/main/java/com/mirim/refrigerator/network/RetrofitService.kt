@@ -19,6 +19,9 @@ class RetrofitService {
     companion object {
         var serviceAPI : ServiceAPI
         var familyAPI : FamilyAPI
+        var kingAPI : KingAPI
+        var userAPI : UserAPI
+
         val BASE_URL : String = "http://52.204.65.160:8080/"
         val retrofit : Retrofit
             get() = Retrofit.Builder()
@@ -29,6 +32,9 @@ class RetrofitService {
         init {
             serviceAPI = retrofit.create(ServiceAPI::class.java)
             familyAPI = retrofit.create(FamilyAPI::class.java)
+            kingAPI = retrofit.create(KingAPI::class.java)
+            userAPI = retrofit.create(UserAPI::class.java)
+
         }
     }
 }

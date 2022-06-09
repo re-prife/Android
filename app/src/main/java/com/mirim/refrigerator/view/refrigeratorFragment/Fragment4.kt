@@ -37,24 +37,33 @@ class Fragment4 : Fragment() {
 
     fun getIngredientRoomTemp() {
         RetrofitService.serviceAPI.getIngredients(app.user.groupId, "ROOM_TEMP")
-            .enqueue(object : Callback<List<IngredientsResponse>> {
+            .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
-                    call: Call<List<IngredientsResponse>>,
-                    response: Response<List<IngredientsResponse>>
+                    call: Call<List<Ingredient>>,
+                    response: Response<List<Ingredient>>
                 ) {
                     if(response.isSuccessful && response.body() != null) {
                         Log.d("Fragment2", "성공")
                         Log.d("Fragment2", response.body().toString())
                         for(ingredient in response.body()!!) {
                             Log.d("Fragment2", ingredient.toString())
-
-                            val item = Ingredient(ingredient.ingredientCategory, ingredient.ingredientCount, ingredient.ingredientExpirationDate, "",
-                                ingredient.ingredientName, "", ingredient.ingredientSaveType, ingredient.ingredientImageName)
+                            val item = Ingredient(
+                                ingredientCategory = ingredient.ingredientCategory,
+                                ingredientCount = ingredient.ingredientCount,
+                                ingredientExpirationDate = ingredient.ingredientExpirationDate,
+                                ingredientMemo = ingredient.ingredientImageName,
+                                ingredientName = ingredient.ingredientName,
+                                ingredientPurchaseDate = ingredient.ingredientPurchaseDate,
+                                ingredientSaveType = ingredient.ingredientSaveType,
+                                ingredientImageName = ingredient.ingredientImageName,
+                                ingredientId = ingredient.ingredientId!!,
+                                ingredientColor = ingredient.ingredientColor
+                            )
                             if(ingredientMap.contains(ingredient.ingredientCategory)) {
                                 ingredientMap.get(ingredient.ingredientCategory)?.add(item)
                             }
                             else {
-                                ingredientMap.set(ingredient.ingredientCategory, arrayListOf<Ingredient>(item))
+                                ingredientMap.set(ingredient.ingredientCategory!!, arrayListOf<Ingredient>(item))
                             }
                         }
 
@@ -67,7 +76,7 @@ class Fragment4 : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<List<IngredientsResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<List<Ingredient>>, t: Throwable) {
                     Log.d("Fragment1", "실패")
                 }
 

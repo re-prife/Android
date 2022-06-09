@@ -60,8 +60,8 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginTop="25dp"/>
-        <EditText
-            android:id="@+id/edit_housework_category"
+        <Spinner
+            android:id="@+id/spinner_housework_category"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="3dp"
@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@id/txt_category"/>
         <TextView
             android:id="@+id/txt_assignee"
-            app:layout_constraintTop_toBottomOf="@id/edit_housework_category"
+            app:layout_constraintTop_toBottomOf="@id/spinner_housework_category"
             app:layout_constraintLeft_toRightOf="@id/guideline_left"
             android:layout_marginLeft="2dp"
             android:layout_width="wrap_content"
@@ -119,36 +119,29 @@
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
             app:layout_constraintTop_toBottomOf="@id/txt_perform_date"/>
         <LinearLayout
-            android:id="@+id/layout_linear_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent">
-            <RelativeLayout
-                android:id="@+id/btn_save_ingredient"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:background="@color/main">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="저장"
-                    android:textColor="@color/white"/>
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/btn_cancel_ingredient"
-                android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="75dp">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:background="@color/white">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="취소"
-                    android:textColor="@color/main"/>
-            </RelativeLayout>
+                android:text="생성"
+                android:textStyle="bold"
+                android:background="@drawable/background_button_main_color"
+                android:textColor="@color/white"
+                android:id="@+id/btn_create"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="취소"
+                android:textColor="@color/main"
+                android:background="@drawable/background_button_top_line"
+                android:id="@+id/btn_cancel"/>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
