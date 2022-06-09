@@ -32,11 +32,7 @@ class UserViewModel : ViewModel() {
 
 
      fun loadUsers(u: User) {
-        // Do an asynchronous operation to fetch users.
-        user.value?.nickname=u.nickname
-        user.value?.name=u.name
-        user.value?.email=u.email
-        user.value?.groupId = u.groupId
-        user.value?.userId = u.userId
+        // Do an asynchronous operation to fetch users
+        user.value = u
     }
 }
