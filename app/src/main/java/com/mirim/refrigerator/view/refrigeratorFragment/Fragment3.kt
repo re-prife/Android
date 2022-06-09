@@ -52,11 +52,11 @@ class Fragment3 : Fragment() {
                                 ingredientCategory = ingredient.ingredientCategory,
                                 ingredientCount = ingredient.ingredientCount,
                                 ingredientExpirationDate = ingredient.ingredientExpirationDate,
-                                ingredientMemo = ingredient.ingredientImageName,
+                                ingredientMemo = ingredient.ingredientMemo,
                                 ingredientName = ingredient.ingredientName,
                                 ingredientPurchaseDate = ingredient.ingredientPurchaseDate,
                                 ingredientSaveType = ingredient.ingredientSaveType,
-                                ingredientImageName = ingredient.ingredientImageName,
+                                ingredientImagePath = ingredient.ingredientImagePath,
                                 ingredientId = ingredient.ingredientId!!,
                                 ingredientColor = ingredient.ingredientColor
                             )

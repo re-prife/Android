@@ -22,7 +22,7 @@ class Ingredient(
     val ingredientName: String?,
     val ingredientPurchaseDate: String?,
     val ingredientSaveType: String?,
-    val ingredientImageName: String?,
+    val ingredientImagePath: String?,
     val ingredientId: Long,
     val ingredientColor: String?
 ) : Parcelable {
@@ -115,7 +115,7 @@ class Ingredient(
         parcel.writeString(ingredientName)
         parcel.writeString(ingredientPurchaseDate)
         parcel.writeString(ingredientSaveType)
-        parcel.writeString(ingredientImageName)
+        parcel.writeString(ingredientImagePath)
         parcel.writeLong(ingredientId)
         parcel.writeString(ingredientColor)
     }
