@@ -21,11 +21,13 @@ class SelectIngredientRegisterTypeActivity : AppCompatActivity() {
             val intent = Intent(applicationContext,IngredientRegisterActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
+            finish()
         }
         binding.btnScanQr.setOnClickListener {
             val intent = Intent(applicationContext,QrScanActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
+            finish()
         }
 
         binding.toolbar.btnBack.setOnClickListener {
