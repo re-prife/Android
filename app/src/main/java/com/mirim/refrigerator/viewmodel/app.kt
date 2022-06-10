@@ -12,4 +12,9 @@ class app : Application() {
     }
 
 
+    override fun toString(): String {
+        val value : String = "이름"+user.name+"\n이메일 : "+user.email+"\n그룹 : "+user.groupId
+        return value
+    }
+
 }

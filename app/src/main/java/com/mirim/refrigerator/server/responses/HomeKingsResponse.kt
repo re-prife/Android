@@ -4,6 +4,6 @@ import com.mirim.refrigerator.model.ChoreKing
 import com.mirim.refrigerator.model.QuestKing
 
 data class HomeKingsResponse (
-    val choreKing: List<ChoreKing>,
-    val questKing: QuestKing
+    val choreKingResponse: List<ChoreKing>,
+    val questKingResponse: QuestKing?
 )
