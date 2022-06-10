@@ -52,8 +52,10 @@ class HomeActivity : AppCompatActivity() {
 
         userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId, app.user.userImagePath))
 
-        // 각 달의 왕들을 받아옴 (userId포함)
-        // onResponse의 200일 경우 userId에 대하여 회원 상세 조회, 프로필 사진과 별명 불러옴
+        binding.imageKing1.clipToOutline = true
+        binding.imageKing2.clipToOutline = true
+        binding.imageKing3.clipToOutline = true
+        binding.imageKing4.clipToOutline = true
         monthOfKings()
 
 
