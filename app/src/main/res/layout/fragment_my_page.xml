@@ -206,6 +206,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/line_first"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="20dp"
@@ -223,12 +225,14 @@
                 android:textColor="@color/black"
                 android:text="너가 왕이니"
                 android:textSize="16sp" />
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_king"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="#DDDDDD"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"/>
             <LinearLayout
+                android:id="@+id/line_second"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="20dp"
@@ -236,6 +240,7 @@
                 android:background="#AAAAAA" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/mypage_family_members"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -246,10 +251,11 @@
                 android:textColor="@color/black"
                 android:text="가족 구성원"
                 android:textSize="16sp" />
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_family_member"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="#DDDDDD"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_family_member_recyclerview"
                 android:layout_marginBottom="30dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
