@@ -105,6 +105,31 @@ class Ingredient(
             }
         }
 
+        fun categoryIndex(category: String?) : Int {
+            return when(category) {
+                "VEGGIE" -> 0
+                "FRUIT" -> 1
+                "SEA_FOOD" -> 2
+                "GRAIN" -> 3
+                "MEAT" -> 4
+                "SEASONING" -> 5
+                "BEVERAGE" -> 6
+                "PROCESSED_FOOD" -> 7
+                "SNACK" -> 8
+                "DAIRY_PRODUCT" -> 9
+                "SIDE_DISH" -> 10
+                else -> 11
+            }
+        }
+
+        fun storeIndex(saveType: String?) : Int {
+            return when(saveType) {
+                "FRIDGE" -> 0
+                "FREEZER" -> 1
+                else -> 2
+            }
+
+        }
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

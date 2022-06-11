@@ -49,10 +49,6 @@ class IngredientGridAdapter(val context: Context?, val ingredients: List<Ingredi
         Log.d("imagePath", imagePath)
         Glide.with(context).load(imagePath).into(imageIngredient);
 
-        //TODO() : "이미지 연결"
-        //TODO("유통기한 상태 파악")
-
-
         return view
     }
 }
