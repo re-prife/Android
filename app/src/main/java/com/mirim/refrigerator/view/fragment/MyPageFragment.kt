@@ -7,9 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.mirim.refrigerator.R
+import com.mirim.refrigerator.adapter.MyPageFamilyAdapter
 import com.mirim.refrigerator.databinding.FragmentMyPageBinding
 import com.mirim.refrigerator.dialog.ShowCodeDialog
 import com.mirim.refrigerator.model.FamilyMember
@@ -27,6 +32,7 @@ class MyPageFragment: Fragment() {
     var _binding: FragmentMyPageBinding? = null
     private val userViewModel : UserViewModel by viewModels()
     private val binding get() = _binding!!
+    lateinit var familyAdapter : MyPageFamilyAdapter
 
     companion object {
         val TAG = "태그"
@@ -48,6 +54,11 @@ class MyPageFragment: Fragment() {
             binding.userNickname.text = it.nickname
             binding.userName.text = it.name
             binding.userEmail.text = it.email
+            Glide.with(requireContext())
+                .load(RetrofitService.IMAGE_BASE_URL+it.userImagePath)
+                .error(R.drawable.icon_profile)
+                .fallback(R.drawable.icon_profile)
+                .into(binding.userImage)
         })
 
 
@@ -96,20 +107,19 @@ class MyPageFragment: Fragment() {
                 val body = response.body()
                 Log.d(TAG,response.body().toString())
                 // 다른 멤버 존재 여부 확인
-                if(body == null) {
-                    // 존재하지 않으면..
+                if(body?.size==0) {
+                    binding.mypageFamilyMembers.isVisible = false
+                    binding.lineSecond.isVisible = false
                 } else {
                     userViewModel.setFamilyList(response.body()!!)
                     // 가족 리스트
                     for(i in 0 until userViewModel.getFamily().size)
                         Log.d(TAG,userViewModel.getFamily().get(i).name+" : "+userViewModel.getFamily().get(i).nickname)
-                    // 존재하면 recyclerview
+                    familyAdapter = MyPageFamilyAdapter(context,userViewModel.getFamily())
+                    binding.recyclerFamilyMember.adapter = familyAdapter
+                    binding.recyclerFamilyMember.layoutManager = LinearLayoutManager(context)
                 }
-
-
-
             }
-
             override fun onFailure(call: Call<List<FamilyMember>>, t: Throwable) {
 
             }

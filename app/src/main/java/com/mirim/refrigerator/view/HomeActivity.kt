@@ -8,7 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
+import androidx.core.view.marginTop
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.model.ChoreKing
 import com.mirim.refrigerator.model.Notice
@@ -23,6 +27,7 @@ import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,9 +52,11 @@ class HomeActivity : AppCompatActivity() {
 
         userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId, app.user.userImagePath))
 
-        // 각 달의 왕들을 받아옴 (userId포함)
-        // onResponse의 200일 경우 userId에 대하여 회원 상세 조회, 프로필 사진과 별명 불러옴
-        //monthOfKings()
+        binding.imageKing1.clipToOutline = true
+        binding.imageKing2.clipToOutline = true
+        binding.imageKing3.clipToOutline = true
+        binding.imageKing4.clipToOutline = true
+        monthOfKings()
 
 
         val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
@@ -82,7 +89,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.writeNotice.setOnClickListener {
-            var intent = Intent(applicationContext, NoticeActivity::class.java)
+            val intent = Intent(applicationContext, NoticeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
@@ -100,32 +107,77 @@ class HomeActivity : AppCompatActivity() {
                 call: Call<HomeKingsResponse>,
                 response: Response<HomeKingsResponse>
             ) {
-                var raw = response.raw()
-                var body = response.body()
+                val raw = response.raw()
+                val body = response.body()
 
                 Log.d(TAG,raw.toString())
-                Log.d(TAG,body?.choreKing.toString())
-                Log.d(TAG,body?.choreKing?.size.toString())
-                Log.d(TAG,body?.questKing.toString())
-
-
+                Log.d(TAG,body.toString())
 
                 when(raw.code()) {
                     200 -> {
-                        // userId 추출 및 저장
-                        val choreKingsUserIdList = ArrayList<Int>()
-                        for (choreKingData in body?.choreKing!!) {
-                            choreKingsUserIdList.add(choreKingData.userId)
+                        if(body?.questKingResponse != null) {
+                            val str = "심부름 "+body.questKingResponse.count+"회"
+                            binding.txtKingName1.isVisible = true
+                            binding.txtKingHousework1.isVisible = true
+                            binding.txtKingNone1.isVisible = false
+
+                            binding.txtKingName1.text = body.questKingResponse.userNickname
+                            binding.txtKingHousework1.text = str
+                            Glide.with(applicationContext)
+                                .load(RetrofitService.IMAGE_BASE_URL+body.questKingResponse.userImagePath)
+                                .error(R.drawable.icon_profile)
+                                .fallback(R.drawable.icon_profile)
+                                .into(binding.imageKing4)
                         }
-                        val questKingUserId = body.questKing.userId
+                        for(item in body?.choreKingResponse!!) {
+                            when (item.category) {
+                                "DISH_WASHING" -> {
+                                    val str = "설거지 "+item.count+"회"
 
-                        // user정보 불러옴 (return : choreKingProfileList - [], questKingProfileMap? - nullable)
-                        getUserInfo(choreKingsUserIdList,questKingUserId)
+                                    binding.txtKingName1.isVisible = true
+                                    binding.txtKingHousework1.isVisible = true
+                                    binding.txtKingNone1.isVisible = false
 
+                                    binding.txtKingName1.text = item.userNickname
+                                    binding.txtKingHousework1.text = str
+                                    Glide.with(applicationContext)
+                                        .load(RetrofitService.IMAGE_BASE_URL+item.userImagePath)
+                                        .error(R.drawable.icon_profile)
+                                        .fallback(R.drawable.icon_profile)
+                                        .into(binding.imageKing1)
+                                }
+                                "COOK" -> {
+                                    val str = "요리 "+item.count+"회"
 
+                                    binding.txtKingName2.isVisible = true
+                                    binding.txtKingHousework2.isVisible = true
+                                    binding.txtKingNone2.isVisible = false
 
+                                    binding.txtKingName2.text = item.userNickname
+                                    binding.txtKingHousework2.text = str
+                                    Glide.with(applicationContext)
+                                        .load(RetrofitService.IMAGE_BASE_URL+item.userImagePath)
+                                        .error(R.drawable.icon_profile)
+                                        .fallback(R.drawable.icon_profile)
+                                        .into(binding.imageKing2)
+                                }
+                                "SHOPPING" -> {
+                                    val str = "장보기 "+item.count+"회"
 
+                                    binding.txtKingName3.isVisible = true
+                                    binding.txtKingHousework3.isVisible = true
+                                    binding.txtKingNone3.isVisible = false
 
+                                    binding.txtKingName3.text = item.userNickname
+                                    binding.txtKingHousework3.text = str
+                                    Glide.with(applicationContext)
+                                        .load(RetrofitService.IMAGE_BASE_URL+item.userImagePath)
+                                        .error(R.drawable.icon_profile)
+                                        .fallback(R.drawable.icon_profile)
+                                        .into(binding.imageKing3)
+                                }
+                            }
+                        }
                     }
                     400 -> {
                         Log.d(TAG,raw.message())
@@ -145,37 +197,6 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    private fun getUserInfo(choreKingUserId : ArrayList<Int>?, questKingUserId : Int?)    {
-
-
-
-    }
-
-
-
-    private data class kingValue(
-        var imgSrc : Int?,
-        var kingName : String?,
-        var category : String,
-        var count : String
-    )
-    private data class BindingValue(
-        var img : ImageView,
-        var name : TextView,
-        var cateCount : TextView
-    )
-    private fun setKingsInfo(body: HomeKingsResponse?) {
-
-        val idValue = arrayOf(
-            BindingValue(binding.imageKing1,binding.txtKingName1,binding.txtKingHousework1),
-            BindingValue(binding.imageKing2,binding.txtKingName2,binding.txtKingHousework2),
-            BindingValue(binding.imageKing3,binding.txtKingName3,binding.txtKingHousework3),
-            BindingValue(binding.imageKing4,binding.txtKingName4,binding.txtKingHousework4),
-        )
-
-        val length : Int? = body?.choreKing?.size
-
-    }
     private fun getDate() : String {
         val currentTime = System.currentTimeMillis()
         return formatDate(currentTime)
