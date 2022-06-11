@@ -76,7 +76,7 @@ interface ServiceAPI {
     ) : Call<List<Housework>>
 
     // 식재료 삭제
-    @DELETE("groups/{groupId}/ingredients")
+    @HTTP(method = "DELETE", path = "groups/{groupId}/ingredients", hasBody = true)
     fun deleteIngredients(
         @Path("groupId") groupId: Int?,
         @Body ingredients: List<DeleteIngredientsRequest>

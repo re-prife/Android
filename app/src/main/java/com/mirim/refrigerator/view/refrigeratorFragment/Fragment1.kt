@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.adapter.IngredientTypeAdapter
 import com.mirim.refrigerator.databinding.FragmentRefrigerator1Binding
 import com.mirim.refrigerator.model.Ingredient
@@ -35,10 +38,35 @@ class Fragment1 : Fragment() {
 
         getIngredientAll();
 
+        binding.recyclerIngredientAll.addOnItemTouchListener(object: RecyclerView.OnItemTouchListener {
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                return false
+            }
+
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                rv.adapter?.notifyDataSetChanged()
+            }
+
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+
+            }
+
+        })
+
         return view
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        if(ingredientMap.isNotEmpty()) {
+            getIngredientAll()
+        }
+    }
+
+
     fun getIngredientAll() {
+        ingredientMap = HashMap<String, ArrayList<Ingredient>>()
         RetrofitService.serviceAPI.getIngredients(app.user.groupId)
             .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(

@@ -122,6 +122,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:padding="5dp"
                     android:id="@+id/txt_ingredient_memo"
                     android:layout_height="150dp"
                     android:layout_columnSpan="2"

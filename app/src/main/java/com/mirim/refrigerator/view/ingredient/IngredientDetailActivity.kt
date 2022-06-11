@@ -32,8 +32,8 @@ class IngredientDetailActivity : AppCompatActivity() {
             finish()
         }
         binding.btnDelete.setOnClickListener {
-            // deleteIngredient(DeleteIngredientsRequest(ingredient.ingredientId))
-            Toast.makeText(applicationContext, "삭제하기", Toast.LENGTH_SHORT).show()
+            deleteIngredient(DeleteIngredientsRequest(ingredient?.ingredientId))
+            finish()
         }
 
         binding.txtIngredientName.text = ingredient?.ingredientName
@@ -67,7 +67,7 @@ class IngredientDetailActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<DeleteIngredientsResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("IngredientDetailActivity-deleteIngredient", t.toString())
             }
 
         })

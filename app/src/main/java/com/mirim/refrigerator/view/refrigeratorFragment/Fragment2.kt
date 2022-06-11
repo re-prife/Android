@@ -3,10 +3,12 @@ package com.mirim.refrigerator.view.refrigeratorFragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.adapter.IngredientTypeAdapter
 import com.mirim.refrigerator.databinding.FragmentRefrigerator1Binding
@@ -22,6 +24,7 @@ import retrofit2.Response
 class Fragment2 : Fragment() {
     lateinit var binding: FragmentRefrigerator2Binding
     var ingredientMap = HashMap<String, ArrayList<Ingredient>>()
+    var initialized = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,10 +36,34 @@ class Fragment2 : Fragment() {
 
         getIngredientFreezer()
 
+        binding.recyclerIngredientAll.addOnItemTouchListener(object: RecyclerView.OnItemTouchListener {
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                return false
+            }
+
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                rv.adapter?.notifyDataSetChanged()
+            }
+
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+
+            }
+
+        })
+
 
         return view
     }
+
+    override fun onResume() {
+        super.onResume()
+        if(initialized) {
+            getIngredientFreezer()
+        }
+        initialized = true
+    }
     fun getIngredientFreezer() {
+        ingredientMap = HashMap<String, ArrayList<Ingredient>>()
         RetrofitService.serviceAPI.getIngredients(app.user.groupId, "FREEZER")
             .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
