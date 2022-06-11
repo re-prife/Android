@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityIngredientModifyBinding
 import com.mirim.refrigerator.model.Ingredient
@@ -46,6 +47,7 @@ class IngredientModifyActivity : AppCompatActivity() {
         // binding.spinnerCategory.sel = (Ingredient.typeKoreanConverter(ingredient?.ingredientCategory))
         //binding.editKeepType.setText(Ingredient.storeKoreanConverter(ingredient?.ingredientSaveType))
         binding.editMemo.setText(ingredient?.ingredientMemo)
+        Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
 
         binding.toolbar.toolbarTitle.text = "식재료 수정"
         binding.toolbar.btnBack.setOnClickListener {

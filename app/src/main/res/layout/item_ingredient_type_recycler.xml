@@ -13,16 +13,18 @@
         android:textSize="16sp"
         android:textColor="@color/black"
         android:layout_marginLeft="21dp"/>
-    <GridView
+    <com.mirim.refrigerator.view.refrigeratorFragment.ExpandableHeightGridView
         android:layout_marginTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/grid_ingredient"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:numColumns="5"
         app:layout_constraintTop_toBottomOf="@id/txt_ingredient_type"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:numColumns="5" />
+        android:verticalSpacing="20dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
