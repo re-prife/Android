@@ -28,6 +28,18 @@ class IngredientRegisterActivity : AppCompatActivity() {
         binding = ActivityIngredientRegisterBinding.inflate(layoutInflater)
         val view = binding.root
 
+
+        // QR스캔 확인
+        if(intent.getStringExtra("ingredientName") != null) {
+            // TODO : Spinner 연결 (하진)
+            val intent_saveType = intent.getStringExtra("ingredientSaveType")
+            val intent_category = intent.getStringExtra("ingredientCategory")
+
+            binding.editName.setText(intent.getStringExtra("ingredientName"))
+            binding.editEndDay.setText(intent.getStringExtra("ingredientExpirationDate"))
+            binding.editBoughtDay.setText(intent.getStringExtra("ingredientPurchaseDate"))
+        }
+
         val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_category, android.R.layout.simple_spinner_item)
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategory.adapter = categoryAdapter
@@ -41,13 +53,13 @@ class IngredientRegisterActivity : AppCompatActivity() {
         }
         binding.toolbar.toolbarTitle.text = "식재료 등록"
         binding.btnSaveIngredient.setOnClickListener {
-            var ingredientName = binding.editName.text.toString()
-            var ingredientAmount = binding.editAmount.text.toString()
-            var ingredientPurchaseDate = binding.editBoughtDay.text.toString()
-            var ingredientExpirationDate = binding.editEndDay.text.toString()
-            var ingredientCategory = Ingredient.typeEnglishConverter(binding.spinnerCategory.selectedItem.toString())
-            var ingredientKeepType = Ingredient.storeEnglishConverter(binding.spinnerKeepType.selectedItem.toString())
-            var ingredientMemo = binding.editMemo.text.toString()
+            val ingredientName = binding.editName.text.toString()
+            val ingredientAmount = binding.editAmount.text.toString()
+            val ingredientPurchaseDate = binding.editBoughtDay.text.toString()
+            val ingredientExpirationDate = binding.editEndDay.text.toString()
+            val ingredientCategory = Ingredient.typeEnglishConverter(binding.spinnerCategory.selectedItem.toString())
+            val ingredientKeepType = Ingredient.storeEnglishConverter(binding.spinnerKeepType.selectedItem.toString())
+            val ingredientMemo = binding.editMemo.text.toString()
 
             createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = ingredientPurchaseDate, ingredientExpirationDate = ingredientExpirationDate,
             ingredientCategory = ingredientCategory, ingredientSaveType = ingredientKeepType, ingredientMemo = ingredientMemo))
@@ -59,7 +71,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
         setContentView(view)
     }
 
-    fun createIngredient(data: CreateIngredientRequest) {
+    private fun createIngredient(data: CreateIngredientRequest) {
         RetrofitService.serviceAPI.createIngredients(app.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
                 call: Call<CreateIngredientResponse>,
