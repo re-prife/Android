@@ -44,8 +44,8 @@ class IngredientModifyActivity : AppCompatActivity() {
         binding.editAmount.setText(ingredient?.ingredientCount)
         binding.editBoughtDay.setText(ingredient?.ingredientPurchaseDate)
         binding.editEndDay.setText(ingredient?.ingredientExpirationDate)
-        // binding.spinnerCategory.sel = (Ingredient.typeKoreanConverter(ingredient?.ingredientCategory))
-        //binding.editKeepType.setText(Ingredient.storeKoreanConverter(ingredient?.ingredientSaveType))
+        binding.spinnerCategory.setSelection(Ingredient.categoryIndex(ingredient?.ingredientCategory))
+        binding.spinnerKeepType.setSelection(Ingredient.storeIndex(ingredient?.ingredientSaveType))
         binding.editMemo.setText(ingredient?.ingredientMemo)
         Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
 
