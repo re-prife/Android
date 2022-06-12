@@ -15,7 +15,7 @@ import com.mirim.refrigerator.server.request.DeleteIngredientsRequest
 import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.server.responses.DeleteIngredientsResponse
 import com.mirim.refrigerator.server.responses.IngredientsResponse
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -74,7 +74,7 @@ class IngredientModifyActivity : AppCompatActivity() {
 
     }
     fun updateIngredient(body: CreateIngredientRequest) {
-        RetrofitService.serviceAPI.updateIngredients(app.user.groupId, ingredient?.ingredientId, body).enqueue(object : Callback<CreateIngredientResponse> {
+        RetrofitService.serviceAPI.updateIngredients(App.user.groupId, ingredient?.ingredientId, body).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>

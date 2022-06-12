@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mirim.refrigerator">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 권한 설정 -->
+    <!-- 권한 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -77,9 +79,13 @@
             android:name=".view.BottomAppBarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity android:name=".view.mypage.ProfileModifyActivity"
+            android:exported="false" />
+        <activity android:name=".view.mypage.PolicyActivity"
+            android:exported="false"/>
         <activity
             android:name=".view.HomeActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

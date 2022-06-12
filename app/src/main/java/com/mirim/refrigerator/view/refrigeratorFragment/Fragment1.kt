@@ -18,7 +18,7 @@ import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.IngredientsResponse
 import com.mirim.refrigerator.view.ingredient.IngredientDetailActivity
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,7 +67,7 @@ class Fragment1 : Fragment() {
 
     fun getIngredientAll() {
         ingredientMap = HashMap<String, ArrayList<Ingredient>>()
-        RetrofitService.serviceAPI.getIngredients(app.user.groupId)
+        RetrofitService.serviceAPI.getIngredients(App.user.groupId)
             .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
                     call: Call<List<Ingredient>>,

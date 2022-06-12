@@ -5,21 +5,17 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.adapter.HouseworkAdapter
 import com.mirim.refrigerator.databinding.FragmentHouseworkBinding
-import com.mirim.refrigerator.dialog.HouseworkDetailDialog
 import com.mirim.refrigerator.model.Housework
 import com.mirim.refrigerator.network.RetrofitService
-import com.mirim.refrigerator.server.responses.HouseworkResponse
 import com.mirim.refrigerator.view.housework.RegisterHouseworkActivity
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,7 +67,7 @@ class HouseworkFragment: Fragment() {
     }
 
     fun getChores(date: String) {
-        RetrofitService.serviceAPI.getChoresOneDay(app.user.groupId, date).enqueue(object : Callback<List<Housework>> {
+        RetrofitService.serviceAPI.getChoresOneDay(App.user.groupId, date).enqueue(object : Callback<List<Housework>> {
             override fun onResponse(
                 call: Call<List<Housework>>,
                 response: Response<List<Housework>>

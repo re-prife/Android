@@ -11,7 +11,7 @@ import com.mirim.refrigerator.adapter.IngredientTypeAdapter
 import com.mirim.refrigerator.databinding.ActivityRefrigeratorSearchBinding
 import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -64,7 +64,7 @@ class RefrigeratorSearchActivity : AppCompatActivity() {
     }
 
     fun getIngredientAll() {
-        RetrofitService.serviceAPI.getIngredients(app.user.groupId)
+        RetrofitService.serviceAPI.getIngredients(App.user.groupId)
             .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
                     call: Call<List<Ingredient>>,

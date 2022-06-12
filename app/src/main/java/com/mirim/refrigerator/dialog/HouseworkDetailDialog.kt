@@ -10,11 +10,10 @@ import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.mirim.refrigerator.databinding.DialogHouseworkDetailBinding
-import com.mirim.refrigerator.databinding.DialogIngredientDeleteBinding
 import com.mirim.refrigerator.model.Housework
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.Response
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -57,7 +56,7 @@ class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
 
     }
     fun deleteChore() {
-        RetrofitService.serviceAPI.deleteChore(app.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
+        RetrofitService.serviceAPI.deleteChore(App.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 Log.d("HouseworkDetailDialog-deleteChore", response.toString())
             }

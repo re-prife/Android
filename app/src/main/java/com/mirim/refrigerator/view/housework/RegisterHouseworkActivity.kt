@@ -10,7 +10,7 @@ import com.mirim.refrigerator.model.Housework
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.CreateHouseworkRequest
 import com.mirim.refrigerator.server.responses.Response
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -43,7 +43,7 @@ class RegisterHouseworkActivity : AppCompatActivity() {
         binding.toolbar.toolbarTitle.text = "집안일 정하기"
     }
     fun createChore(body: CreateHouseworkRequest) {
-        RetrofitService.serviceAPI.createChore(app.user.groupId, body).enqueue(object : Callback<Response> {
+        RetrofitService.serviceAPI.createChore(App.user.groupId, body).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 Log.d("RegisterHouseworkActivity", response.toString())
             }
