@@ -2,17 +2,7 @@ package com.mirim.refrigerator.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirim.refrigerator.R
-import com.mirim.refrigerator.adapter.IngredientTypeAdapter
-import com.mirim.refrigerator.network.RetrofitService
-import com.mirim.refrigerator.server.responses.IngredientsResponse
-import com.mirim.refrigerator.viewmodel.app
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.io.Serializable
 
 class Ingredient(
     val ingredientCategory: String?,

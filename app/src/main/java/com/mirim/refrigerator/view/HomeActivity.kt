@@ -4,33 +4,25 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.core.view.marginTop
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
-import com.mirim.refrigerator.model.ChoreKing
 import com.mirim.refrigerator.model.Notice
-import com.mirim.refrigerator.model.QuestKing
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
+import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.NoticeViewModel
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import com.mirim.refrigerator.viewmodel.app
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeActivity : AppCompatActivity() {
 
@@ -50,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId, app.user.userImagePath))
+        userViewModel.loadUsers(App.user)
 
         binding.imageKing1.clipToOutline = true
         binding.imageKing2.clipToOutline = true

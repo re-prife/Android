@@ -23,7 +23,7 @@ import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.view.mypage.PolicyActivity
 import com.mirim.refrigerator.view.mypage.ProfileModifyActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,7 +49,7 @@ class MyPageFragment: Fragment() {
 
         binding.userImage.clipToOutline = true
 
-        userViewModel.loadUsers(User(app.user.nickname,app.user.name,app.user.email,app.user.userId,app.user.groupId,app.user.userImagePath))
+        userViewModel.loadUsers(App.user)
         userViewModel.getUser().observe(viewLifecycleOwner, Observer<User>{
             binding.userNickname.text = it.nickname
             binding.userName.text = it.name
@@ -71,7 +71,9 @@ class MyPageFragment: Fragment() {
         }
 
         binding.btnProfileSetting.setOnClickListener {
-            startActivity(Intent(context, ProfileModifyActivity::class.java))
+            val intent = Intent(context, ProfileModifyActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
         }
 
         binding.btnVersion.setOnClickListener {

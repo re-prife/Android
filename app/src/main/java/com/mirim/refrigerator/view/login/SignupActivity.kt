@@ -18,7 +18,7 @@ import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.SignupRequest
 import com.mirim.refrigerator.server.responses.SignupResponse
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
@@ -113,8 +113,8 @@ class SignupActivity : AppCompatActivity() {
 
                         val userData = User(body?.userNickname,body?.userName,body?.userEmail,body?.userId,null, "")
 
-                        app.user = userData
-                        Log.d("로그인 성공", app.user.userId.toString())
+                        App.user = userData
+                        Log.d("로그인 성공", App.user.userId.toString())
 
                         val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mirim.refrigerator.databinding.ActivityShowGroupCodeBinding
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 
 class ShowGroupCodeActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class ShowGroupCodeActivity : AppCompatActivity() {
         setContentView(view)
 
 
-        binding.textGroupCode.text = app.user.groupId.toString()
+        binding.textGroupCode.text = App.user.groupId.toString()
         binding.btnSignin.setOnClickListener {
             val intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

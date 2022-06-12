@@ -14,7 +14,7 @@ import com.mirim.refrigerator.server.request.CreateIngredientRequest
 import com.mirim.refrigerator.server.responses.CreateGroupResponse
 import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.view.BottomAppBarActivity
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,7 +72,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
     }
 
     private fun createIngredient(data: CreateIngredientRequest) {
-        RetrofitService.serviceAPI.createIngredients(app.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
+        RetrofitService.serviceAPI.createIngredients(App.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>

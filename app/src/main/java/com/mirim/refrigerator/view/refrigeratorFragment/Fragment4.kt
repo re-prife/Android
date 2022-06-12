@@ -15,7 +15,7 @@ import com.mirim.refrigerator.databinding.FragmentRefrigerator4Binding
 import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.IngredientsResponse
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,7 +63,7 @@ class Fragment4 : Fragment() {
 
     fun getIngredientRoomTemp() {
         ingredientMap = HashMap<String, ArrayList<Ingredient>>()
-        RetrofitService.serviceAPI.getIngredients(app.user.groupId, "ROOM_TEMP")
+        RetrofitService.serviceAPI.getIngredients(App.user.groupId, "ROOM_TEMP")
             .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
                     call: Call<List<Ingredient>>,

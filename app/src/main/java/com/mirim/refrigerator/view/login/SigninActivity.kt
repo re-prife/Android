@@ -13,7 +13,7 @@ import com.mirim.refrigerator.server.request.SigninRequest
 import com.mirim.refrigerator.server.responses.SigninResponse
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -86,9 +86,8 @@ class SigninActivity : AppCompatActivity() {
 
                 when(raw.code()) {
                     200 -> {
-                        app.user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId, body?.userImagePath)
-                        UserViewModel().loadUsers(app.user)
-                        Log.d(TAG,app.toString())
+                        App.user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId, body?.userImagePath)
+                        UserViewModel().loadUsers(App.user)
                         val intent = Intent(applicationContext, HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)

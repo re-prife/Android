@@ -15,7 +15,7 @@ import com.mirim.refrigerator.server.responses.CreateGroupResponse
 import com.mirim.refrigerator.server.responses.JoinGroupResponse
 import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,14 +55,14 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
     }
     private fun progressCreateGroup(data : JoinGroupRequest) {
-        Log.d(TAG,app.user.userId.toString())
-        RetrofitService.serviceAPI.joinGroup(app.user.userId.toString(),data).enqueue(object : Callback<JoinGroupResponse> {
+        Log.d(TAG,App.user.userId.toString())
+        RetrofitService.serviceAPI.joinGroup(App.user.userId.toString(),data).enqueue(object : Callback<JoinGroupResponse> {
             override fun onResponse(
                 call: Call<JoinGroupResponse>,
                 response: Response<JoinGroupResponse>
             ) {
                 val raw = response.raw()
-                app.user.groupId = response.body()?.groupId
+                App.user.groupId = response.body()?.groupId
                 Log.d(TAG,response.toString())
 
                 when(raw.code()) {

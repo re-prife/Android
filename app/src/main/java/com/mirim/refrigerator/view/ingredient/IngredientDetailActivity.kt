@@ -12,7 +12,7 @@ import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.DeleteIngredientsRequest
 import com.mirim.refrigerator.server.responses.DeleteIngredientsResponse
-import com.mirim.refrigerator.viewmodel.app
+import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,7 +57,7 @@ class IngredientDetailActivity : AppCompatActivity() {
 
 
     fun deleteIngredient(data: DeleteIngredientsRequest) {
-        RetrofitService.serviceAPI.deleteIngredients(app.user.groupId, listOf(data)).enqueue(object :
+        RetrofitService.serviceAPI.deleteIngredients(App.user.groupId, listOf(data)).enqueue(object :
             Callback<DeleteIngredientsResponse> {
             override fun onResponse(
                 call: Call<DeleteIngredientsResponse>,
