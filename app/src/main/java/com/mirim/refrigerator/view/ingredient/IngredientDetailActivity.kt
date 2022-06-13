@@ -64,6 +64,7 @@ class IngredientDetailActivity : AppCompatActivity() {
                 response: Response<DeleteIngredientsResponse>
             ) {
                 Log.d("IngredientModifyActivity-deleteIngredient", response.toString())
+                Toast.makeText(applicationContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<DeleteIngredientsResponse>, t: Throwable) {
