@@ -57,7 +57,7 @@ class IngredientDetailActivity : AppCompatActivity() {
 
 
     fun deleteIngredient(data: DeleteIngredientsRequest) {
-        RetrofitService.serviceAPI.deleteIngredients(app.user.groupId, listOf(data)).enqueue(object :
+        RetrofitService.ingredientAPI.deleteIngredients(app.user.groupId, listOf(data)).enqueue(object :
             Callback<DeleteIngredientsResponse> {
             override fun onResponse(
                 call: Call<DeleteIngredientsResponse>,

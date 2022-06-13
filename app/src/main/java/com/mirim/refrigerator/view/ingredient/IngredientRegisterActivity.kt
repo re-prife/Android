@@ -60,7 +60,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
     }
 
     fun createIngredient(data: CreateIngredientRequest) {
-        RetrofitService.serviceAPI.createIngredients(app.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
+        RetrofitService.ingredientAPI.createIngredients(app.user.groupId, data).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>

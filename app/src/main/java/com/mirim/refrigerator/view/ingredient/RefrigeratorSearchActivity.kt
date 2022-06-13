@@ -64,7 +64,7 @@ class RefrigeratorSearchActivity : AppCompatActivity() {
     }
 
     fun getIngredientAll() {
-        RetrofitService.serviceAPI.getIngredients(app.user.groupId)
+        RetrofitService.ingredientAPI.getIngredients(app.user.groupId)
             .enqueue(object : Callback<List<Ingredient>> {
                 override fun onResponse(
                     call: Call<List<Ingredient>>,

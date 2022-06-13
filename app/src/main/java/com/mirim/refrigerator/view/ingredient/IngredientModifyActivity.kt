@@ -74,7 +74,7 @@ class IngredientModifyActivity : AppCompatActivity() {
 
     }
     fun updateIngredient(body: CreateIngredientRequest) {
-        RetrofitService.serviceAPI.updateIngredients(app.user.groupId, ingredient?.ingredientId, body).enqueue(object : Callback<CreateIngredientResponse> {
+        RetrofitService.ingredientAPI.updateIngredients(app.user.groupId, ingredient?.ingredientId, body).enqueue(object : Callback<CreateIngredientResponse> {
             override fun onResponse(
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>
