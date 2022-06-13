@@ -67,6 +67,7 @@ class PasswordModifyActivity : AppCompatActivity() {
                         Log.d(TAG,"갱신 성공")
                         Toast.makeText(applicationContext,"비밀번호가 성공적으로 변경되었습니다.",Toast.LENGTH_SHORT).show()
                         finish()
+                        overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
                     }
                     400 -> {
                         Log.e(TAG,raw.message())
