@@ -21,6 +21,7 @@ interface UserAPI {
     @PUT("users/{userId}")
     fun modifyUser(
         @Path("userId") userId : Int,
+        @Body body : ModifyUserInfoRequest,
     ): Call<Response>
 
     // 프로핗 이미지 수정

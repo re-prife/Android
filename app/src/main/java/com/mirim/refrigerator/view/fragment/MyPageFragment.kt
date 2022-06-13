@@ -27,6 +27,7 @@ import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.system.measureNanoTime
 
 class MyPageFragment: Fragment() {
     var _binding: FragmentMyPageBinding? = null
@@ -39,16 +40,9 @@ class MyPageFragment: Fragment() {
         val currentVersion = "1.0.0"
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMyPageBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        binding.userImage.clipToOutline = true
-
+    override fun onResume() {
+        super.onResume()
+        Log.e(TAG,App.toString())
         userViewModel.loadUsers(App.user)
         userViewModel.getUser().observe(viewLifecycleOwner, Observer<User>{
             binding.userNickname.text = it.nickname
@@ -60,6 +54,17 @@ class MyPageFragment: Fragment() {
                 .fallback(R.drawable.icon_profile)
                 .into(binding.userImage)
         })
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMyPageBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        binding.userImage.clipToOutline = true
 
 
         setFamilyMember()

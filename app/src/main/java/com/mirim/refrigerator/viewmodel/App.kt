@@ -8,7 +8,7 @@ object App {
     lateinit var user : User
 
     override fun toString(): String {
-        val value : String = "이름"+user.name+"\n이메일 : "+user.email+"\n그룹 : "+user.groupId
+        val value : String = "\n이름 : "+user.name+"\n닉네임 : "+user.nickname+"\n이메일 : "+user.email+"\n그룹 : "+user.groupId
         return value
     }
 
