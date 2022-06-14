@@ -17,13 +17,12 @@ class NoticeViewModel : ViewModel() {
     }
 
     init {
-        notice.value = Notice("하진아 청소해라", "오늘 청소 안하면 호적 파인다.")
+        notice.value = Notice("하진아 청소해라")
     }
 
     fun loadNotice( title:String,  content:String) {
         // Do an asynchronous operation to fetch users.
-        notice.value?.title=title
-        notice.value?.contents=content
+        notice.value?.groupReport=title
 
     }
 }
