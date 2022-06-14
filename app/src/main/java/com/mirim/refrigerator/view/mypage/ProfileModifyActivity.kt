@@ -22,6 +22,7 @@ import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.ModifyUserInfoRequest
 import com.mirim.refrigerator.viewmodel.App
+import com.mirim.refrigerator.viewmodel.App.imageUri
 import com.mirim.refrigerator.viewmodel.UserViewModel
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -76,11 +77,16 @@ class ProfileModifyActivity : AppCompatActivity() {
 
     // 기존 프로필 내용 적용
     private fun initBaseUserInfo() {
-        Glide.with(applicationContext)
-            .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
-            .error(R.drawable.icon_profile)
-            .fallback(R.drawable.icon_profile)
-            .into(binding.userImage)
+        if(App.imageUri != null) {
+            binding.userImage.setImageURI(App.imageUri)
+        } else {
+            Glide.with(applicationContext)
+                .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
+                .error(R.drawable.icon_profile)
+                .fallback(R.drawable.icon_profile)
+                .into(binding.userImage)
+        }
+
         binding.editName.setText(App.user.name)
         binding.editNickname.setText(App.user.nickname)
         binding.editEmail.setText(App.user.email)
@@ -96,7 +102,7 @@ class ProfileModifyActivity : AppCompatActivity() {
 
     private fun openGallery() {
         checkPermission()
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.type = "image/*"
         startActivityForResult(intent,REQUEST_GET_IMAGE)
     }
@@ -115,6 +121,7 @@ class ProfileModifyActivity : AppCompatActivity() {
                         bitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
                         val requestBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
                         uploadFile = MultipartBody.Part.createFormData("file","upload_${App.user.userId}.jpg",requestBody)
+                        imageUri = uri as Uri
                         binding.userImage.setImageURI(uri)
                         isImageChanged = true
                     } catch (e : Exception) {
