@@ -79,6 +79,8 @@
             android:name=".view.BottomAppBarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity android:name=".view.mypage.PasswordModifyActivity"
+            android:exported="false"/>
         <activity android:name=".view.mypage.ProfileModifyActivity"
             android:exported="false" />
         <activity android:name=".view.mypage.PolicyActivity"
