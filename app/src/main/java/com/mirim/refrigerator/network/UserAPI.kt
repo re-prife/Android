@@ -25,10 +25,11 @@ interface UserAPI {
     ): Call<Response>
 
     // 프로핗 이미지 수정
+    @Multipart
     @POST("uploads/users/{userId}")
     fun modifyUserImage(
         @Path("userId") userId : Int,
-        @Body profileImage : MultipartBody.Part
+        @Part profileImage : MultipartBody.Part
     ): Call<Response>
 
     // 사용자 비밀번호 변경

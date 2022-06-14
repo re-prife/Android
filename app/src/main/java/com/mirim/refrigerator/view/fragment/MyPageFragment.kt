@@ -42,14 +42,13 @@ class MyPageFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.e(TAG,App.toString())
         userViewModel.loadUsers(App.user)
         userViewModel.getUser().observe(viewLifecycleOwner, Observer<User>{
             binding.userNickname.text = it.nickname
             binding.userName.text = it.name
             binding.userEmail.text = it.email
             Glide.with(requireContext())
-                .load(RetrofitService.IMAGE_BASE_URL+it.userImagePath)
+                .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
                 .error(R.drawable.icon_profile)
                 .fallback(R.drawable.icon_profile)
                 .into(binding.userImage)
@@ -61,11 +60,11 @@ class MyPageFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         val view = binding.root
 
         binding.userImage.clipToOutline = true
-
 
         setFamilyMember()
 
