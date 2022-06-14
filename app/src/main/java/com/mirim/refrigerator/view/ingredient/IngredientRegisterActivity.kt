@@ -61,8 +61,14 @@ class IngredientRegisterActivity : AppCompatActivity() {
             val ingredientKeepType = Ingredient.storeEnglishConverter(binding.spinnerKeepType.selectedItem.toString())
             val ingredientMemo = binding.editMemo.text.toString()
 
-            createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = ingredientPurchaseDate, ingredientExpirationDate = ingredientExpirationDate,
-            ingredientCategory = ingredientCategory, ingredientSaveType = ingredientKeepType, ingredientMemo = ingredientMemo))
+            if(!ingredientAmount[0].isDigit()) {
+                Toast.makeText(applicationContext, "식재료 수량은 숫자를 포함해야 합니다.", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = ingredientPurchaseDate, ingredientExpirationDate = ingredientExpirationDate,
+                    ingredientCategory = ingredientCategory, ingredientSaveType = ingredientKeepType, ingredientMemo = ingredientMemo))
+            }
+
         }
         binding.btnCancelIngredient.setOnClickListener {
             finish()
@@ -77,9 +83,15 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>
             ) {
+                if(response.raw().code() == 201) {
+                    Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                else {
+                    Toast.makeText(applicationContext, "저장에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+                }
                 Log.d("IngredientRegisterActivity-createIngredient", response.toString())
-                Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
-                finish()
+
             }
 
             override fun onFailure(call: Call<CreateIngredientResponse>, t: Throwable) {
