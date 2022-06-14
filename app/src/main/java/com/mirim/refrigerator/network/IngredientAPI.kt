@@ -5,8 +5,11 @@ import com.mirim.refrigerator.server.request.CreateIngredientRequest
 import com.mirim.refrigerator.server.request.DeleteIngredientsRequest
 import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.server.responses.DeleteIngredientsResponse
+import com.mirim.refrigerator.server.responses.Response
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
+import java.io.File
 
 interface IngredientAPI {
     // 식재료 조회
@@ -41,4 +44,12 @@ interface IngredientAPI {
         @Path("groupId") groupId: Int?,
         @Body ingredients: List<DeleteIngredientsRequest>
     ) : Call<DeleteIngredientsResponse>
+
+    // 식재료 이미지 변경
+    @Multipart
+    @POST("/uploads/ingredients/{ingredientId}")
+    fun uploadIngredientImage(
+        @Path("ingredientId") ingredientId: Long?,
+        @Part file: MultipartBody.Part
+    ) : Call<Response>
 }
