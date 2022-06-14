@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".dialog.PermissionCheckDialog"
+            android:exported="false" />
         <activity android:name=".view.housework.RegisterHouseworkActivity" />
         <activity
             android:name=".viewmodel.app"

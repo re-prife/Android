@@ -1,16 +1,21 @@
 package com.mirim.refrigerator.view
 
 import android.content.Intent
+import android.content.Intent.ACTION_OPEN_DOCUMENT
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
+import com.mirim.refrigerator.dialog.PermissionCheckDialog
 import com.mirim.refrigerator.model.Notice
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
@@ -36,6 +41,26 @@ class HomeActivity : AppCompatActivity() {
         val TAG : String = "Home 태그"
     }
 
+    private fun checkPermission() {
+        val galleryPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        val cameraPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA)
+        val internetPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.INTERNET)
+        val snsPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
+
+        if(galleryPermission == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),0)
+        }
+        if(cameraPermission == PackageManager.PERMISSION_DENIED ) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA),1)
+        }
+        if(internetPermission == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.INTERNET),2)
+        }
+        if(snsPermission == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.SEND_SMS),3)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -43,6 +68,15 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
 
         userViewModel.loadUsers(App.user)
+
+        // 권한 dialog
+//        val dialog = PermissionCheckDialog(this)
+//        dialog.showDialog()
+
+        checkPermission()
+
+
+
 
         binding.imageKing1.clipToOutline = true
         binding.imageKing2.clipToOutline = true
