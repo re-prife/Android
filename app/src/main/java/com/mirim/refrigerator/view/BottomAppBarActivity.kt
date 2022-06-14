@@ -35,7 +35,7 @@ class BottomAppBarActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction().add(R.id.frame, ErrandFragment()).commit()
             }
             "make errand" -> {
-                var intent = Intent(applicationContext,CreateErrandActivity::class.java)
+                val intent = Intent(applicationContext,CreateErrandActivity::class.java)
                 intent.putExtra("route",1)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
