@@ -13,7 +13,7 @@ import com.mirim.refrigerator.R
 import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 
-class IngredientMultiSelectAdapter (val context: Context?, val ingredients: List<Ingredient>, var selectedIngredient: ArrayList<Long>): BaseAdapter() {
+class IngredientMultiSelectAdapter (val context: Context?, val ingredients: List<Ingredient>, var selectedIngredient: ArrayList<Ingredient>): BaseAdapter() {
     override fun getCount(): Int {
         return ingredients.size
     }
@@ -46,12 +46,12 @@ class IngredientMultiSelectAdapter (val context: Context?, val ingredients: List
         Glide.with(context).load(imagePath).into(imageIngredient);
 
         view.setOnClickListener {
-            if(!selectedIngredient.contains(ingredient.ingredientId)) {
-                selectedIngredient.add(ingredient.ingredientId)
+            if(!selectedIngredient.contains(ingredient)) {
+                selectedIngredient.add(ingredient)
                 imageSelected.visibility = View.VISIBLE
             }
             else {
-                selectedIngredient.remove(ingredient.ingredientId)
+                selectedIngredient.remove(ingredient)
                 imageSelected.visibility = View.INVISIBLE
             }
         }

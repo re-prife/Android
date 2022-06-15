@@ -38,12 +38,11 @@
                 app:layout_constraintLeft_toLeftOf="parent">
                 <ImageView
                     android:id="@+id/image_ingredient"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/image_circle"
-                    android:src="@drawable/sample_image" />
+                    android:background="@color/deep_gray"/>
 
                 <ImageView
                     android:id="@+id/icon_camera"
