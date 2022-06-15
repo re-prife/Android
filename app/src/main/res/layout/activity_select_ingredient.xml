@@ -1,38 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ingredient.SelectIngredientActivity">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_modify"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@drawable/background_button_main_color"
-            android:text="수정"
-            android:textColor="@color/white"
-            android:stateListAnimator="@null"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_delete"
+            android:orientation="vertical">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="21dp"
+            android:id="@+id/txt_freezer"
+            android:text="냉동"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+        <com.mirim.refrigerator.view.refrigeratorFragment.ExpandableHeightGridView
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:background="@drawable/background_button_top_line"
-            android:text="삭제"
-            android:textColor="@color/main"
-            android:stateListAnimator="@null"/>
+            android:id="@+id/grid_freezer"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:numColumns="5"
+            android:verticalSpacing="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_freezer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-    </LinearLayout>
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/grid_freezer"
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="21dp"
+            android:text="냉장"
+            android:id="@+id/txt_fridge"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+        <com.mirim.refrigerator.view.refrigeratorFragment.ExpandableHeightGridView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grid_fridge"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:numColumns="5"
+            android:verticalSpacing="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_fridge"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
 
-</RelativeLayout>
+        <TextView
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="21dp"
+            android:text="실온"
+            app:layout_constraintTop_toBottomOf="@id/grid_fridge"
+            android:id="@+id/txt_room_temp"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+        <com.mirim.refrigerator.view.refrigeratorFragment.ExpandableHeightGridView
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/grid_room_temp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:numColumns="5"
+            android:verticalSpacing="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_room_temp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_modify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/background_button_main_color"
+                android:text="수정"
+                android:textColor="@color/white"
+                android:stateListAnimator="@null"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_delete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@drawable/background_button_top_line"
+                android:text="삭제"
+                android:textColor="@color/main"
+                android:stateListAnimator="@null"/>
+
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
