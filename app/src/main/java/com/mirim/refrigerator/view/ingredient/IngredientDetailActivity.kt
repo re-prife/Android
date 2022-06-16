@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityIngredientDetailBinding
+import com.mirim.refrigerator.dialog.IngredientDeleteDialog
 import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.DeleteIngredientsRequest
@@ -32,8 +33,8 @@ class IngredientDetailActivity : AppCompatActivity() {
             finish()
         }
         binding.btnDelete.setOnClickListener {
-            deleteIngredient(DeleteIngredientsRequest(ingredient?.ingredientId))
-            finish()
+            val dialog = IngredientDeleteDialog(ingredientName = ingredient?.ingredientName, listOf(DeleteIngredientsRequest(ingredient?.ingredientId)), applicationContext)
+            dialog.show(supportFragmentManager, "")
         }
 
         binding.txtIngredientName.text = ingredient?.ingredientName
@@ -56,22 +57,5 @@ class IngredientDetailActivity : AppCompatActivity() {
     }
 
 
-    fun deleteIngredient(data: DeleteIngredientsRequest) {
-        RetrofitService.serviceAPI.deleteIngredients(App.user.groupId, listOf(data)).enqueue(object :
-            Callback<DeleteIngredientsResponse> {
-            override fun onResponse(
-                call: Call<DeleteIngredientsResponse>,
-                response: Response<DeleteIngredientsResponse>
-            ) {
-                Log.d("IngredientModifyActivity-deleteIngredient", response.toString())
-                Toast.makeText(applicationContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
-            }
 
-            override fun onFailure(call: Call<DeleteIngredientsResponse>, t: Throwable) {
-                Log.d("IngredientDetailActivity-deleteIngredient", t.toString())
-            }
-
-        })
-
-    }
 }

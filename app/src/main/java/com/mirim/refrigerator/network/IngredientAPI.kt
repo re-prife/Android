@@ -3,6 +3,7 @@ package com.mirim.refrigerator.network
 import com.mirim.refrigerator.model.Ingredient
 import com.mirim.refrigerator.server.request.CreateIngredientRequest
 import com.mirim.refrigerator.server.request.DeleteIngredientsRequest
+import com.mirim.refrigerator.server.request.UpdateMultiIngredientRequest
 import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.server.responses.DeleteIngredientsResponse
 import com.mirim.refrigerator.server.responses.Response
@@ -51,5 +52,12 @@ interface IngredientAPI {
     fun uploadIngredientImage(
         @Path("ingredientId") ingredientId: Long?,
         @Part file: MultipartBody.Part
+    ) : Call<Response>
+
+    // 식재료 일괄 수정
+    @PUT("/groups/{groupId}/ingredients")
+    fun updateMultiIngredients(
+        @Path("groupId") groupId: Int?,
+        @Body body : List<UpdateMultiIngredientRequest>
     ) : Call<Response>
 }

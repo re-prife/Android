@@ -28,18 +28,33 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.9" />
 
-            <ImageView
-                android:id="@+id/img_ingredient"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/linear_image_ingredient"
+                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:src="@drawable/sample_image"
-                />
+                app:layout_constraintLeft_toLeftOf="parent">
+                <ImageView
+                    android:id="@+id/image_ingredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/deep_gray"/>
+
+                <ImageView
+                    android:id="@+id/icon_camera"
+                    android:layout_width="32dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_camera"
+                    android:layout_marginTop="-20dp"
+                    android:layout_marginLeft="80dp"/>
+            </LinearLayout>
             <TextView
                 android:id="@+id/txt_name_info"
-                app:layout_constraintTop_toBottomOf="@+id/img_ingredient"
+                app:layout_constraintTop_toBottomOf="@+id/linear_image_ingredient"
                 app:layout_constraintLeft_toLeftOf="@id/edit_name"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="50dp"

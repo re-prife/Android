@@ -27,7 +27,7 @@ class HouseworkFragment: Fragment() {
     private val binding get() = _binding!!
 
     var chores: List<Housework>? = mutableListOf()
-    var todayDate: String = ""
+    var dateStr: String = ""
     var todayMonth: String = ""
 
     companion object {
@@ -44,14 +44,14 @@ class HouseworkFragment: Fragment() {
 
         val current = LocalDate.now()
         val formatter = DateTimeFormatter.ISO_LOCAL_DATE
-        todayDate = current.format(formatter)
+        dateStr = current.format(formatter)
 
-        binding.txtTodayDate.text = todayDate
+        binding.txtTodayDate.text = dateStr
 
-        getChores(todayDate);
+        getChores(dateStr);
 
         binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            var dateStr = LocalDate.of(year, month+1, dayOfMonth).format(formatter)
+            dateStr = LocalDate.of(year, month+1, dayOfMonth).format(formatter)
             binding.txtTodayDate.text = dateStr
             getChores(dateStr);
         }
@@ -86,5 +86,10 @@ class HouseworkFragment: Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getChores(dateStr)
     }
 }

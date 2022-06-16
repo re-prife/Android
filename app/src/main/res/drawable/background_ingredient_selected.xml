@@ -10,6 +10,10 @@
                 </shape>
             </item>
             <item
+                android:top="10dp"
+                android:bottom="10dp"
+                android:right="10dp"
+                android:left="10dp"
                 android:width="20dp"
                 android:height="20dp"
                 android:drawable="@drawable/ic_baseline_check_circle_24"

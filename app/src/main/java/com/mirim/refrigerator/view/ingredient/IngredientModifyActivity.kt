@@ -33,6 +33,7 @@ class IngredientModifyActivity : AppCompatActivity() {
     lateinit var ingredient: Ingredient
     private val REQUEST_GET_IMAGE = 999
     var mediaPath: String? = null
+    var imageChanged = false
 
     val TAG = "IngredientModifyActivity"
 
@@ -85,7 +86,6 @@ class IngredientModifyActivity : AppCompatActivity() {
                 ingredientSaveType = Ingredient.storeEnglishConverter(binding.spinnerKeepType.selectedItem.toString()),
             )
             updateIngredient(updatedIngredient)
-            updateIngredientImage()
 
         }
 
@@ -105,6 +105,7 @@ class IngredientModifyActivity : AppCompatActivity() {
         if(resultCode==RESULT_OK) {
             when(requestCode) {
                 REQUEST_GET_IMAGE -> {
+                    imageChanged = true
                     val inputStream : InputStream?
                     val uri = data?.data
 
@@ -137,8 +138,13 @@ class IngredientModifyActivity : AppCompatActivity() {
                 Log.d("IngredientModifyAcitivity", response.toString())
                 if(response.isSuccessful) {
                     if(response.code() == 204) {
-                        Toast.makeText(applicationContext, "수정되었습니다.", Toast.LENGTH_SHORT).show()
-                        finish()
+                        if(imageChanged) {
+                            updateIngredientImage()
+                        }
+                        else {
+                            Toast.makeText(applicationContext, "수정되었습니다.", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
                     }
                 }
             }
@@ -157,6 +163,8 @@ class IngredientModifyActivity : AppCompatActivity() {
             ) {
                 Log.d(TAG, response.toString())
                 Log.d(TAG, response.raw().message())
+                Toast.makeText(applicationContext, "수정되었습니다.", Toast.LENGTH_SHORT).show()
+                finish()
             }
 
             override fun onFailure(
