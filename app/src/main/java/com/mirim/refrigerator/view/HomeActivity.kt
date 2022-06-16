@@ -1,7 +1,6 @@
 package com.mirim.refrigerator.view
 
 import android.content.Intent
-import android.content.Intent.ACTION_OPEN_DOCUMENT
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,18 +10,16 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
+import com.mirim.refrigerator.model.Notice
 import com.mirim.refrigerator.dialog.PermissionCheckDialog
 import com.mirim.refrigerator.model.FamilyMember
-import com.mirim.refrigerator.model.Notice
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
 import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
-import com.mirim.refrigerator.viewmodel.NoticeViewModel
 import com.mirim.refrigerator.viewmodel.UserViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,7 +30,6 @@ import java.util.*
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val noticeViewModel : NoticeViewModel by viewModels()
     private val userViewModel : UserViewModel by viewModels()
 
     companion object {
@@ -124,11 +120,13 @@ class HomeActivity : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
-        noticeViewModel.getNotice().observe(this, Observer<Notice> {
-            binding.mainNoticeTitle.text = it.title
-            binding.mainNoticeContent.text = it.contents
-        })
+        getNotice()
 
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        getNotice()
     }
 
 
@@ -150,6 +148,7 @@ class HomeActivity : AppCompatActivity() {
             }
         })
     }
+
 
     private fun monthOfKings() {
         val groupId : Int? = userViewModel.getGroupId()
@@ -256,5 +255,19 @@ class HomeActivity : AppCompatActivity() {
     private fun formatDate(time : Long) : String {
         val sdf = SimpleDateFormat("yyyy-MM", Locale.KOREA)
         return sdf.format(time)
+    }
+
+    fun getNotice() {
+        RetrofitService.familyAPI.getNotice(App.user.groupId).enqueue(object : Callback<Notice> {
+            override fun onResponse(call: Call<Notice>, response: Response<Notice>) {
+                Log.d(TAG, response.toString())
+                binding.mainNoticeTitle.text = response.body()?.groupReport
+            }
+
+            override fun onFailure(call: Call<Notice>, t: Throwable) {
+                Log.d(TAG, t.toString())
+            }
+
+        })
     }
 }
