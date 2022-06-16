@@ -10,10 +10,11 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
+import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 
-class MakeErrandFamilyAdapter (val context: Context?, private val familyList : ArrayList<User>) :
+class MakeErrandFamilyAdapter (val context: Context?, private val familyList : ArrayList<FamilyMember>) :
     RecyclerView.Adapter<MakeErrandFamilyAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,14 +24,14 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
         val selectedIcon : ImageView = itemView.findViewById(R.id.icon_selected)
 
 
-        fun bind(item : User) {
+        fun bind(item : FamilyMember) {
             profileImage.clipToOutline = true
             Glide.with(itemView)
                 .load(RetrofitService.IMAGE_BASE_URL+item.userImagePath)
                 .error(R.drawable.icon_profile)
                 .fallback(R.drawable.icon_profile)
                 .into(profileImage)
-            nickname.text = item.nickname
+            nickname.text = item.userNickname
 
 
             itemView.setOnClickListener {

@@ -101,10 +101,10 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
         val acceptUserId : Int? = errandList[position].acceptUserId
 
 
-        var requesterNickname = userViewModel.getFamilyMember(memberId = requestUserId)?.nickname
+        var requesterNickname = userViewModel.getFamilyMember(memberId = requestUserId)?.userNickname
         if(requesterNickname == null)
             requesterNickname = userViewModel.getUser().value?.nickname
-        var accepterNickname = userViewModel.getFamilyMember(memberId = acceptUserId)?.nickname
+        var accepterNickname = userViewModel.getFamilyMember(memberId = acceptUserId)?.userNickname
         if(accepterNickname == null)
             accepterNickname = userViewModel.getUser().value?.nickname
 
