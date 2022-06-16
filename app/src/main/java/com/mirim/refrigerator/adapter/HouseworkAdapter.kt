@@ -33,7 +33,7 @@ class HouseworkAdapter(val context: Context?, val chores: List<Housework>?): Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(chores?.get(position))
         holder.view.setOnClickListener {
-            val dialog = HouseworkDetailDialog(chores?.get(position))
+            val dialog = HouseworkDetailDialog(chores?.get(position), context)
             dialog.show((context as AppCompatActivity).supportFragmentManager, "chore")
         }
     }

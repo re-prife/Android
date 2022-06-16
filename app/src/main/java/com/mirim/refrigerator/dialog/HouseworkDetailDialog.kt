@@ -2,10 +2,12 @@ package com.mirim.refrigerator.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -17,7 +19,7 @@ import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 
-class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
+class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :DialogFragment() {
     lateinit var binding: DialogHouseworkDetailBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -33,14 +35,34 @@ class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
             binding.txtHouseworkRegisterDate.text = housework?.createdDate
             binding.txtHouseworkModifyDate.text = housework?.modifiedDate
 
+            if(housework?.choreCheck == "BEFORE") {
+                binding.linearHouseworkConfirm.visibility = View.VISIBLE
+                binding.txtHouseworkStatus.visibility = View.GONE
+            }
+            else if(housework?.choreCheck == "REQUEST") {
+                binding.linearHouseworkConfirm.visibility = View.GONE
+                binding.txtHouseworkStatus.visibility = View.VISIBLE
+                binding.txtHouseworkStatus.text = "인증대기중"
+            }
+            else if(housework?.choreCheck == "SUCCESS") {
+                binding.linearHouseworkConfirm.visibility = View.GONE
+                binding.txtHouseworkStatus.visibility = View.VISIBLE
+                binding.txtHouseworkStatus.text = "완료된 집안일입니다."
+            }
+            else if(housework?.choreCheck == "FAIL") {
+                binding.linearHouseworkConfirm.visibility = View.GONE
+                binding.txtHouseworkStatus.visibility = View.VISIBLE
+                binding.txtHouseworkStatus.text = "실패한 집안일입니다."
+            }
+
             binding.btnApprove.setOnClickListener {
                 Toast.makeText(context, "인증받기", Toast.LENGTH_SHORT).show()
+                confirmHousework()
                 dialog?.dismiss()
             }
 
             binding.btnDelete.setOnClickListener {
                 deleteChore();
-                Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
                 dialog?.dismiss()
             }
 
@@ -56,17 +78,32 @@ class HouseworkDetailDialog(val housework: Housework?) :DialogFragment() {
 
     }
     fun deleteChore() {
-        RetrofitService.serviceAPI.deleteChore(App.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
+        RetrofitService.houseworkAPI.deleteChore(App.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 Log.d("HouseworkDetailDialog-deleteChore", response.toString())
+                Toast.makeText(mContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<Response>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("HouseworkDetailDialog-deleteChore", t.toString())
             }
 
         })
 
+    }
+
+    fun confirmHousework() {
+        RetrofitService.houseworkAPI.certifyChore(App.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
+            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
+                Log.d("HouseworkDetailDialog-confirmChore", response.toString())
+                Toast.makeText(mContext, "인증 요청되었습니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<Response>, t: Throwable) {
+                Log.d("HouseworkDetailDialog-confirmChore", t.toString())
+            }
+
+        })
     }
 
 }

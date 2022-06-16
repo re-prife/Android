@@ -108,7 +108,7 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
 
 
     private fun setErrandData() {
-        RetrofitService.errandAPI.getErrandDetail(userViewModel.getGroupId()!!,questId).enqueue(object : Callback<ErrandDetailResponse> {
+        RetrofitService.errandAPI.getErrandDetail(App.user.groupId,questId).enqueue(object : Callback<ErrandDetailResponse> {
             override fun onResponse(
                 call: Call<ErrandDetailResponse>,
                 response: Response<ErrandDetailResponse>
