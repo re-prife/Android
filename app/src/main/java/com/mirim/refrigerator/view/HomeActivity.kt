@@ -141,7 +141,7 @@ class HomeActivity : AppCompatActivity() {
                 userViewModel.setFamilyList(response.body()!!)
                 // 가족 리스트
                 for(i in 0 until userViewModel.getFamily().size)
-                    Log.d(MyPageFragment.TAG,userViewModel.getFamily().get(i).name+" : "+userViewModel.getFamily().get(i).nickname)
+                    Log.d(MyPageFragment.TAG,userViewModel.getFamily().get(i).userName+" : "+userViewModel.getFamily().get(i).userNickname)
             }
             override fun onFailure(call: Call<List<FamilyMember>>, t: Throwable) {
                 Log.e(TAG,"가족 정보 조회 실패")

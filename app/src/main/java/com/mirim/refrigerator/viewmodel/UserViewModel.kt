@@ -12,7 +12,7 @@ class UserViewModel : ViewModel() {
         val TAG = "태그"
     }
     private val user = MutableLiveData<User>()
-    private var family = ArrayList<User>()
+    private var family = ArrayList<FamilyMember>()
 
     fun getUser(): LiveData<User> {
         return user
@@ -27,7 +27,7 @@ class UserViewModel : ViewModel() {
         return user.value?.groupId
     }
 
-    fun getFamily() : ArrayList<User> {
+    fun getFamily() : ArrayList<FamilyMember> {
         return family
     }
     fun getImage() : String? {
@@ -36,7 +36,7 @@ class UserViewModel : ViewModel() {
 
 
     // 가족 구성원 개인의 정보를 반환
-    fun getFamilyMember(memberId: Int?) : User? {
+    fun getFamilyMember(memberId: Int?) : FamilyMember? {
         for(member in family) {
             if(member.userId==memberId) {
                 return member
@@ -47,9 +47,9 @@ class UserViewModel : ViewModel() {
     }
     // 가족 전체 정보를 담은 List 지정
     fun setFamilyList(familyList : List<FamilyMember>) {
-        val newArr = ArrayList<User>()
+        val newArr = ArrayList<FamilyMember>()
         for(lst in familyList) {
-            newArr.add(User(lst.userNickname,lst.userName,null,lst.userId,getGroupId(),lst.userImagePath))
+            newArr.add(FamilyMember(userNickname = lst.userNickname, userName = lst.userName, userId = lst.userId, userImagePath = lst.userImagePath))
         }
         family = newArr
     }

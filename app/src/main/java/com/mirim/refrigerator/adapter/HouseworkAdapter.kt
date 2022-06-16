@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.dialog.HouseworkDetailDialog
 import com.mirim.refrigerator.model.Housework
+import com.mirim.refrigerator.viewmodel.App
 
 class HouseworkAdapter(val context: Context?, val chores: List<Housework>?): RecyclerView.Adapter<HouseworkAdapter.ViewHolder>() {
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
@@ -19,7 +20,7 @@ class HouseworkAdapter(val context: Context?, val chores: List<Housework>?): Rec
 
         fun bind(chore: Housework?) {
             txtChoreTitle.text = chore?.choreTitle
-            txtChoreAssignee.text = ""+chore?.userId+"담당"
+            txtChoreAssignee.text = (if (App.getFamilyMember(chore?.userId) == null) App.user.nickname else App.getFamilyMember(chore?.userId)?.userNickname) + "담당"
             txtChoreCategory.text = Housework.categoryKoreanConverter(chore?.choreCategory)
         }
     }
