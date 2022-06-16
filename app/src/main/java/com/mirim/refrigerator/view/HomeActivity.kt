@@ -70,9 +70,8 @@ class HomeActivity : AppCompatActivity() {
         userViewModel.loadUsers(App.user)
 
         // 권한 dialog
-//        val dialog = PermissionCheckDialog(this)
-//        dialog.showDialog()
-
+        val dialog = PermissionCheckDialog()
+        dialog.show(supportFragmentManager,"")
         checkPermission()
 
 
