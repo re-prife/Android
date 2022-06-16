@@ -65,10 +65,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:orientation="horizontal">
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal"
                     android:layout_height="match_parent"
                     android:id="@+id/button_refrigerator"
                     android:padding="20dp"
@@ -78,16 +77,27 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="냉장고"
+                        android:text="냉장고 "
                         android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
                     <ImageView
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="7dp"
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:src="@drawable/icon_move_prev"
                         android:rotationY="180" />
-                </LinearLayout>
+                    <ImageView
+                        android:layout_marginTop="70dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/icon_home_freeze"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="악덕고용주 김하늘 ㅠㅠ" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -102,11 +112,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="집안일"
+                        android:text="집안일 "
                         android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
                     <ImageView
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="7dp"
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:src="@drawable/icon_move_prev"
@@ -126,11 +137,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="심부름"
+                    android:text="심부름 "
                     android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
                 <ImageView
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="7dp"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:src="@drawable/icon_move_prev"
@@ -156,11 +168,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="심부름 시키기"
+                        android:text="심부름 시키기 "
                         android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
                     <ImageView
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="7dp"
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:src="@drawable/icon_move_prev"
@@ -181,11 +194,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="마이페이지"
+                        android:text="마이페이지 "
                         android:textColor="#000000"
-                        android:textSize="14sp" />
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
                     <ImageView
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="7dp"
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:src="@drawable/icon_move_prev"
