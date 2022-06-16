@@ -103,12 +103,12 @@
         android:layout_marginTop="20dp"/>
 
     <RelativeLayout
+        android:id="@+id/btn_cancel_errand"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/main"
         app:layout_constraintBottom_toBottomOf="parent">
         <TextView
-            android:id="@+id/btn_cancel_errand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="취소하기"

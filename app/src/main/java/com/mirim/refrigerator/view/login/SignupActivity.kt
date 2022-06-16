@@ -28,15 +28,11 @@ class SignupActivity : AppCompatActivity() {
 
     val TAG = "TAG_SIGNUPACTIVITY"
     private lateinit var binding: ActivitySignupBinding
-    //private val userViewModel: UserViewModel by viewModels()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         val view = binding.root
-        // TODO
-        Log.d(TAG, "-SignupActivity-")
 
         setContentView(view)
 
@@ -104,17 +100,12 @@ class SignupActivity : AppCompatActivity() {
             ) {
                 val raw = response.raw()
                 val body = response.body()
-                Log.d(TAG,response.toString())
-                Log.d(TAG,response.body().toString())
-                Log.d(TAG,response.body()?.userId.toString())
 
                 when(raw.code()) {
                     201 -> {
-
                         val userData = User(body?.userNickname,body?.userName,body?.userEmail,body?.userId,null, "")
 
                         App.user = userData
-                        Log.d("로그인 성공", App.user.userId.toString())
 
                         val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)

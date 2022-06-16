@@ -77,11 +77,10 @@ class ProfileModifyActivity : AppCompatActivity() {
 
     // 기존 프로필 내용 적용
     private fun initBaseUserInfo() {
-        if(App.imageUri != null) {
-            binding.userImage.setImageURI(App.imageUri)
-        } else {
+        if(App.imageUri != null) binding.userImage.setImageURI(App.imageUri)
+        else {
             Glide.with(applicationContext)
-                .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
+                .load(RetrofitService.IMAGE_BASE_URL+userViewModel.getImage())
                 .error(R.drawable.icon_profile)
                 .fallback(R.drawable.icon_profile)
                 .into(binding.userImage)
@@ -118,7 +117,7 @@ class ProfileModifyActivity : AppCompatActivity() {
                         inputStream = applicationContext.contentResolver.openInputStream(uri!!)
                         val bitmap = BitmapFactory.decodeStream(inputStream)
                         val byteArrayOutputStream = ByteArrayOutputStream()
-                        bitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
+                        bitmap.compress(Bitmap.CompressFormat.JPEG,40,byteArrayOutputStream)
                         val requestBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
                         uploadFile = MultipartBody.Part.createFormData("file","upload_${App.user.userId}.jpg",requestBody)
                         imageUri = uri as Uri

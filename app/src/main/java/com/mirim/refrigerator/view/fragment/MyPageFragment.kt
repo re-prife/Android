@@ -20,6 +20,7 @@ import com.mirim.refrigerator.dialog.ShowCodeDialog
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.server.responses.UserInfoResponse
 import com.mirim.refrigerator.view.mypage.PolicyActivity
 import com.mirim.refrigerator.view.mypage.ProfileModifyActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
@@ -27,7 +28,8 @@ import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.system.measureNanoTime
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MyPageFragment: Fragment() {
     var _binding: FragmentMyPageBinding? = null
@@ -47,12 +49,17 @@ class MyPageFragment: Fragment() {
             binding.userNickname.text = it.nickname
             binding.userName.text = it.name
             binding.userEmail.text = it.email
-            Glide.with(requireContext())
-                .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
-                .error(R.drawable.icon_profile)
-                .fallback(R.drawable.icon_profile)
-                .into(binding.userImage)
+            if(App.imageUri != null) binding.userImage.setImageURI(App.imageUri)
+            else {
+                Glide.with(requireContext())
+                    .load(RetrofitService.IMAGE_BASE_URL+userViewModel.getImage())
+                    .error(R.drawable.icon_profile)
+                    .fallback(R.drawable.icon_profile)
+                    .into(binding.userImage)
+            }
         })
+        setBaseUserInfo()
+        setFamilyMember()
     }
 
     override fun onCreateView(
@@ -66,11 +73,11 @@ class MyPageFragment: Fragment() {
 
         binding.userImage.clipToOutline = true
 
-        setFamilyMember()
+
 
 
         binding.btnGroupCode.setOnClickListener {
-            val dialog = ShowCodeDialog("hajinhajin")
+            val dialog = ShowCodeDialog(App.groupInviteCode)
             dialog.show(requireActivity().supportFragmentManager, "")
         }
 
@@ -99,6 +106,24 @@ class MyPageFragment: Fragment() {
         return view
     }
 
+    private fun setBaseUserInfo() {
+        val date : String = getDate()
+        RetrofitService.userAPI.getUserData(App.user.userId!!,date).enqueue(object :Callback<UserInfoResponse> {
+            override fun onResponse(
+                call: Call<UserInfoResponse>,
+                response: Response<UserInfoResponse>
+            ) {
+                val body = response.body()
+                Log.e(TAG,body?.userImagePath.toString())
+            }
+
+            override fun onFailure(call: Call<UserInfoResponse>, t: Throwable) {
+                Log.e(TAG,"실패")
+            }
+
+        })
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -112,6 +137,7 @@ class MyPageFragment: Fragment() {
             ) {
                 val body = response.body()
                 Log.d(TAG,response.body().toString())
+                App.family = response.body()!!
                 // 다른 멤버 존재 여부 확인
                 if(body?.size==0) {
                     binding.mypageFamilyMembers.isVisible = false
@@ -130,5 +156,14 @@ class MyPageFragment: Fragment() {
 
             }
         })
+    }
+
+    private fun getDate() : String {
+        val currentTime = System.currentTimeMillis()
+        return formatDate(currentTime)
+    }
+    private fun formatDate(time : Long) : String {
+        val sdf = SimpleDateFormat("yyyy-MM", Locale.KOREA)
+        return sdf.format(time)
     }
 }

@@ -70,7 +70,6 @@ class SigninActivity : AppCompatActivity() {
             val data = SigninRequest(emailValue,pwValue)
             progressLogin(data)
         }
-
     }
 
     private fun progressLogin(data : SigninRequest) {
@@ -81,18 +80,27 @@ class SigninActivity : AppCompatActivity() {
             ) {
                 val raw = response.raw()
                 val body = response.body()
-                Log.d(TAG+": raw",raw.toString())
-                Log.d(TAG+": body",body.toString())
 
                 when(raw.code()) {
                     200 -> {
                         App.user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId, body?.userImagePath)
                         UserViewModel().loadUsers(App.user)
-                        val intent = Intent(applicationContext, HomeActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
-                        finish()
+                        App.groupInviteCode = body?.groupInviteCode.toString()
+
+                        // 그룹 가입 여부 확인
+                        if(body?.groupId == null) {
+                            val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
+                            finish()
+                        } else {
+                            val intent = Intent(applicationContext, HomeActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
+                            finish()
+                        }
                     }
                     400 -> {
                         Toast.makeText(applicationContext,"입력 형식을 확인해주세요.", Toast.LENGTH_SHORT).show()
@@ -108,7 +116,6 @@ class SigninActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                 Log.d(TAG,t.message.toString())
-                Log.d(TAG,"fail")
                 Toast.makeText(applicationContext,"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
             }
 

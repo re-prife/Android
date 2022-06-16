@@ -40,7 +40,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
     private fun checkJoinGroup(){
         val groupCodeValue : String = binding.edittxtInputCode.text.toString().trim()
-        var check : Boolean = true
+        var check = true
 
         // 조건 확인
         if(groupCodeValue.isEmpty()) {
@@ -55,20 +55,17 @@ class InputGroupCodeActivity : AppCompatActivity() {
 
     }
     private fun progressCreateGroup(data : JoinGroupRequest) {
-        Log.d(TAG,App.user.userId.toString())
         RetrofitService.serviceAPI.joinGroup(App.user.userId.toString(),data).enqueue(object : Callback<JoinGroupResponse> {
             override fun onResponse(
                 call: Call<JoinGroupResponse>,
                 response: Response<JoinGroupResponse>
             ) {
                 val raw = response.raw()
-                App.user.groupId = response.body()?.groupId
-                Log.d(TAG,response.toString())
 
                 when(raw.code()) {
                     200 -> {
-
-                        Log.d(TAG,"그룹 참여 성공")
+                        App.user.groupId = response.body()?.groupId
+                        App.groupInviteCode = response.body()?.groupInviteCode.toString()
                         val intent = Intent(applicationContext,HomeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                         startActivity(intent)
@@ -87,7 +84,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<JoinGroupResponse>, t: Throwable) {
-
+                Toast.makeText(applicationContext,"그룹 생성에 실패했습니다.",Toast.LENGTH_SHORT).show()
             }
         })
 
