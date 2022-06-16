@@ -8,6 +8,7 @@ class Housework(
     var choreCategory: String?,
     var choreTitle: String?,
     var choreId: Int?,
+    var choreCheck: String?
 ) {
     companion object {
         fun categoryKoreanConverter(english: String?): String {

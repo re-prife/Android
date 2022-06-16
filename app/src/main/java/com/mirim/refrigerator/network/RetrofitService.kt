@@ -23,6 +23,7 @@ class RetrofitService {
         var userAPI : UserAPI
         var ingredientAPI : IngredientAPI
         var errandAPI : ErrandAPI
+        var houseworkAPI: HouseworkAPI
 
         val BASE_URL : String = "http://52.204.65.160:8080/"
         val IMAGE_BASE_URL : String = "http://52.204.65.160:8080"
@@ -39,6 +40,8 @@ class RetrofitService {
             userAPI = retrofit.create(UserAPI::class.java)
             ingredientAPI = retrofit.create(IngredientAPI::class.java)
             errandAPI = retrofit.create(ErrandAPI::class.java)
+            houseworkAPI = retrofit.create(HouseworkAPI::class.java)
         }
+
     }
 }
