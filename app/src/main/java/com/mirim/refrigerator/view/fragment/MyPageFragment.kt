@@ -144,10 +144,7 @@ class MyPageFragment: Fragment() {
                     binding.lineSecond.isVisible = false
                 } else {
                     userViewModel.setFamilyList(response.body()!!)
-                    // 가족 리스트
-                    for(i in 0 until userViewModel.getFamily().size)
-                        Log.d(TAG,userViewModel.getFamily().get(i).name+" : "+userViewModel.getFamily().get(i).nickname)
-                    familyAdapter = MyPageFamilyAdapter(context,userViewModel.getFamily())
+                    familyAdapter = MyPageFamilyAdapter(context,App.family)
                     binding.recyclerFamilyMember.adapter = familyAdapter
                     binding.recyclerFamilyMember.layoutManager = LinearLayoutManager(context)
                 }

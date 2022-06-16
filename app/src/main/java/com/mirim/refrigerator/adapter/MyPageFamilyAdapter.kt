@@ -13,7 +13,7 @@ import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 
-class MyPageFamilyAdapter(val context: Context?, private val familyList : ArrayList<User>) :
+class MyPageFamilyAdapter(val context: Context?, private val familyList : List<FamilyMember>) :
     RecyclerView.Adapter<MyPageFamilyAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -21,14 +21,14 @@ class MyPageFamilyAdapter(val context: Context?, private val familyList : ArrayL
         val nickname : TextView = itemView.findViewById(R.id.txt_family_member_nickname)
         val name : TextView = itemView.findViewById(R.id.txt_family_member_name)
 
-        fun bind(item : User) {
+        fun bind(item : FamilyMember) {
             Glide.with(itemView)
                 .load(RetrofitService.IMAGE_BASE_URL+item.userImagePath)
                 .error(R.drawable.icon_profile)
                 .fallback(R.drawable.icon_profile)
                 .into(imageView)
-            nickname.text = item.nickname
-            name.text = item.name
+            nickname.text = item.userNickname
+            name.text = item.userName
         }
     }
 
@@ -38,7 +38,7 @@ class MyPageFamilyAdapter(val context: Context?, private val familyList : ArrayL
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(familyList[position])
+        holder.bind(familyList.get(position))
     }
 
     override fun getItemCount(): Int = familyList.size

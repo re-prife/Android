@@ -11,6 +11,7 @@ import com.mirim.refrigerator.adapter.ErrandListAdapter.Companion.NOT_ACCEPTED
 import com.mirim.refrigerator.adapter.ErrandListAdapter.Companion.PROCEEDING
 import com.mirim.refrigerator.adapter.ErrandListAdapter.Companion.checkErrandStatus
 import com.mirim.refrigerator.databinding.ActivityDetailedErrandInfoBinding
+import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.ErrandDetailResponse
 import com.mirim.refrigerator.viewmodel.App
@@ -35,7 +36,6 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
         val intent = getIntent()
         questId = intent.getIntExtra("questId",0)
 
-        initData()
         setErrandData()
 
         binding.toolbar.btnBack.setOnClickListener {
@@ -80,51 +80,28 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
 
 
     }
-    private fun initData() {
-        userViewModel.loadUsers(App.user)
-        userViewModel.setFamilyList(App.family)
-    }
     private fun setView(data : ErrandDetailResponse) {
         binding.txtErrandTitle.text = data.questTitle
         binding.txtErrandContent.text = "content"
         binding.txtErrandRequestedDate.text = data.questCreatedDate
 
-        val userValue = userViewModel.getFamilyMember(data.requestUserId)
+        val requestUser : FamilyMember? = App.getFamilyMember(data.requestUserId)
+        val acceptUser : FamilyMember? = App.getFamilyMember(data.acceptUserId)
         errandStatus = checkErrandStatus(data.acceptUserId,data.completeCheck)
         when(errandStatus) {
             PROCEEDING -> {
-                binding.txtRequester.text =
-                    if(userValue==null)
-                        userValue?.nickname
-                    else
-                        userViewModel.getUser().value?.nickname
-                binding.txtAccepter.text =
-                    if(userValue==null)
-                        userValue?.nickname
-                    else
-                        userViewModel.getUser().value?.nickname
+                binding.txtRequester.text = requestUser?.userNickname ?: App.user.nickname
+                binding.txtAccepter.text = acceptUser?.userNickname ?: App.user.nickname
             }
             NOT_ACCEPTED -> {
                 binding.btnCancelErrand.visibility = View.GONE
-                binding.txtRequester.text =
-                    if(userValue==null)
-                        userValue?.nickname
-                    else
-                        userViewModel.getUser().value?.nickname
+                binding.txtRequester.text = requestUser?.userNickname ?: App.user.nickname
                 binding.txtAccepter.text = "수락자 없음"
             }
             COMPLETED -> {
                 binding.btnCancelErrand.visibility = View.GONE
-                binding.txtRequester.text =
-                    if(userValue==null)
-                        userValue?.nickname
-                    else
-                        userViewModel.getUser().value?.nickname
-                binding.txtAccepter.text =
-                    if(userValue==null)
-                        userValue?.nickname
-                    else
-                        userViewModel.getUser().value?.nickname
+                binding.txtRequester.text =requestUser?.userNickname ?: App.user.nickname
+                binding.txtAccepter.text = acceptUser?.userNickname ?: App.user.nickname
             }
         }
     }
