@@ -19,14 +19,9 @@
         android:roundIcon="@mipmap/icon_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Refrigerator"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".dialog.PermissionCheckDialog"
-            android:exported="false" />
+        android:usesCleartextTraffic="true"
+        android:screenOrientation="portrait">
         <activity android:name=".view.housework.RegisterHouseworkActivity" />
-        <activity
-            android:name=".viewmodel.app"
-            android:exported="false" />
         <activity
             android:name=".view.ingredient.IngredientModifyActivity"
             android:exported="false" />

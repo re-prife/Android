@@ -25,7 +25,7 @@ interface ErrandAPI {
     // 심부름 상세 조회
     @GET("groups/{groupId}/quests/{questId}")
     fun getErrandDetail(
-        @Path("groupId") groupId: Int,
+        @Path("groupId") groupId: Int?,
         @Path("questId") questId: Int
     ): Call<ErrandDetailResponse>
 

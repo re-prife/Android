@@ -67,7 +67,7 @@ class HouseworkFragment: Fragment() {
     }
 
     fun getChores(date: String) {
-        RetrofitService.serviceAPI.getChoresOneDay(App.user.groupId, date).enqueue(object : Callback<List<Housework>> {
+        RetrofitService.houseworkAPI.getChoresOneDay(App.user.groupId, date).enqueue(object : Callback<List<Housework>> {
             override fun onResponse(
                 call: Call<List<Housework>>,
                 response: Response<List<Housework>>

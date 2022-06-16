@@ -76,30 +76,42 @@
             android:textSize="13sp"
             android:id="@+id/txt_housework_modify_date"/>
     </GridLayout>
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/txt_housework_grid"
         android:layout_marginTop="75dp">
-        <androidx.appcompat.widget.AppCompatButton
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="인증받기"
-            android:textStyle="bold"
-            android:background="@drawable/background_button_main_color"
-            android:textColor="@color/white"
-            android:id="@+id/btn_approve"/>
-        <androidx.appcompat.widget.AppCompatButton
+            android:orientation="horizontal"
+            android:id="@+id/linear_housework_confirm">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="인증받기"
+                android:textStyle="bold"
+                android:background="@drawable/background_button_main_color"
+                android:textColor="@color/white"
+                android:id="@+id/btn_approve"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="삭제"
+                android:textColor="@color/main"
+                android:background="@drawable/background_button_top_line"
+                android:id="@+id/btn_delete"/>
+        </LinearLayout>
+        <TextView
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="삭제"
-            android:textColor="@color/main"
-            android:background="@drawable/background_button_top_line"
-            android:id="@+id/btn_delete"/>
-
-    </LinearLayout>
-
+            android:textColor="@color/deep_gray"
+            android:textSize="16sp"
+            android:id="@+id/txt_housework_status"
+            android:background="@color/white"
+            android:visibility="gone"/>
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
