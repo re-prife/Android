@@ -1,6 +1,5 @@
 package com.mirim.refrigerator.viewmodel
 
-import android.os.AsyncTask
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -31,10 +30,13 @@ class UserViewModel : ViewModel() {
     fun getFamily() : ArrayList<User> {
         return family
     }
+    fun getImage() : String? {
+        return user.value?.userImagePath
+    }
 
 
     // 가족 구성원 개인의 정보를 반환
-    fun getFamilyMember(memberId : Int) : User? {
+    fun getFamilyMember(memberId: Int?) : User? {
         for(member in family) {
             if(member.userId==memberId) {
                 return member

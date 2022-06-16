@@ -7,21 +7,15 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.adapter.MakeErrandFamilyAdapter
-import com.mirim.refrigerator.adapter.MyPageFamilyAdapter
 import com.mirim.refrigerator.databinding.ActivityCreateErrandBinding
-import com.mirim.refrigerator.databinding.ActivityIngredientDetailBinding
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.MakeErrandRequest
 import com.mirim.refrigerator.view.BottomAppBarActivity
-import com.mirim.refrigerator.view.HomeActivity
-import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
 import retrofit2.Call
@@ -55,13 +49,14 @@ class CreateErrandActivity : AppCompatActivity() {
 
 
         binding.toolbar.btnBack.setOnClickListener {
-            if(backType == 1) {
+            if(backType == 0) {
                 val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
                 intent.putExtra("clicked button", "errand")
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
             } else {
                 finish()
+                overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
             }
         }
 
@@ -72,8 +67,8 @@ class CreateErrandActivity : AppCompatActivity() {
 
     private fun sendErrand() {
 
-        val titleValue = binding.txtErrandTitle.text.toString().trim()
-        val contentValue = binding.txtErrandContent.text.toString().trim()
+        val titleValue = binding.editErrandTitle.text.toString().trim()
+        val contentValue = binding.editErrandContent.text.toString().trim()
         val data = MakeErrandRequest(contentValue,titleValue)
 
         RetrofitService.errandAPI.makeErrand(userViewModel.getGroupId()!!,userViewModel.getUserId()!!,data).enqueue(object :
@@ -86,6 +81,15 @@ class CreateErrandActivity : AppCompatActivity() {
                 when(raw.code()) {
                     201 -> {
                         Toast.makeText(applicationContext,"심부름이 생성되었습니다.",Toast.LENGTH_SHORT).show()
+                        if(backType == 0) {
+                            val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+                            intent.putExtra("clicked button", "errand")
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                            startActivity(intent)
+                        } else {
+                            finish()
+                            overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+                        }
                     }
                     400 -> {
                         Toast.makeText(applicationContext,"심부름 형식을 확인해주세요.",Toast.LENGTH_SHORT).show()
@@ -121,6 +125,7 @@ class CreateErrandActivity : AppCompatActivity() {
                 if(body?.size==0) {
                     binding.btnSendErrand.isEnabled = false
                 } else {
+                    App.family = response.body()!!
                     userViewModel.setFamilyList(response.body()!!)
                     accepterAdapter = MakeErrandFamilyAdapter(applicationContext,userViewModel.getFamily())
                     binding.listRecycleAccepter.adapter = accepterAdapter

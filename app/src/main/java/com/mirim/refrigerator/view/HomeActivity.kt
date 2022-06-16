@@ -16,10 +16,11 @@ import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.dialog.PermissionCheckDialog
+import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.model.Notice
-import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
+import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.NoticeViewModel
 import com.mirim.refrigerator.viewmodel.UserViewModel
@@ -68,6 +69,11 @@ class HomeActivity : AppCompatActivity() {
         setContentView(view)
 
         userViewModel.loadUsers(App.user)
+
+
+        setFamilyData()
+
+
 
         // 권한 dialog
         val dialog = PermissionCheckDialog()
@@ -124,6 +130,27 @@ class HomeActivity : AppCompatActivity() {
         })
 
     }
+
+
+    private fun setFamilyData() {
+        RetrofitService.familyAPI.getFamilyList(userViewModel.getGroupId(),userViewModel.getUserId()).enqueue(object : Callback<List<FamilyMember>> {
+            override fun onResponse(
+                call: Call<List<FamilyMember>>,
+                response: Response<List<FamilyMember>>
+            ) {
+                val body = response.body()
+                App.family = body!!
+                userViewModel.setFamilyList(response.body()!!)
+                // 가족 리스트
+                for(i in 0 until userViewModel.getFamily().size)
+                    Log.d(MyPageFragment.TAG,userViewModel.getFamily().get(i).name+" : "+userViewModel.getFamily().get(i).nickname)
+            }
+            override fun onFailure(call: Call<List<FamilyMember>>, t: Throwable) {
+                Log.e(TAG,"가족 정보 조회 실패")
+            }
+        })
+    }
+
     private fun monthOfKings() {
         val groupId : Int? = userViewModel.getGroupId()
         val dateValue : String = getDate()
@@ -142,12 +169,12 @@ class HomeActivity : AppCompatActivity() {
                     200 -> {
                         if(body?.questKingResponse != null) {
                             val str = "심부름 "+body.questKingResponse.count+"회"
-                            binding.txtKingName1.isVisible = true
-                            binding.txtKingHousework1.isVisible = true
-                            binding.txtKingNone1.isVisible = false
+                            binding.txtKingName4.isVisible = true
+                            binding.txtKingHousework4.isVisible = true
+                            binding.txtKingNone4.isVisible = false
 
-                            binding.txtKingName1.text = body.questKingResponse.userNickname
-                            binding.txtKingHousework1.text = str
+                            binding.txtKingName4.text = body.questKingResponse.userNickname
+                            binding.txtKingHousework4.text = str
                             Glide.with(applicationContext)
                                 .load(RetrofitService.IMAGE_BASE_URL+body.questKingResponse.userImagePath)
                                 .error(R.drawable.icon_profile)
