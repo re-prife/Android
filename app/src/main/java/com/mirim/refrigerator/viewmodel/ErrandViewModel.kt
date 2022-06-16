@@ -20,12 +20,20 @@ class ErrandViewModel : ViewModel() {
         errand
     }
 
-    fun loadErrand( title : String, content : String, accepter : String?, requester : String?, date : Date?){
-        errand.value?.title = title
-        errand.value?.content = content
-        errand.value?.date = date
-        errand.value?.accepter = accepter
-        errand.value?.requester = requester
+    fun loadErrand(
+        acceptUserId : Int?,
+        completeCheck : Boolean,
+        questId : Int,
+        questTitle : String,
+        requestUserId : Int,
+        questCreatedDate : String?
+    ) {
+        errand.value?.acceptUserId = acceptUserId
+        errand.value?.completeCheck = completeCheck
+        errand.value?.questId = questId
+        errand.value?.questTitle = questTitle
+        errand.value?.requestUserId = requestUserId
+        errand.value?.questCreatedDate = questCreatedDate
     }
 
 
