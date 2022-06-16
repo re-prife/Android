@@ -16,8 +16,6 @@ class SelectRegisterTypeActivity : AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
-        // TODO
-        Log.d("TAG-SelectRegister", "-SelectRegisterTypeActivity-")
 
 
         binding.btnCreateGroup.setOnClickListener {

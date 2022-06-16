@@ -11,7 +11,6 @@ import com.mirim.refrigerator.viewmodel.App
 
 class ShowGroupCodeActivity : AppCompatActivity() {
 
-    private val TAG : String = "TAG_ShowGroupCodeActivity"
     private lateinit var binding: ActivityShowGroupCodeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +20,7 @@ class ShowGroupCodeActivity : AppCompatActivity() {
 
         setContentView(view)
 
-
-        binding.textGroupCode.text = App.user.groupId.toString()
+        binding.textGroupCode.text = App.groupInviteCode
         binding.btnSignin.setOnClickListener {
             val intent = Intent(applicationContext, HomeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
