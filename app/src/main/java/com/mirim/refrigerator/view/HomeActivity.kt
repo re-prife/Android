@@ -18,9 +18,15 @@ import com.mirim.refrigerator.dialog.PermissionCheckDialog
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
+import com.mirim.refrigerator.server.sse.getEventsFlow
 import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -121,6 +127,21 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
         getNotice()
+
+
+
+
+        Log.d("AAAAAAAAAAA",App.user.userId.toString())
+        // 지켜본다.
+        GlobalScope.launch(Dispatchers.Main) {
+            getEventsFlow()
+                .flowOn(Dispatchers.IO)
+                .collect {
+                    event -> {
+                        Log.e(TAG,event.toString())
+                    }
+                }
+        }
 
     }
 

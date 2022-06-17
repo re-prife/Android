@@ -6,8 +6,9 @@
     <!-- 권한 설정 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
@@ -77,19 +78,30 @@
             android:name=".view.BottomAppBarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.mypage.PasswordModifyActivity"
-            android:exported="false"/>
-        <activity android:name=".view.mypage.ProfileModifyActivity"
+        <activity
+            android:name=".view.mypage.PasswordModifyActivity"
             android:exported="false" />
-        <activity android:name=".view.mypage.PolicyActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".view.mypage.ProfileModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.mypage.PolicyActivity"
+            android:exported="false" />
         <activity
             android:name=".view.HomeActivity"
-            android:exported="true" />
-        <activity android:name=".view.errand.CreateErrandActivity"
-            android:exported="false"/>
-        <activity android:name=".view.errand.DetailedErrandInfoActivity"
-            android:exported="false"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.errand.CreateErrandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.errand.DetailedErrandInfoActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
