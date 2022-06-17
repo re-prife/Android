@@ -76,7 +76,7 @@ class CreateErrandActivity : AppCompatActivity() {
 
         val titleValue = binding.editErrandTitle.text.toString().trim()
         val contentValue = binding.editErrandContent.text.toString().trim()
-        val data = MakeErrandRequest(contentValue,titleValue)
+        val data = MakeErrandRequest(contentValue,titleValue, listOf(5))
 
         RetrofitService.errandAPI.makeErrand(userViewModel.getGroupId()!!,userViewModel.getUserId()!!,data).enqueue(object :
             Callback<com.mirim.refrigerator.server.responses.Response>{
