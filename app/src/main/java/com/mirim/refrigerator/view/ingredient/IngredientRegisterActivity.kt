@@ -25,6 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.text.SimpleDateFormat
 
 class IngredientRegisterActivity : AppCompatActivity() {
 
@@ -80,7 +81,15 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "식재료 수량은 숫자를 포함해야 합니다.", Toast.LENGTH_SHORT).show()
             }
             else {
-                createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = ingredientPurchaseDate, ingredientExpirationDate = ingredientExpirationDate,
+                val dateFormat = SimpleDateFormat("yyyyMMdd")
+                val dateFormat2 = SimpleDateFormat("yyyy-MM-dd")
+
+                val objDate1 = dateFormat.parse(binding.editBoughtDay.text.toString())
+                val finalDate = dateFormat2.format(objDate1)
+
+                val objDate2 = dateFormat.parse(binding.editEndDay.text.toString())
+                val finalDate2 = dateFormat2.format(objDate2)
+                createIngredient(CreateIngredientRequest(ingredientName = ingredientName, ingredientCount = ingredientAmount, ingredientPurchaseDate = finalDate, ingredientExpirationDate = finalDate2,
                     ingredientCategory = ingredientCategory, ingredientSaveType = ingredientKeepType, ingredientMemo = ingredientMemo))
             }
 

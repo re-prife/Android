@@ -27,6 +27,7 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.InputStream
+import java.text.SimpleDateFormat
 
 class IngredientModifyActivity : AppCompatActivity() {
     lateinit var binding: ActivityIngredientModifyBinding
@@ -76,13 +77,22 @@ class IngredientModifyActivity : AppCompatActivity() {
         }
 
         binding.btnSaveIngredient.setOnClickListener {
+            val dateFormat = SimpleDateFormat("yyyyMMdd")
+            val dateFormat2 = SimpleDateFormat("yyyy-MM-dd")
+
+            val objDate1 = dateFormat.parse(binding.editBoughtDay.text.toString())
+            val finalDate = dateFormat2.format(objDate1)
+
+            val objDate2 = dateFormat.parse(binding.editEndDay.text.toString())
+            val finalDate2 = dateFormat2.format(objDate2)
+
             val updatedIngredient = CreateIngredientRequest(
                 ingredientCategory = Ingredient.typeEnglishConverter(binding.spinnerCategory.selectedItem.toString()),
                 ingredientCount = binding.editAmount.text.toString(),
-                ingredientExpirationDate = binding.editEndDay.text.toString(),
+                ingredientExpirationDate = finalDate2,
                 ingredientMemo = binding.editMemo.text.toString(),
                 ingredientName = binding.editName.text.toString(),
-                ingredientPurchaseDate = binding.editBoughtDay.text.toString(),
+                ingredientPurchaseDate = finalDate,
                 ingredientSaveType = Ingredient.storeEnglishConverter(binding.spinnerKeepType.selectedItem.toString()),
             )
             updateIngredient(updatedIngredient)

@@ -14,6 +14,7 @@ import com.mirim.refrigerator.server.responses.Response
 import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
+import java.text.SimpleDateFormat
 
 class RegisterHouseworkActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegisterHouseworkBinding
@@ -24,15 +25,33 @@ class RegisterHouseworkActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.housework_category, android.R.layout.simple_spinner_item)
+
+        val memberNameList = ArrayList<String>()
+        for(member in App.family) {
+            memberNameList.add(member.userNickname)
+        }
+        val nameAdapter = ArrayAdapter(applicationContext,android.R.layout.simple_spinner_dropdown_item, memberNameList)
+
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerHouseworkCategory.adapter = categoryAdapter
+        binding.spinnerHouseworkAssignee.adapter = nameAdapter
+
+
+
+
+       // binding.editHouseworkPerformDate.addTextChangedListener(DateFormatWatcher(binding.editHouseworkPerformDate))
 
         binding.btnCreate.setOnClickListener {
+            val dateFormat = SimpleDateFormat("yyyyMMdd")
+            val objDate = dateFormat.parse(binding.editHouseworkPerformDate.text.toString())
+            val dateFormat2 = SimpleDateFormat("yyyy-MM-dd")
+            val finalDate = dateFormat2.format(objDate)
             createChore(CreateHouseworkRequest(
                 choreTitle = binding.editHouseworkName.text.toString(),
                 choreCategory = Housework.categoryEnglishConverter(binding.spinnerHouseworkCategory.selectedItem.toString()),
-                choreDate =  binding.editHouseworkPerformDate.text.toString(),
-                choreUserId = 2))
+                choreDate =  finalDate,
+                choreUserId = App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString())
+            ))
         }
         binding.btnCancel.setOnClickListener {
             finish()
