@@ -83,8 +83,8 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginTop="25dp"/>
-        <EditText
-            android:id="@+id/edit_housework_assignee"
+        <Spinner
+            android:id="@+id/spinner_housework_assignee"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="3dp"
@@ -95,9 +95,25 @@
             app:layout_constraintRight_toRightOf="@id/guideline_right"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
             app:layout_constraintTop_toBottomOf="@id/txt_assignee"/>
+        <!--
+        <com.msa.dateedittext.DateEditText
+                    android:id="@+id/secondDateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Date"
+                    android:imeOptions="actionNext"
+                    app:autoCorrect="false"
+                    app:dateFormat="ddMMyyyy"
+                    app:dividerCharacter="minus"
+                    app:helperTextEnabled="true"
+                    app:helperTextHighlightedColor="@color/colorPrimary"
+                    app:maxDate="01-12-2100"
+                    app:minDate="01-12-1900"
+                    tools:ignore="HardcodedText" />
+        -->
         <TextView
             android:id="@+id/txt_perform_date"
-            app:layout_constraintTop_toBottomOf="@id/edit_housework_assignee"
+            app:layout_constraintTop_toBottomOf="@id/spinner_housework_assignee"
             app:layout_constraintLeft_toRightOf="@id/guideline_left"
             android:layout_marginLeft="2dp"
             android:layout_width="wrap_content"
@@ -117,7 +133,9 @@
             android:background="@drawable/background_edit_text_ingredient"
             app:layout_constraintRight_toRightOf="@id/guideline_right"
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-            app:layout_constraintTop_toBottomOf="@id/txt_perform_date"/>
+            app:layout_constraintTop_toBottomOf="@id/txt_perform_date"
+            android:inputType="datetime"
+            android:hint="yyyy-mm-dd"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"

@@ -31,5 +31,8 @@ object App {
         Log.d(UserViewModel.TAG,"UserViewModel - 가족 멤버가 존재하지 않음")
         return null
     }
+    fun getFamilyId(name: String) : Int? {
+        return family.find { it.userNickname == name }?.userId
+    }
 
 }

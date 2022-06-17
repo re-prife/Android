@@ -28,7 +28,6 @@ class HouseworkFragment: Fragment() {
 
     var chores: List<Housework>? = mutableListOf()
     var dateStr: String = ""
-    var todayMonth: String = ""
 
     companion object {
         val TAG = "태그"
