@@ -26,6 +26,7 @@ class RetrofitService {
 
         val BASE_URL : String = "http://52.204.65.160:8080/"
         val IMAGE_BASE_URL : String = "http://52.204.65.160:8080"
+        val CONNECT_SSE : String = "http://52.204.65.160:8080/"
         val retrofit : Retrofit
             get() = Retrofit.Builder()
                 .baseUrl(BASE_URL)
