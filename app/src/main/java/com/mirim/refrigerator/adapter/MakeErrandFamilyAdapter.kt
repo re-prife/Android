@@ -17,11 +17,16 @@ import com.mirim.refrigerator.network.RetrofitService
 class MakeErrandFamilyAdapter (val context: Context?, private val familyList : ArrayList<FamilyMember>) :
     RecyclerView.Adapter<MakeErrandFamilyAdapter.ViewHolder>() {
 
+    companion object {
+        lateinit var selectedMemberList : ArrayList<Int>
+    }
+
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val profileImage : ImageView = itemView.findViewById(R.id.img_profile)
+        private val profileImage : ImageView = itemView.findViewById(R.id.img_profile)
         val nickname : TextView = itemView.findViewById(R.id.txt_nickname)
-        val selectedProfile : ImageView = itemView.findViewById(R.id.img_selected_profile)
-        val selectedIcon : ImageView = itemView.findViewById(R.id.icon_selected)
+        private val selectedProfile : ImageView = itemView.findViewById(R.id.img_selected_profile)
+        private val selectedIcon : ImageView = itemView.findViewById(R.id.icon_selected)
 
 
         fun bind(item : FamilyMember) {
@@ -35,6 +40,14 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
 
 
             itemView.setOnClickListener {
+
+                if(selectedMemberList.contains(item.userId)) {
+                    selectedMemberList.remove(item.userId)
+                } else {
+                    selectedMemberList.add(item.userId)
+                }
+
+
                 if(selectedIcon.isVisible) {
                     selectedProfile.isVisible = false
                     selectedIcon.isVisible = false
@@ -59,6 +72,5 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(familyList[position])
     }
-
 
 }

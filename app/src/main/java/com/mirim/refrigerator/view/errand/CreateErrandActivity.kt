@@ -73,10 +73,10 @@ class CreateErrandActivity : AppCompatActivity() {
     }
 
     private fun sendErrand() {
-
         val titleValue = binding.editErrandTitle.text.toString().trim()
         val contentValue = binding.editErrandContent.text.toString().trim()
-        val data = MakeErrandRequest(contentValue,titleValue)
+        Log.e("AAAAAAA", MakeErrandFamilyAdapter.selectedMemberList.toString())
+        val data = MakeErrandRequest(contentValue,titleValue,MakeErrandFamilyAdapter.selectedMemberList)
 
         RetrofitService.errandAPI.makeErrand(userViewModel.getGroupId()!!,userViewModel.getUserId()!!,data).enqueue(object :
             Callback<com.mirim.refrigerator.server.responses.Response>{
@@ -85,7 +85,7 @@ class CreateErrandActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 val raw = response.raw()
-                when(raw.code()) {
+                when(raw.code) {
                     201 -> {
                         Toast.makeText(applicationContext,"심부름이 생성되었습니다.",Toast.LENGTH_SHORT).show()
 
