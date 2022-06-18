@@ -2,7 +2,6 @@ package com.mirim.refrigerator.view
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,29 +18,12 @@ import com.mirim.refrigerator.dialog.PermissionCheckDialog
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
-import com.mirim.refrigerator.server.sse.SSEHandler
-import com.mirim.refrigerator.server.sse.getEventsFlow
-import com.mirim.refrigerator.server.sse.webSocket
 import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tylerjroach.com.eventsource_android.EventSource
-import java.net.HttpURLConnection
-import java.net.URI
-import java.net.URISyntaxException
-import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -139,16 +121,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
         getNotice()
-        val client = OkHttpClient()
-
-        val request: Request = Request.Builder()
-            .url(RetrofitService.BASE_URL+"subscribe/"+App.user.userId)
-            .build()
-        val listener: webSocket =  webSocket()
-        client.newWebSocket(request, listener)
-        client.dispatcher().executorService().shutdown()
-
-        Log.d("AAAAAAAAAAA",App.user.userId.toString())
     }
 
 
@@ -189,7 +161,7 @@ class HomeActivity : AppCompatActivity() {
                 val raw = response.raw()
                 val body = response.body()
 
-                when(body.) {
+                when(raw.code) {
                     200 -> {
                         if(body?.questKingResponse != null) {
                             val str = "심부름 "+body.questKingResponse.count+"회"

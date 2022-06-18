@@ -101,7 +101,7 @@ class SignupActivity : AppCompatActivity() {
                 val raw = response.raw()
                 val body = response.body()
 
-                when(raw.code()) {
+                when(raw.code) {
                     201 -> {
                         val userData = User(body?.userNickname,body?.userName,body?.userEmail,body?.userId,null, "")
 
