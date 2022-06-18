@@ -189,10 +189,7 @@ class HomeActivity : AppCompatActivity() {
                 val raw = response.raw()
                 val body = response.body()
 
-                Log.d(TAG,raw.toString())
-                Log.d(TAG,body.toString())
-
-                when(raw.code()) {
+                when(body.) {
                     200 -> {
                         if(body?.questKingResponse != null) {
                             val str = "심부름 "+body.questKingResponse.count+"회"
@@ -259,10 +256,10 @@ class HomeActivity : AppCompatActivity() {
                         }
                     }
                     400 -> {
-                        Log.d(TAG,raw.message())
+                        Log.d(TAG,raw.message)
                     }
                     404 -> {
-                        Log.d(TAG,raw.message())
+                        Log.d(TAG,raw.message)
                     }
                 }
             }
