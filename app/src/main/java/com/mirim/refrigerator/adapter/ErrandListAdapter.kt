@@ -3,21 +3,29 @@ package com.mirim.refrigerator.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.model.Errand
+import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.server.responses.Response
 import com.mirim.refrigerator.view.errand.DetailedErrandInfoActivity
+import com.mirim.refrigerator.view.fragment.ErrandFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import retrofit2.Call
+import retrofit2.Callback
 
-class ErrandListAdapter (val context: Context?, private val errandList : List<Errand>) :
+class ErrandListAdapter (val context: Context?, private val errandList : List<Errand>, private val fragment : Fragment, private val fragmentManager: FragmentManager) :
     RecyclerView.Adapter<ErrandListAdapter.ViewHolder>() {
 
     private var userViewModel = UserViewModel()
@@ -36,6 +44,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
             }
         }
     }
+
 
     inner class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
 
@@ -76,12 +85,51 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                 }
             }
 
+            button.setOnClickListener {
+                RetrofitService.errandAPI.acceptOrCancel(App.user.groupId,item.questId,App.user.userId)
+                    .enqueue(object : Callback<Response> {
+                        override fun onResponse(
+                            call: Call<Response>,
+                            response: retrofit2.Response<Response>
+                        ) {
+                            val raw = response.raw()
+                            when(raw.code) {
+                                200 -> {
+                                    if(status == PROCEEDING) {
+                                        Toast.makeText(context,"심부름을 취소하였습니다.", Toast.LENGTH_SHORT).show()
+                                    } else if(status == NOT_ACCEPTED) {
+                                        Toast.makeText(context,"심부름을 수락하였습니다.", Toast.LENGTH_SHORT).show()
+                                    }
+                                    ErrandFragment.refreshFragment(fragment)
+                                }
+                                404 -> {
+                                    Toast.makeText(context,"잘못된 심부름 정보입니다.", Toast.LENGTH_SHORT).show()
+                                }
+                                409 -> {
+                                    Toast.makeText(context,"이미 해결되거나 수락자가 존재하는 심부름입니다.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+
+                        override fun onFailure(
+                            call: Call<Response>,
+                            t: Throwable
+                        ) {
+                            Toast.makeText(context,"심부름에 접근할 수 없습니다.", Toast.LENGTH_SHORT).show()
+                        }
+
+                    })
+            }
+
             itemView.setOnClickListener {
                 val intent = Intent(context,DetailedErrandInfoActivity::class.java)
                 intent.putExtra("questId",item.questId)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 ContextCompat.startActivity(context!!,intent,null)
             }
+
+
+
         }
     }
 
@@ -119,4 +167,6 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
     }
 
     override fun getItemCount(): Int = errandList.size
+
+
 }

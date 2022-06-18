@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirim.refrigerator.adapter.ErrandListAdapter
@@ -32,8 +34,16 @@ class ErrandFragment: Fragment() {
 
     companion object {
         val TAG = "태그"
+        fun refreshFragment(fragment: Fragment) {
+            fragment.onResume()
+        }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        setErrandList()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,9 +52,6 @@ class ErrandFragment: Fragment() {
     ): View? {
         _binding = FragmentErrandBinding.inflate(inflater,container,false)
         val view = binding.root
-
-
-        setErrandList()
 
 
         binding.btnAddErrand.setOnClickListener {
@@ -77,8 +84,10 @@ class ErrandFragment: Fragment() {
                     200 -> {
                         if(body != null) {
                             errandListAdapter = ErrandListAdapter(
-                                activity,
+                                context = activity,
                                 errandList = body,
+                                fragment = this@ErrandFragment,
+                                fragmentManager = parentFragmentManager
                             )
                             binding.listRecycle.adapter = errandListAdapter
                             binding.listRecycle.layoutManager = LinearLayoutManager(context)
