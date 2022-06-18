@@ -1,6 +1,7 @@
 package com.mirim.refrigerator.view.errand
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.adapter.MakeErrandFamilyAdapter
+import com.mirim.refrigerator.adapter.MakeErrandFamilyAdapter.Companion.selectedMemberList
 import com.mirim.refrigerator.databinding.ActivityCreateErrandBinding
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
@@ -21,13 +23,20 @@ import com.mirim.refrigerator.viewmodel.UserViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.collections.ArrayList
+import kotlin.coroutines.coroutineContext
 
 class CreateErrandActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityCreateErrandBinding
+
     private val userViewModel : UserViewModel by viewModels()
     private var backType : Int = 0
     lateinit var accepterAdapter : MakeErrandFamilyAdapter
+
+
+    companion object {
+        lateinit var binding: ActivityCreateErrandBinding
+    }
 
     override fun onResume() {
         super.onResume()
@@ -38,6 +47,7 @@ class CreateErrandActivity : AppCompatActivity() {
         binding.toolbar.toolbarTitle.text = "심부름 보내기"
         userViewModel.loadUsers(App.user)
         setFamilyMember()
+        selectedMemberList = ArrayList()
     }
 
 
@@ -68,6 +78,7 @@ class CreateErrandActivity : AppCompatActivity() {
     private fun sendErrand() {
         val titleValue = binding.editErrandTitle.text.toString().trim()
         val contentValue = binding.editErrandContent.text.toString().trim()
+
         Log.e("AAAAAAA", MakeErrandFamilyAdapter.selectedMemberList.toString())
         val data = MakeErrandRequest(contentValue,titleValue,MakeErrandFamilyAdapter.selectedMemberList)
 
@@ -125,6 +136,8 @@ class CreateErrandActivity : AppCompatActivity() {
                 // 다른 멤버 존재 여부 확인
                 if(body?.size==0) {
                     binding.btnSendErrand.isEnabled = false
+                    binding.btnSendErrand.setBackgroundColor(Color.parseColor(R.color.deep_deep_gray.toString()))
+                    binding.btnSendErrand.text = "그룹원이 없어 심부름 요청이 불가능합니다."
                 } else {
                     App.family = response.body()!!
                     userViewModel.setFamilyList(response.body()!!)
