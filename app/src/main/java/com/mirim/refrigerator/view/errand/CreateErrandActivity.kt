@@ -78,7 +78,7 @@ class CreateErrandActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 val raw = response.raw()
-                when(raw.code) {
+                when(raw.code()) {
                     201 -> {
                         Toast.makeText(applicationContext,"심부름이 생성되었습니다.",Toast.LENGTH_SHORT).show()
 

@@ -19,7 +19,6 @@ import com.mirim.refrigerator.server.request.CreateIngredientRequest
 import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.viewmodel.App
 import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -66,7 +65,20 @@ class IngredientModifyActivity : AppCompatActivity() {
         binding.spinnerCategory.setSelection(Ingredient.categoryIndex(ingredient?.ingredientCategory))
         binding.spinnerKeepType.setSelection(Ingredient.storeIndex(ingredient?.ingredientSaveType))
         binding.editMemo.setText(ingredient?.ingredientMemo)
-        Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
+        /*
+        Glide
+            .with(context)
+            .load(imagePath)
+            .error(R.drawable.square_placeholder)
+            .fallback(R.drawable.square_placeholder)
+            .into(imageIngredient);
+         */
+        Glide
+            .with(applicationContext)
+            .load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath)
+            .error(R.drawable.placeholder)
+            .fallback(R.drawable.placeholder)
+            .into(binding.imageIngredient);
 
         binding.toolbar.toolbarTitle.text = "식재료 수정"
         binding.toolbar.btnBack.setOnClickListener {
@@ -125,7 +137,7 @@ class IngredientModifyActivity : AppCompatActivity() {
                         val bitmap = BitmapFactory.decodeStream(inputStream)
                         val byteArrayOutputStream = ByteArrayOutputStream()
                         bitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
-                        val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(),byteArrayOutputStream.toByteArray())
+                        val requestBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
                         uploadFile = MultipartBody.Part.createFormData("file","upload_ingredient_${ingredient.ingredientId}.jpg",requestBody)
                         binding.imageIngredient.setImageURI(uri)
                     } catch (e : Exception) {
@@ -173,7 +185,7 @@ class IngredientModifyActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 Log.d(TAG, response.toString())
-                Log.d(TAG, response.raw().message)
+                Log.d(TAG, response.raw().message())
                 Toast.makeText(applicationContext, "수정되었습니다.", Toast.LENGTH_SHORT).show()
                 finish()
             }
