@@ -44,7 +44,12 @@ class IngredientDetailActivity : AppCompatActivity() {
         binding.txtIngredientCategory.text = Ingredient.typeKoreanConverter(ingredient?.ingredientCategory)
         binding.txtIngredientStore.text = Ingredient.storeKoreanConverter(ingredient?.ingredientSaveType)
         binding.txtIngredientMemo.text = ingredient?.ingredientMemo
-        Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
+        Glide
+            .with(applicationContext)
+            .load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath)
+            .error(R.drawable.placeholder)
+            .fallback(R.drawable.placeholder)
+            .into(binding.imageIngredient);
 
         binding.btnModify.setOnClickListener {
             val intent = Intent(applicationContext, IngredientModifyActivity::class.java)

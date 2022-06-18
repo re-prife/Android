@@ -96,7 +96,7 @@ class IngredientModifyDialog(var ingredients: List<Ingredient>, val mContext: Co
         }
         RetrofitService.ingredientAPI.updateMultiIngredients(App.user.groupId, list).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                if(response.raw().code == 204) {
+                if(response.raw().code() == 204) {
                     Toast.makeText(curContext, "수정되었습니다.", Toast.LENGTH_SHORT).show()
                     (curContext as Activity).finish()
                 }

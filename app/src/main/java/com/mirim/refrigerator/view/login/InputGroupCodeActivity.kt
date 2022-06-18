@@ -62,7 +62,7 @@ class InputGroupCodeActivity : AppCompatActivity() {
             ) {
                 val raw = response.raw()
 
-                when(raw.code) {
+                when(raw.code()) {
                     200 -> {
                         App.user.groupId = response.body()?.groupId
                         App.groupInviteCode = response.body()?.groupInviteCode.toString()
@@ -71,13 +71,13 @@ class InputGroupCodeActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     400 -> {
-                        Toast.makeText(applicationContext,raw.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,raw.message(), Toast.LENGTH_SHORT).show()
                     }
                     404 -> {
-                        Toast.makeText(applicationContext,raw.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,raw.message(), Toast.LENGTH_SHORT).show()
                     }
                     409 -> {
-                        Toast.makeText(applicationContext,raw.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,raw.message(), Toast.LENGTH_SHORT).show()
                     }
                 }
 

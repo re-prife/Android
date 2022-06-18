@@ -1,6 +1,7 @@
 package com.mirim.refrigerator.adapter
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +20,16 @@ class HouseworkAdapter(val context: Context?, val chores: List<Housework>?): Rec
         val txtChoreCategory = view.findViewById<TextView>(R.id.txt_housework_category)
 
         fun bind(chore: Housework?) {
-            txtChoreTitle.text = chore?.choreTitle
             txtChoreAssignee.text = (if (App.getFamilyMember(chore?.userId) == null) App.user.nickname else App.getFamilyMember(chore?.userId)?.userNickname) + "담당"
             txtChoreCategory.text = Housework.categoryKoreanConverter(chore?.choreCategory)
+            txtChoreTitle.ellipsize = TextUtils.TruncateAt.END
+            txtChoreTitle.maxLines = 1
+            if(chore?.choreTitle?.length!! > 13) {
+                txtChoreTitle.text = chore.choreTitle?.substring(0, 14) + "..."
+            }
+            else {
+                txtChoreTitle.text = chore?.choreTitle
+            }
         }
     }
 

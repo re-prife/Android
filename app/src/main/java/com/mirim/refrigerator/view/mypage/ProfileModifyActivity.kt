@@ -25,7 +25,6 @@ import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.App.imageUri
 import com.mirim.refrigerator.viewmodel.UserViewModel
 import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -48,6 +47,7 @@ class ProfileModifyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileModifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.userImage.clipToOutline = true
 
         initBaseUserInfo()
 
@@ -80,10 +80,12 @@ class ProfileModifyActivity : AppCompatActivity() {
     private fun initBaseUserInfo() {
         if(App.imageUri != null) binding.userImage.setImageURI(App.imageUri)
         else {
+            /*
+            Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
+             */
             Glide.with(applicationContext)
-                .load(RetrofitService.IMAGE_BASE_URL+userViewModel.getImage())
+                .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
                 .error(R.drawable.icon_profile)
-                .fallback(R.drawable.icon_profile)
                 .into(binding.userImage)
         }
 
@@ -119,7 +121,7 @@ class ProfileModifyActivity : AppCompatActivity() {
                         val bitmap = BitmapFactory.decodeStream(inputStream)
                         val byteArrayOutputStream = ByteArrayOutputStream()
                         bitmap.compress(Bitmap.CompressFormat.JPEG,40,byteArrayOutputStream)
-                        val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(),byteArrayOutputStream.toByteArray())
+                        val requestBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
                         uploadFile = MultipartBody.Part.createFormData("file","upload_${App.user.userId}.jpg",requestBody)
                         imageUri = uri as Uri
                         binding.userImage.setImageURI(uri)
@@ -171,7 +173,7 @@ class ProfileModifyActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 val raw = response.raw()
-                when(raw.code) {
+                when(raw.code()) {
                     204 -> {
                         val newUser : User
                         if(isImageChanged) {
@@ -210,7 +212,7 @@ class ProfileModifyActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 val raw = response.raw()
-                when(raw.code) {
+                when(raw.code()) {
                     200 -> {
                         Log.d(TAG,"이미지 업데이트 성공")
                     }
