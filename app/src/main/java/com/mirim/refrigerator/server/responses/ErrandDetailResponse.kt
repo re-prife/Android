@@ -5,5 +5,6 @@ data class ErrandDetailResponse (
     val completeCheck : Boolean,
     val questCreatedDate : String,
     val questTitle : String,
-    val requestUserId : Int?
+    val requestUserId : Int?,
+    val questContent : String
 )
