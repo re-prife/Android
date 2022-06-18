@@ -61,8 +61,8 @@ class PasswordModifyActivity : AppCompatActivity() {
                 response: retrofit2.Response<Response>
             ) {
                 val raw = response.raw()
-                Log.d("AAAAAAAAAA",raw.code().toString())
-                when(raw.code()) {
+                Log.d("AAAAAAAAAA",raw.code.toString())
+                when(raw.code) {
                     204 -> {
                         Log.d(TAG,"갱신 성공")
                         Toast.makeText(applicationContext,"비밀번호가 성공적으로 변경되었습니다.",Toast.LENGTH_SHORT).show()
@@ -70,15 +70,15 @@ class PasswordModifyActivity : AppCompatActivity() {
                         overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
                     }
                     400 -> {
-                        Log.e(TAG,raw.message())
+                        Log.e(TAG,raw.message)
                         Toast.makeText(applicationContext,"비밀번호 형식을 확인해주세요.",Toast.LENGTH_SHORT).show()
                     }
                     403 -> {
-                        Log.e(TAG,raw.message())
+                        Log.e(TAG,raw.message)
                         Toast.makeText(applicationContext,"기존 비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show()
                     }
                     409 -> {
-                        Log.e(TAG,raw.message())
+                        Log.e(TAG,raw.message)
                         Toast.makeText(applicationContext,"새 비밀번호가 일치하는지 확인해주세요.",Toast.LENGTH_SHORT).show()
                     }
                 }

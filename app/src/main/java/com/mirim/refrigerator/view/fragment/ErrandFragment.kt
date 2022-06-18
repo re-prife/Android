@@ -73,7 +73,7 @@ class ErrandFragment: Fragment() {
                 val body = response.body()
                 val raw = response.raw()
                 Log.e(TAG,body.toString())
-                when(raw.code()) {
+                when(raw.code) {
                     200 -> {
                         if(body != null) {
                             errandListAdapter = ErrandListAdapter(
