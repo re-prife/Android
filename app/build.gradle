@@ -70,5 +70,4 @@ dependencies {
 
     // websocket 통신
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
-
 }
