@@ -36,6 +36,7 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
 
         binding.toolbar.btnBack.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
         }
 
         binding.btnCancelErrand.setOnClickListener {

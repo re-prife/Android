@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirim.refrigerator.adapter.ErrandListAdapter
@@ -87,12 +85,10 @@ class ErrandFragment: Fragment() {
                                 context = activity,
                                 errandList = body,
                                 fragment = this@ErrandFragment,
-                                fragmentManager = parentFragmentManager
                             )
                             binding.listRecycle.adapter = errandListAdapter
                             binding.listRecycle.layoutManager = LinearLayoutManager(context)
                         }
-
                     }
                     404 -> {
                         Toast.makeText(activity,"심부름 조회 중 오류가 발생했습니다.",Toast.LENGTH_SHORT).show()

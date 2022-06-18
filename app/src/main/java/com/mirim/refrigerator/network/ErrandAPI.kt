@@ -36,4 +36,13 @@ interface ErrandAPI {
         @Path("questId") questId: Int?,
         @Path("acceptorId") acceptorId : Int?
     ): Call<Response>
+
+
+    // 심부름 완료
+    @PUT("groups/{groupId}/quests/{questId}/complete/{requesterId}")
+    fun complete(
+        @Path("groupId") groupId: Int?,
+        @Path("questId") questId: Int?,
+        @Path("requesterId") requesterId : Int?
+    ): Call<Response>
 }
