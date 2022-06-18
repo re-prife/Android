@@ -30,7 +30,7 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
 
             binding.txtHouseworkCategory.text = Housework.categoryKoreanConverter(housework?.choreCategory)
             binding.txtHouseworkName.text = housework?.choreTitle
-            binding.txtHouseworkAssignee.text = App.getFamilyMember(housework?.userId)?.userId.toString()
+            binding.txtHouseworkAssignee.text = housework?.userId.toString()
             binding.txtHouseworkPerformDate.text = housework?.choreDate
             binding.txtHouseworkRegisterDate.text = housework?.createdDate
             binding.txtHouseworkModifyDate.text = housework?.modifiedDate
