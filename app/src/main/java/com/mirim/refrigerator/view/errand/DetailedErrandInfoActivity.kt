@@ -50,7 +50,7 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
                         response: Response<com.mirim.refrigerator.server.responses.Response>
                     ) {
                         val raw = response.raw()
-                        when(raw.code) {
+                        when(raw.code()) {
                             200 -> {
                                 if(errandStatus == PROCEEDING) {
                                     Toast.makeText(applicationContext,"심부름이 성공적으로 취소되었습니다.",Toast.LENGTH_SHORT).show()
@@ -59,10 +59,10 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
                                 }
                             }
                             404 -> {
-                                Toast.makeText(applicationContext,raw.message,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext,raw.message(),Toast.LENGTH_SHORT).show()
                             }
                             409 -> {
-                                Toast.makeText(applicationContext,raw.message,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext,raw.message(),Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -116,13 +116,13 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
                 val body = response.body()
                 val raw = response.raw()
 
-                when(raw.code) {
+                when(raw.code()) {
                     200 -> {
                         acceptorId = body?.acceptUserId!!
                         setView(body)
                     }
                     404 -> {
-                        Toast.makeText(applicationContext,raw.message,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,raw.message(),Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -146,7 +146,7 @@ class MyPageFragment: Fragment() {
                     userViewModel.setFamilyList(response.body()!!)
                     familyAdapter = MyPageFamilyAdapter(context,App.family)
                     binding.recyclerFamilyMember.adapter = familyAdapter
-                    binding.recyclerFamilyMember.layoutManager = LinearLayoutManager(context)
+                    binding.recyclerFamilyMember.layoutManager = object : LinearLayoutManager(context){ override fun canScrollVertically(): Boolean { return false } }
                 }
             }
             override fun onFailure(call: Call<List<FamilyMember>>, t: Throwable) {
