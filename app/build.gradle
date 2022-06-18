@@ -71,4 +71,6 @@ dependencies {
     // sse 통신
     implementation 'com.github.heremaps:oksse:0.9.0'
 
+    implementation 'com.github.danielmalmq:eventsource-android:1.0.0'
+
 }

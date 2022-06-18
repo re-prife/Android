@@ -27,6 +27,7 @@ class RegisterHouseworkActivity : AppCompatActivity() {
         val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.housework_category, android.R.layout.simple_spinner_item)
 
         val memberNameList = ArrayList<String>()
+        memberNameList.add(App.user.nickname!!)
         for(member in App.family) {
             memberNameList.add(member.userNickname)
         }

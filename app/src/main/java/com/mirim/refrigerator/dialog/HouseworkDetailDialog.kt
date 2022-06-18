@@ -56,8 +56,12 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
             }
 
             binding.btnApprove.setOnClickListener {
-                Toast.makeText(context, "인증받기", Toast.LENGTH_SHORT).show()
-                confirmHousework()
+                if(housework?.userId == App.user.userId) {
+                    confirmHousework()
+                }
+                else {
+                    Toast.makeText(context, "내가 한 집안일이 아니에요 ㅠㅠ", Toast.LENGTH_SHORT).show()
+                }
                 dialog?.dismiss()
             }
 
