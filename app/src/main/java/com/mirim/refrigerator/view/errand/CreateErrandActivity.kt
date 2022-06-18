@@ -9,8 +9,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.here.oksse.OkSse
-import com.here.oksse.ServerSentEvent
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.adapter.MakeErrandFamilyAdapter
 import com.mirim.refrigerator.databinding.ActivityCreateErrandBinding
@@ -20,14 +18,9 @@ import com.mirim.refrigerator.server.request.MakeErrandRequest
 import com.mirim.refrigerator.view.BottomAppBarActivity
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.concurrent.TimeUnit
 
 class CreateErrandActivity : AppCompatActivity() {
 

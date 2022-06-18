@@ -18,6 +18,7 @@ import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.view.BottomAppBarActivity
 import com.mirim.refrigerator.viewmodel.App
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -121,7 +122,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                         val byteArrayOutputStream = ByteArrayOutputStream()
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
                         val requestBody = RequestBody.create(
-                            MediaType.parse("image/jpeg"),
+                            "image/jpeg".toMediaTypeOrNull(),
                             byteArrayOutputStream.toByteArray()
                         )
                         uploadFile = MultipartBody.Part.createFormData(
@@ -149,7 +150,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 call: Call<CreateIngredientResponse>,
                 response: Response<CreateIngredientResponse>
             ) {
-                if(response.raw().code() == 201) {
+                if(response.raw().code == 201) {
                     uploadIngredientImage(response.body()?.ingredientId);
                     Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
@@ -176,7 +177,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 Log.d(TAG, response.toString())
-                Log.d(TAG, response.raw().message())
+                Log.d(TAG, response.raw().message)
             }
 
             override fun onFailure(

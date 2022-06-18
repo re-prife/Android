@@ -81,7 +81,7 @@ class SigninActivity : AppCompatActivity() {
                 val raw = response.raw()
                 val body = response.body()
 
-                when(raw.code()) {
+                when(raw.code) {
                     200 -> {
                         App.user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId, body?.userImagePath)
                         UserViewModel().loadUsers(App.user)
