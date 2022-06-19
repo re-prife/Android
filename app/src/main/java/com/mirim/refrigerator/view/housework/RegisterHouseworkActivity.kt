@@ -47,12 +47,15 @@ class RegisterHouseworkActivity : AppCompatActivity() {
             val objDate = dateFormat.parse(binding.editHouseworkPerformDate.text.toString())
             val dateFormat2 = SimpleDateFormat("yyyy-MM-dd")
             val finalDate = dateFormat2.format(objDate)
+            Log.d("RegisterHouseworkActivity", App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString()).toString())
+            val familyId = App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString())
             createChore(CreateHouseworkRequest(
                 choreTitle = binding.editHouseworkName.text.toString(),
                 choreCategory = Housework.categoryEnglishConverter(binding.spinnerHouseworkCategory.selectedItem.toString()),
                 choreDate =  finalDate,
-                choreUserId = App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString())
-            ))
+                choreUserId = if (familyId == null) App.user.userId else familyId
+                )
+            )
         }
         binding.btnCancel.setOnClickListener {
             finish()
@@ -66,6 +69,7 @@ class RegisterHouseworkActivity : AppCompatActivity() {
     fun createChore(body: CreateHouseworkRequest) {
         RetrofitService.houseworkAPI.createChore(App.user.groupId, body).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
+                Log.d("RegisterHouseworkActivity", response.toString())
                 if(response.raw().code() == 201) {
                     Toast.makeText(applicationContext, "등록되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
