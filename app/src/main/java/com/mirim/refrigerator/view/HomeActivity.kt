@@ -11,26 +11,33 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.model.Notice
 import com.mirim.refrigerator.dialog.PermissionCheckDialog
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.network.SocketHandler
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
+import com.mirim.refrigerator.server.socket.SaveInfo
+import com.mirim.refrigerator.server.socket.SocketService
 import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import io.socket.client.Socket
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+import org.json.JSONObject
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val userViewModel : UserViewModel by viewModels()
+    lateinit var socket: Socket
 
     companion object {
         var noticeTitle: String = ""
@@ -63,6 +70,21 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        SocketHandler.setSocket()
+        SocketHandler.establishConnection()
+        socket = SocketHandler.getterSocket()
+
+        socket.emit("saveInfo",
+            JSONObject(
+                Gson().toJson(
+                    SaveInfo(App.user.userId,App.user.groupId)
+                )
+            )
+        )
+        Intent(this, SocketService::class.java).also { intent ->
+            startService(intent)
+        }
 
         userViewModel.loadUsers(App.user)
 
@@ -266,5 +288,10 @@ class HomeActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        socket.disconnect()
     }
 }

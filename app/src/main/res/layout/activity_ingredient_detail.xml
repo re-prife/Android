@@ -26,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@color/white"
-                android:id="@+id/image_ingredient"/>
+                android:id="@+id/image_ingredient"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/txt_ingredient_name"
