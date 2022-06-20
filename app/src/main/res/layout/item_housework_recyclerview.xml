@@ -9,24 +9,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="설거지"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/txt_housework_name"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="아빠 담당"
         android:textColor="@color/deep_deep_gray"
         android:textSize="11sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/txt_housework_name"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/txt_housework_assignee"/>
+        app:layout_constraintRight_toLeftOf="@id/txt_housework_category"
+        android:id="@+id/txt_housework_assignee"
+        android:layout_marginRight="5dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,9 +25,23 @@
         android:textSize="12sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/txt_housework_assignee"
+        app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/txt_housework_category"
         android:layout_marginLeft="5dp" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="설거지"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/txt_housework_assignee"
+        android:id="@+id/txt_housework_name"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

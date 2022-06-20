@@ -61,13 +61,12 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
                 }
                 else {
                     Toast.makeText(context, "내가 한 집안일이 아니에요 ㅠㅠ", Toast.LENGTH_SHORT).show()
+                    dialog?.dismiss()
                 }
-                dialog?.dismiss()
             }
 
             binding.btnDelete.setOnClickListener {
                 deleteChore();
-                dialog?.dismiss()
             }
 
             // 모서리 둥글게 하는 코드
@@ -86,6 +85,7 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 Log.d("HouseworkDetailDialog-deleteChore", response.toString())
                 Toast.makeText(mContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                dialog?.dismiss()
             }
 
             override fun onFailure(call: Call<Response>, t: Throwable) {
@@ -101,6 +101,7 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                 Log.d("HouseworkDetailDialog-confirmChore", response.toString())
                 Toast.makeText(mContext, "인증 요청되었습니다.", Toast.LENGTH_SHORT).show()
+                dialog?.dismiss()
             }
 
             override fun onFailure(call: Call<Response>, t: Throwable) {

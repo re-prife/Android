@@ -66,7 +66,7 @@ class RegisterHouseworkActivity : AppCompatActivity() {
     fun createChore(body: CreateHouseworkRequest) {
         RetrofitService.houseworkAPI.createChore(App.user.groupId, body).enqueue(object : Callback<Response> {
             override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                if(response.raw().code == 201) {
+                if(response.raw().code() == 201) {
                     Toast.makeText(applicationContext, "등록되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
                 }

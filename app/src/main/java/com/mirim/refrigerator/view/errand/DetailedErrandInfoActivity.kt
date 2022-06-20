@@ -38,7 +38,6 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
         setContentView(binding.root)
         val intent = getIntent()
         questId = intent.getIntExtra("questId",-1)
-        //setErrandData()
 
         binding.toolbar.btnBack.setOnClickListener {
             finish()
