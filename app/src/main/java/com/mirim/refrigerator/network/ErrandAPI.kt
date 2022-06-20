@@ -3,6 +3,7 @@ package com.mirim.refrigerator.network
 import com.mirim.refrigerator.model.Errand
 import com.mirim.refrigerator.server.request.MakeErrandRequest
 import com.mirim.refrigerator.server.responses.ErrandDetailResponse
+import com.mirim.refrigerator.server.responses.MakeErrandResponse
 import com.mirim.refrigerator.server.responses.Response
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,7 +16,7 @@ interface ErrandAPI {
         @Path("groupId") groupId : Int,
         @Path("userId") userId : Int,
         @Body errand : MakeErrandRequest
-    ): Call<Response>
+    ): Call<MakeErrandResponse>
 
     // 심부름 조회
     @GET("groups/{groupId}/quests")
@@ -63,5 +64,5 @@ interface ErrandAPI {
         @Path("questId") questId: Int?,
         @Query("requesterId") requesterId : Int?,
         @Body errand: MakeErrandRequest
-    ): Call<Response>
+    ): Call<MakeErrandResponse>
 }

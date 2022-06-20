@@ -12,8 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mirim.refrigerator.adapter.ErrandListAdapter
 import com.mirim.refrigerator.databinding.FragmentErrandBinding
-import com.mirim.refrigerator.dialog.ErrandAllowedDialog
-import com.mirim.refrigerator.dialog.ErrandArrivedDialog
 import com.mirim.refrigerator.model.Errand
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.view.errand.CreateErrandActivity
@@ -56,15 +54,6 @@ class ErrandFragment: Fragment() {
             var intent = Intent(view.context, CreateErrandActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
-        }
-
-        binding.btnArrivedDialog.setOnClickListener {
-            val dialog = ErrandArrivedDialog("심부름 제목", listOf("엄마","아빠"))
-            dialog.show(requireActivity().supportFragmentManager,"")
-        }
-        binding.btnAllowedDialog.setOnClickListener {
-            val dialog = ErrandAllowedDialog("심부름 제목", "아빠")
-            dialog.show(requireActivity().supportFragmentManager,"")
         }
 
         return view
