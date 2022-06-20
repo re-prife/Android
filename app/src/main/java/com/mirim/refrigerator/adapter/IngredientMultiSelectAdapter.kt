@@ -43,12 +43,7 @@ class IngredientMultiSelectAdapter (val context: Context?, val ingredients: List
         statusView.setBackgroundTintList(context.getResources().getColorStateList(Ingredient.statusColor(ingredient.ingredientColor)))
         var imagePath = RetrofitService.IMAGE_BASE_URL+ingredient.ingredientImagePath
         Log.d("imagePath", imagePath)
-        Glide
-            .with(context)
-            .load(imagePath)
-            .error(R.drawable.placeholder)
-            .fallback(R.drawable.placeholder)
-            .into(imageIngredient);
+        Glide.with(context).load(imagePath).into(imageIngredient);
 
         view.setOnClickListener {
             if(!selectedIngredient.contains(ingredient)) {

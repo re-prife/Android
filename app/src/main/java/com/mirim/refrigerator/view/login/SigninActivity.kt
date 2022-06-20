@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySigninBinding
@@ -38,7 +37,6 @@ class SigninActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSignin.setOnClickListener {
-            binding.progressbar.visibility = View.VISIBLE
             checkSignin()
         }
 
@@ -88,8 +86,6 @@ class SigninActivity : AppCompatActivity() {
                         App.user = User(body?.userNickname, body?.userName, body?.userEmail, body?.userId, body?.groupId, body?.userImagePath)
                         UserViewModel().loadUsers(App.user)
                         App.groupInviteCode = body?.groupInviteCode.toString()
-                        Toast.makeText(applicationContext, "로그인 되었습니다.", Toast.LENGTH_SHORT).show()
-                        binding.progressbar.visibility = View.GONE
 
                         // 그룹 가입 여부 확인
                         if(body?.groupId == null) {
@@ -116,13 +112,11 @@ class SigninActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"입력하신 계정은 존재하지 않습니다",Toast.LENGTH_SHORT).show()
                     }
                 }
-                binding.progressbar.visibility = View.GONE
             }
 
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                 Log.d(TAG,t.message.toString())
                 Toast.makeText(applicationContext,"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
-                binding.progressbar.visibility = View.GONE
             }
 
         })

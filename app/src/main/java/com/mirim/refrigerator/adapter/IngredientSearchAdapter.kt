@@ -28,12 +28,7 @@ class IngredientSearchAdapter(val context: Context, val list: List<Ingredient>) 
             txtIngredientName.text = ingredient.ingredientName
             txtIngredientExpiryDate.text = "유통기한 : " + ingredient.ingredientExpirationDate
             txtStatus.setBackgroundTintList(context.getResources().getColorStateList(Ingredient.statusColor(ingredient.ingredientColor)))
-            Glide
-                .with(context)
-                .load(RetrofitService.IMAGE_BASE_URL+ingredient.ingredientImagePath)
-                .error(R.drawable.placeholder)
-                .fallback(R.drawable.placeholder)
-                .into(imageIngredient);
+            Glide.with(context).load(RetrofitService.IMAGE_BASE_URL+ingredient.ingredientImagePath).into(imageIngredient);
             view.setOnClickListener {
                 val intent = Intent(context, IngredientDetailActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

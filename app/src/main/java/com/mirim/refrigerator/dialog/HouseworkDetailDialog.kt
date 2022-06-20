@@ -35,9 +35,14 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
             val builder = AlertDialog.Builder(context)
             binding = DialogHouseworkDetailBinding.inflate(requireActivity().layoutInflater)
 
+            if(housework?.userId == App.user.userId) {
+                binding.txtHouseworkAssignee.text = App.user.nickname
+            }
+            else {
+                binding.txtHouseworkAssignee.text = App.getFamilyMember(housework?.userId)?.userNickname
+            }
             binding.txtHouseworkCategory.text = Housework.categoryKoreanConverter(housework?.choreCategory)
             binding.txtHouseworkName.text = housework?.choreTitle
-            binding.txtHouseworkAssignee.text = App.getFamilyMember(housework?.userId)?.userNickname
             binding.txtHouseworkPerformDate.text = housework?.choreDate
             binding.txtHouseworkRegisterDate.text = housework?.createdDate
             binding.txtHouseworkModifyDate.text = housework?.modifiedDate
@@ -112,6 +117,7 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
                     Toast.makeText(mContext, "인증 요청되었습니다.", Toast.LENGTH_SHORT).show()
                     socket = SocketHandler.getterSocket()
                     var data = CertifyChore(
+                        choreId = housework?.choreId,
                         category = housework?.choreCategory,
                         userNickname = if(App.user.userId == housework?.userId) App.user.nickname else App.getFamilyMember(housework?.userId)?.userNickname,
                         title = housework?.choreTitle

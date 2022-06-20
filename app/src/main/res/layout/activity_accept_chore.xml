@@ -19,20 +19,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="집안일 인증 요청 도착!"
+        android:text="집안일 인증 승인 완료!"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/guideline_left"
         android:layout_marginTop="35dp"
-        android:id="@+id/txt_arrive"/>
+        android:id="@+id/txt_complete"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="카테고리"
         android:textSize="12sp"
         android:textColor="@color/main"
-        app:layout_constraintTop_toBottomOf="@id/txt_arrive"
+        app:layout_constraintTop_toBottomOf="@id/txt_complete"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         android:layout_marginTop="20dp"
         android:id="@+id/txt_housework_category"/>
@@ -45,33 +45,19 @@
         app:layout_constraintTop_toBottomOf="@id/txt_housework_category"
         android:textColor="@color/deep_gray"
         android:textSize="15sp"
-        android:text="00님이 00을 완료했습니다."
+        android:text="00 수락이 완료되었습니다."
         android:layout_marginTop="4dp"
         android:id="@+id/txt_housework_title"/>
 
-    <LinearLayout
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/linear_housework_confirm"
         android:layout_height="50dp"
+        android:layout_weight="1"
+        android:text="확인"
+        android:textStyle="bold"
+        android:background="@drawable/background_button_main_color"
+        android:textColor="@color/white"
+        android:id="@+id/btn_confirm"
         app:layout_constraintTop_toBottomOf="@+id/txt_housework_title"
-        android:layout_marginTop="45dp">
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="수락"
-            android:textStyle="bold"
-            android:background="@drawable/background_button_main_color"
-            android:textColor="@color/white"
-            android:id="@+id/btn_approve"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="거절"
-            android:textColor="@color/main"
-            android:background="@drawable/background_button_top_line"
-            android:id="@+id/btn_dismiss" />
-    </LinearLayout>
+        android:layout_marginTop="45dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

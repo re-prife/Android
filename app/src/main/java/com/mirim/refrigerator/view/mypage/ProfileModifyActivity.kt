@@ -47,7 +47,6 @@ class ProfileModifyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileModifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.userImage.clipToOutline = true
 
         initBaseUserInfo()
 
@@ -80,12 +79,10 @@ class ProfileModifyActivity : AppCompatActivity() {
     private fun initBaseUserInfo() {
         if(App.imageUri != null) binding.userImage.setImageURI(App.imageUri)
         else {
-            /*
-            Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
-             */
             Glide.with(applicationContext)
-                .load(RetrofitService.IMAGE_BASE_URL+App.user.userImagePath)
+                .load(RetrofitService.IMAGE_BASE_URL+userViewModel.getImage())
                 .error(R.drawable.icon_profile)
+                .fallback(R.drawable.icon_profile)
                 .into(binding.userImage)
         }
 

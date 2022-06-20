@@ -206,7 +206,8 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                     call: Call<Response>,
                     response: retrofit2.Response<Response>
                 ) {
-                    when(response.raw().code()) {
+                    val raw = response.raw()
+                    when(raw.code()) {
                         200 -> {
                             Toast.makeText(context,"심부름을 인정하셨습니다.", Toast.LENGTH_SHORT).show()
                             ErrandFragment.refreshFragment(fragment)

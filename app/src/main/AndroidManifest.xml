@@ -28,6 +28,13 @@
         <activity
             android:name=".view.errand.AddErrandActivity"
             android:exported="false" />
+            android:name=".view.housework.AcceptChoreActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyDialog">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".server.socket.SocketService" />
 
