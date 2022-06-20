@@ -42,7 +42,6 @@ class UserViewModel : ViewModel() {
                 return member
             }
         }
-        Log.d(TAG,"UserViewModel - 가족 멤버가 존재하지 않음")
         return null
     }
     // 가족 전체 정보를 담은 List 지정

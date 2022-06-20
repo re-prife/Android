@@ -5,6 +5,7 @@ import com.mirim.refrigerator.server.request.MakeErrandRequest
 import com.mirim.refrigerator.server.responses.ErrandDetailResponse
 import com.mirim.refrigerator.server.responses.Response
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface ErrandAPI {
@@ -44,5 +45,23 @@ interface ErrandAPI {
         @Path("groupId") groupId: Int?,
         @Path("questId") questId: Int?,
         @Path("requesterId") requesterId : Int?
+    ): Call<Response>
+
+
+    // 심부름 삭제
+    @DELETE("groups/{groupId}/quests/{questId}")
+    fun deleteErrand(
+        @Path("groupId") groupId: Int?,
+        @Path("questId") questId: Int?,
+        @Query("userId") userId : Int?
+    ): Call<Response>
+
+    // 심부름 갱신
+    @PUT("groups/{groupId}/quests/{questId}")
+    fun updateErrand(
+        @Path("groupId") groupId: Int?,
+        @Path("questId") questId: Int?,
+        @Query("requesterId") requesterId : Int?,
+        @Body errand: MakeErrandRequest
     ): Call<Response>
 }

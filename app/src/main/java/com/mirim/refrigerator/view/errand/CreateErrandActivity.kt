@@ -24,13 +24,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
-import kotlin.coroutines.coroutineContext
 
 class CreateErrandActivity : AppCompatActivity() {
 
 
     private val userViewModel : UserViewModel by viewModels()
     private var backType : Int = 0
+    var isUpdate : Boolean = false
     lateinit var accepterAdapter : MakeErrandFamilyAdapter
 
 
@@ -40,6 +40,7 @@ class CreateErrandActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val intent = intent
         // soft keyboard
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         // activity 들어온 경로 파악 0 : HomeActivity, 1 : ErrandFragment
@@ -55,18 +56,23 @@ class CreateErrandActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateErrandBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        isUpdate = intent.getBooleanExtra("isUpdate",false)
 
 
         binding.toolbar.btnBack.setOnClickListener {
-            if(backType == 0) {
-                val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
-                intent.putExtra("clicked button", "errand")
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                startActivity(intent)
-            } else {
+            if(isUpdate) {
                 finish()
                 overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+            } else {
+                if(backType == 0) {
+                    val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+                    intent.putExtra("clicked button", "errand")
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    startActivity(intent)
+                } else {
+                    finish()
+                    overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+                }
             }
         }
 
@@ -79,47 +85,85 @@ class CreateErrandActivity : AppCompatActivity() {
         val titleValue = binding.editErrandTitle.text.toString().trim()
         val contentValue = binding.editErrandContent.text.toString().trim()
 
-        Log.e("AAAAAAA", MakeErrandFamilyAdapter.selectedMemberList.toString())
-        val data = MakeErrandRequest(contentValue,titleValue,MakeErrandFamilyAdapter.selectedMemberList)
+        val data = MakeErrandRequest(contentValue,titleValue,selectedMemberList)
 
-        RetrofitService.errandAPI.makeErrand(userViewModel.getGroupId()!!,userViewModel.getUserId()!!,data).enqueue(object :
-            Callback<com.mirim.refrigerator.server.responses.Response>{
-            override fun onResponse(
-                call: Call<com.mirim.refrigerator.server.responses.Response>,
-                response: Response<com.mirim.refrigerator.server.responses.Response>
-            ) {
-                val raw = response.raw()
-                when(raw.code) {
-                    201 -> {
-                        Toast.makeText(applicationContext,"심부름이 생성되었습니다.",Toast.LENGTH_SHORT).show()
-
-                        if(backType == 0) {
-                            val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
-                            intent.putExtra("clicked button", "errand")
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                            startActivity(intent)
-                        } else {
+        if(isUpdate) {
+            val _intent = intent
+            val questId : Int = _intent.getIntExtra("questId",-1)
+            RetrofitService.errandAPI.updateErrand(userViewModel.getGroupId()!!,questId,App.user.userId,data).enqueue(object :
+                Callback<com.mirim.refrigerator.server.responses.Response>{
+                override fun onResponse(
+                    call: Call<com.mirim.refrigerator.server.responses.Response>,
+                    response: Response<com.mirim.refrigerator.server.responses.Response>
+                ) {
+                    val raw = response.raw()
+                    when(raw.code) {
+                        200 -> {
+                            Toast.makeText(applicationContext,"심부을 수정하였습니다.",Toast.LENGTH_SHORT).show()
                             finish()
                             overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
                         }
-                    }
-                    400 -> {
-                        Toast.makeText(applicationContext,"심부름 형식을 확인해주세요.",Toast.LENGTH_SHORT).show()
-                    }
-                    404 -> {
-                        Toast.makeText(applicationContext,"그룹 또는 유저가 존재하지 않습니다.",Toast.LENGTH_SHORT).show()
+                        404 -> {
+                            Toast.makeText(applicationContext,"잘못된 심부름 정보입니다.",Toast.LENGTH_SHORT).show()
+                        }
+                        405 -> {
+                            Toast.makeText(applicationContext,"심부름 수락자가 있어 수정할 수 없습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                        409 -> {
+                            Toast.makeText(applicationContext,"요청자가 아니므로 수정할 수 없습니다.",Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-            }
 
-            override fun onFailure(
-                call: Call<com.mirim.refrigerator.server.responses.Response>,
-                t: Throwable
-            ) {
-                Toast.makeText(applicationContext,"심부름 생성에 실패했습니다.",Toast.LENGTH_SHORT).show()
-            }
+                override fun onFailure(
+                    call: Call<com.mirim.refrigerator.server.responses.Response>,
+                    t: Throwable
+                ) {
+                    Toast.makeText(applicationContext,"심부름 생성에 실패했습니다.",Toast.LENGTH_SHORT).show()
+                }
 
-        })
+            })
+        } else {
+            RetrofitService.errandAPI.makeErrand(userViewModel.getGroupId()!!,userViewModel.getUserId()!!,data).enqueue(object :
+                Callback<com.mirim.refrigerator.server.responses.Response>{
+                override fun onResponse(
+                    call: Call<com.mirim.refrigerator.server.responses.Response>,
+                    response: Response<com.mirim.refrigerator.server.responses.Response>
+                ) {
+                    val raw = response.raw()
+                    when(raw.code) {
+                        201 -> {
+                            Toast.makeText(applicationContext,"심부름이 생성되었습니다.",Toast.LENGTH_SHORT).show()
+
+                            if(backType == 0) {
+                                val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+                                intent.putExtra("clicked button", "errand")
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                                startActivity(intent)
+                            } else {
+                                finish()
+                                overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+                            }
+                        }
+                        400 -> {
+                            Toast.makeText(applicationContext,"심부름 형식을 확인해주세요.",Toast.LENGTH_SHORT).show()
+                        }
+                        404 -> {
+                            Toast.makeText(applicationContext,"그룹 또는 유저가 존재하지 않습니다.",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<com.mirim.refrigerator.server.responses.Response>,
+                    t: Throwable
+                ) {
+                    Toast.makeText(applicationContext,"심부름 생성에 실패했습니다.",Toast.LENGTH_SHORT).show()
+                }
+
+            })
+        }
+
 
 
     }
