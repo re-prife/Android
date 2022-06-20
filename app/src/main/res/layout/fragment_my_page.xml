@@ -223,13 +223,92 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="너가 왕이니"
+                android:text="지난달의 왕"
                 android:textSize="16sp" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_king"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginStart="10dp"
+                android:scrollbars="none"
+                android:overScrollMode="never">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/king_sul"
+                        android:visibility="gone"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="10dp"
+                        android:layout_marginRight="15dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="설거지 왕"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/king_que"
+                        android:visibility="gone"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="10dp"
+                        android:layout_marginRight="15dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="퀘스트 왕"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/king_jan"
+                        android:visibility="gone"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="10dp"
+                        android:layout_marginRight="15dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="장보기 왕"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/king_yor"
+                        android:visibility="gone"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:elevation="10dp"
+                        android:layout_marginRight="15dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="요리 왕"
+                            android:textSize="12sp"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
             <LinearLayout
                 android:id="@+id/line_second"
                 android:orientation="horizontal"
