@@ -42,4 +42,10 @@ interface HouseworkAPI {
         @Path("groupId") groupId: Int?,
         @Path("choreId") choreId: Int?
     ) : Call<Response>
+
+    @PUT("/groups/{groupId}/chores/{choreId}/reaction")
+    fun reactionChore(
+        @Path("groupId") groupId: Int?,
+        @Path("choreId") choreId: Int?
+    ) : Call<Response>
 }

@@ -281,7 +281,8 @@
                         app:layout_constraintTop_toBottomOf="@id/txt_king_name_1"
                         app:layout_constraintLeft_toLeftOf="@id/guideline_left"
                         app:layout_constraintRight_toRightOf="@id/guideline_right"
-                        android:id="@+id/txt_king_none_1"/>
+                        android:id="@+id/txt_king_none_1"
+                        android:background="@drawable/background_circle"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

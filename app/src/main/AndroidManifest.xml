@@ -22,13 +22,19 @@
         android:theme="@style/Theme.Refrigerator"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
+        <activity
+            android:name=".view.housework.AcceptChoreActivity"
+            android:exported="false" />
+
         <service android:name=".server.socket.SocketService" />
+
         <activity
             android:name=".view.housework.CertifyChoreActivity"
             android:exported="false"
             android:theme="@style/Theme.MyDialog">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.housework.RegisterHouseworkActivity" />
         <activity

@@ -7,6 +7,7 @@ import android.os.IBinder
 import android.util.Log
 import com.google.gson.Gson
 import com.mirim.refrigerator.network.SocketHandler
+import com.mirim.refrigerator.view.housework.AcceptChoreActivity
 import com.mirim.refrigerator.view.housework.CertifyChoreActivity
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
@@ -23,26 +24,47 @@ class SocketService : Service() {
     lateinit var socket: Socket
     lateinit var certifyChoreActivity: PendingIntent
     lateinit var certifyChorePopup: Intent
+    lateinit var acceptChoreActivity: PendingIntent
+    lateinit var acceptChorePopup: Intent
+
     override fun onBind(p0: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d("myService", "서비스 시작됨")
         certifyChorePopup = Intent(applicationContext, CertifyChoreActivity::class.java)
+        acceptChorePopup = Intent(applicationContext, AcceptChoreActivity::class.java)
+
         socket = SocketHandler.getterSocket()
         // socket.on("certifyChore", CertifyChoreListener(applicationContext))
         socket.on("certifyChore") { args ->
             val data: JSONObject = args[0] as JSONObject
             Log.d("mySocket", data.toString())
             var certifyChore = Gson().fromJson(data.toString(), CertifyChore::class.java)
-            certifyChorePopup.putExtra("title", certifyChore.title)
             certifyChorePopup.putExtra("category", certifyChore.category)
+            certifyChorePopup.putExtra("title", certifyChore.title)
             certifyChorePopup.putExtra("nickname", certifyChore.userNickname)
+            certifyChorePopup.putExtra("choreId", certifyChore.choreId)
             certifyChoreActivity = PendingIntent.getActivity(applicationContext, 0, certifyChorePopup, PendingIntent.FLAG_ONE_SHOT)
             try {
                 Log.d("mySocket", certifyChore.title!!)
                 certifyChoreActivity.send()
             } catch (e: Exception) {
-                Log.d("myService", e.toString())
+                Log.d("mySocket", e.toString())
+            }
+        }
+        socket.on("acceptChore") { args ->
+            val data: JSONObject = args as JSONObject
+            Log.d("mySocket", data.toString())
+            var requesterId = data.getInt("requesterId")
+            var acceptChore = Gson().fromJson<AcceptChore>(Gson().toJson(data.getJSONObject("data")), AcceptChore::class.java)
+
+            acceptChorePopup.putExtra("category", acceptChore.category)
+            acceptChorePopup.putExtra("title", acceptChore.title)
+
+            try {
+                certifyChoreActivity.send()
+            } catch (e: Exception) {
+                Log.d("mySocket", e.toString())
             }
         }
 
