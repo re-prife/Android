@@ -105,14 +105,34 @@ class HouseworkDetailDialog(val housework: Housework?, val mContext: Context?) :
 
     fun confirmHousework() {
         Log.d("HouseworkDetailDialog", "confirmHousework")
-        socket = SocketHandler.getterSocket()
-        var data = CertifyChore(
-            category = housework?.choreCategory,
-            userNickname = App.getFamilyMember(housework?.userId)?.userNickname,
-            title = housework?.choreTitle
-        )
-        socket.emit("certifyChore", JSONObject(Gson().toJson(CertifyChoreData(data))))
-        dialog?.dismiss()
+        RetrofitService.houseworkAPI.certifyChore(App.user.groupId, housework?.choreId).enqueue(object : Callback<Response> {
+            override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
+                Log.d("HouseworkDetailDialog-confirmChore", response.toString())
+                if(response.raw().code() == 200) {
+                    Toast.makeText(mContext, "인증 요청되었습니다.", Toast.LENGTH_SHORT).show()
+                    socket = SocketHandler.getterSocket()
+                    var data = CertifyChore(
+                        category = housework?.choreCategory,
+                        userNickname = if(App.user.userId == housework?.userId) App.user.nickname else App.getFamilyMember(housework?.userId)?.userNickname,
+                        title = housework?.choreTitle
+                    )
+                    socket.emit("certifyChore",
+                        JSONObject(
+                            Gson().toJson(data)
+                        )
+                    )
+                    Log.d("mySocket", Gson().toJson(CertifyChoreData(data)))
+                    dialog?.dismiss()
+                }
+
+            }
+
+            override fun onFailure(call: Call<Response>, t: Throwable) {
+                Log.d("HouseworkDetailDialog-confirmChore", t.toString())
+            }
+
+        })
+
     }
 
 }
