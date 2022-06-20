@@ -104,7 +104,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                         statusBar.setBackgroundColor(context!!.resources.getColor(R.color.deep_gray))
                     }
                 }
-            // 요청자가 본인이 아닐때
+                // 요청자가 본인이 아닐때
             } else {
                 // 수락자가 본인일때
                 if(item.acceptUserId == App.user.userId) {
@@ -126,7 +126,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                             statusBar.setBackgroundColor(context!!.resources.getColor(R.color.deep_gray))
                         }
                     }
-                // 수락자가 본인이 아니거나 없을 때
+                    // 수락자가 본인이 아니거나 없을 때
                 } else {
                     when(status) {
                         NOT_ACCEPTED -> {
@@ -206,8 +206,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                     call: Call<Response>,
                     response: retrofit2.Response<Response>
                 ) {
-                    val raw = response.raw()
-                    when(raw.code) {
+                    when(response.raw().code()) {
                         200 -> {
                             Toast.makeText(context,"심부름을 인정하셨습니다.", Toast.LENGTH_SHORT).show()
                             ErrandFragment.refreshFragment(fragment)
@@ -241,7 +240,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                     response: retrofit2.Response<Response>
                 ) {
                     val raw = response.raw()
-                    when(raw.code) {
+                    when(raw.code()) {
                         200 -> {
                             if(status == PROCEEDING) {
                                 Toast.makeText(context,"심부름을 취소하였습니다.", Toast.LENGTH_SHORT).show()

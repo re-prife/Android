@@ -73,7 +73,7 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
                 response: Response<com.mirim.refrigerator.server.responses.Response>
             ) {
                 val raw = response.raw()
-                when(raw.code) {
+                when(raw.code()) {
                     204 -> {
                         Toast.makeText(applicationContext,"심부름을 삭제했습니다.", Toast.LENGTH_SHORT).show()
                         finish()
@@ -212,7 +212,7 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
                 val body = response.body()
                 val raw = response.raw()
 
-                when(raw.code) {
+                when(raw.code()) {
                     200 -> {
                         acceptorId = body?.acceptUserId!!
                         setView(body)
@@ -239,7 +239,7 @@ class DetailedErrandInfoActivity : AppCompatActivity() {
                     response: Response<com.mirim.refrigerator.server.responses.Response>
                 ) {
                     val raw = response.raw()
-                    when(raw.code) {
+                    when(raw.code()) {
                         200 -> {
                             if(errandStatus == PROCEEDING) {
                                 Toast.makeText(applicationContext,"심부름을 취소하였습니다.",Toast.LENGTH_SHORT).show()
