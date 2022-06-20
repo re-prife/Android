@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityHomeBinding
 import com.mirim.refrigerator.model.Notice
@@ -21,9 +20,8 @@ import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.network.SocketHandler
 import com.mirim.refrigerator.server.responses.HomeKingsResponse
-import com.mirim.refrigerator.server.socket.CertifyChoreData
-import com.mirim.refrigerator.server.socket.CertifyChoreListener
 import com.mirim.refrigerator.server.socket.SaveInfo
+import com.mirim.refrigerator.server.socket.SocketService
 import com.mirim.refrigerator.view.fragment.MyPageFragment
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
@@ -76,9 +74,17 @@ class HomeActivity : AppCompatActivity() {
         SocketHandler.setSocket()
         SocketHandler.establishConnection()
         socket = SocketHandler.getterSocket()
-        val saveInfo = JsonObject()
 
-        socket.emit("saveInfo", JSONObject(Gson().toJson(SaveInfo(App.user.userId,App.user.groupId))))
+        socket.emit("saveInfo",
+            JSONObject(
+                Gson().toJson(
+                    SaveInfo(App.user.userId,App.user.groupId)
+                )
+            )
+        )
+        Intent(this, SocketService::class.java).also { intent ->
+            startService(intent)
+        }
 
         userViewModel.loadUsers(App.user)
 
@@ -92,7 +98,7 @@ class HomeActivity : AppCompatActivity() {
         dialog.show(supportFragmentManager,"")
         checkPermission()
 
-        socket.on("certifyChore", CertifyChoreListener(applicationContext))
+
 
 
         binding.imageKing1.clipToOutline = true
