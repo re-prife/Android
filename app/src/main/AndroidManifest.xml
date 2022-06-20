@@ -23,6 +23,11 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".view.errand.AcceptErrandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.errand.AddErrandActivity"
+            android:exported="false" />
             android:name=".view.housework.AcceptChoreActivity"
             android:exported="false"
             android:theme="@style/Theme.MyDialog">

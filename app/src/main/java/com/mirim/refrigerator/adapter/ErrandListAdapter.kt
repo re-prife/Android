@@ -104,7 +104,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                         statusBar.setBackgroundColor(context!!.resources.getColor(R.color.deep_gray))
                     }
                 }
-            // 요청자가 본인이 아닐때
+                // 요청자가 본인이 아닐때
             } else {
                 // 수락자가 본인일때
                 if(item.acceptUserId == App.user.userId) {
@@ -126,7 +126,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                             statusBar.setBackgroundColor(context!!.resources.getColor(R.color.deep_gray))
                         }
                     }
-                // 수락자가 본인이 아니거나 없을 때
+                    // 수락자가 본인이 아니거나 없을 때
                 } else {
                     when(status) {
                         NOT_ACCEPTED -> {

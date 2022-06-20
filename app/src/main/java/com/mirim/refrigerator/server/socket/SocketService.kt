@@ -8,11 +8,10 @@ import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.mirim.refrigerator.network.SocketHandler
+import com.mirim.refrigerator.view.errand.*
 import com.mirim.refrigerator.view.housework.AcceptChoreActivity
 import com.mirim.refrigerator.view.housework.CertifyChoreActivity
 import io.socket.client.Socket
-import io.socket.emitter.Emitter
-import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Exception
 
@@ -25,8 +24,16 @@ class SocketService : Service() {
     lateinit var socket: Socket
     lateinit var certifyChoreActivity: PendingIntent
     lateinit var certifyChorePopup: Intent
+  
     lateinit var acceptChoreActivity: PendingIntent
     lateinit var acceptChorePopup: Intent
+
+    lateinit var addErrandActivity : PendingIntent
+    lateinit var addErrandPopup : Intent
+
+    lateinit var acceptErrandPopup : Intent
+    lateinit var acceptErrandActivity : PendingIntent
+
 
     override fun onBind(p0: Intent?): IBinder? = null
 
@@ -70,6 +77,39 @@ class SocketService : Service() {
                 Log.d("mySocket", e.toString())
             }
         }
+
+        // 심부름
+        addErrandPopup = Intent(applicationContext, AddErrandActivity::class.java)
+        socket.on("addQuest") { args ->
+            Log.e("SocketService","addQuest 호출")
+            val data : JSONObject = args[0] as JSONObject
+            val addQuest = Gson().fromJson(data.toString(),AddErrandData::class.java)
+            addErrandPopup.putExtra("title",addQuest.title)
+            addErrandPopup.putExtra("nickname",addQuest.userNickname)
+            addErrandPopup.putExtra("requester",addQuest.requesterId)
+            addErrandActivity = PendingIntent.getActivity(applicationContext,2,addErrandPopup,PendingIntent.FLAG_ONE_SHOT)
+            try {
+                addErrandActivity.send()
+            } catch (e : Exception) {
+                Log.e("SSSSSSSSSSSS","Socket Service addQuest 예외 발생")
+            }
+        }
+
+        acceptErrandPopup = Intent(applicationContext, AcceptErrandActivity::class.java)
+        socket.on("acceptQuest") { args ->
+            Log.e("SocketService","acceptQuest 호출")
+            val data : JSONObject = args[0] as JSONObject
+            val acceptErrand = Gson().fromJson(data.toString(),AcceptErrandData::class.java)
+            acceptErrandPopup.putExtra("title",acceptErrand.title)
+            acceptErrandPopup.putExtra("userNickname",acceptErrand.userNickname)
+            acceptErrandActivity = PendingIntent.getActivity(applicationContext,3,acceptErrandPopup,PendingIntent.FLAG_ONE_SHOT)
+            try {
+                acceptErrandActivity.send()
+            } catch (e : Exception) {
+                Log.e("SSSSSSSSSSSS","Socket Service acceptQuest 예외 발생")
+            }
+        }
+
 
         return START_NOT_STICKY
     }

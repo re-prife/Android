@@ -4,22 +4,29 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.adapter.MakeErrandFamilyAdapter
 import com.mirim.refrigerator.adapter.MakeErrandFamilyAdapter.Companion.selectedMemberList
 import com.mirim.refrigerator.databinding.ActivityCreateErrandBinding
 import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.network.SocketHandler
+import com.mirim.refrigerator.network.SocketHandler.socket
 import com.mirim.refrigerator.server.request.MakeErrandRequest
+import com.mirim.refrigerator.server.responses.MakeErrandResponse
+import com.mirim.refrigerator.server.socket.AddErrand
 import com.mirim.refrigerator.view.BottomAppBarActivity
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -91,14 +98,19 @@ class CreateErrandActivity : AppCompatActivity() {
             val _intent = intent
             val questId : Int = _intent.getIntExtra("questId",-1)
             RetrofitService.errandAPI.updateErrand(userViewModel.getGroupId()!!,questId,App.user.userId,data).enqueue(object :
-                Callback<com.mirim.refrigerator.server.responses.Response>{
+                Callback<MakeErrandResponse>{
                 override fun onResponse(
-                    call: Call<com.mirim.refrigerator.server.responses.Response>,
-                    response: Response<com.mirim.refrigerator.server.responses.Response>
+                    call: Call<MakeErrandResponse>,
+                    response: Response<MakeErrandResponse>
                 ) {
                     val raw = response.raw()
+                    val body = response.body()
                     when(raw.code()) {
                         200 -> {
+
+                            // 심부름 요청 보내기
+                            sendErrandToMember(titleValue, selectedMemberList, body!!.questId, App.user.userId!!)
+
                             Toast.makeText(applicationContext,"심부을 수정하였습니다.",Toast.LENGTH_SHORT).show()
                             finish()
                             overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
@@ -116,7 +128,7 @@ class CreateErrandActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(
-                    call: Call<com.mirim.refrigerator.server.responses.Response>,
+                    call: Call<MakeErrandResponse>,
                     t: Throwable
                 ) {
                     Toast.makeText(applicationContext,"심부름 생성에 실패했습니다.",Toast.LENGTH_SHORT).show()
@@ -125,15 +137,19 @@ class CreateErrandActivity : AppCompatActivity() {
             })
         } else {
             RetrofitService.errandAPI.makeErrand(userViewModel.getGroupId()!!,userViewModel.getUserId()!!,data).enqueue(object :
-                Callback<com.mirim.refrigerator.server.responses.Response>{
+                Callback<MakeErrandResponse>{
                 override fun onResponse(
-                    call: Call<com.mirim.refrigerator.server.responses.Response>,
-                    response: Response<com.mirim.refrigerator.server.responses.Response>
+                    call: Call<MakeErrandResponse>,
+                    response: Response<MakeErrandResponse>
                 ) {
                     val raw = response.raw()
+                    val body = response.body()
                     when(raw.code()) {
                         201 -> {
                             Toast.makeText(applicationContext,"심부름이 생성되었습니다.",Toast.LENGTH_SHORT).show()
+
+                            // 심부름 요청 보내기
+                            sendErrandToMember(titleValue, selectedMemberList, body!!.questId,App.user.userId!!)
 
                             if(backType == 0) {
                                 val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
@@ -155,7 +171,7 @@ class CreateErrandActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(
-                    call: Call<com.mirim.refrigerator.server.responses.Response>,
+                    call: Call<MakeErrandResponse>,
                     t: Throwable
                 ) {
                     Toast.makeText(applicationContext,"심부름 생성에 실패했습니다.",Toast.LENGTH_SHORT).show()
@@ -166,6 +182,26 @@ class CreateErrandActivity : AppCompatActivity() {
 
 
 
+    }
+
+
+    private fun sendErrandToMember(titleValue : String, memberList : List<Int>, questId : Int, requesterId : Int) {
+        socket = SocketHandler.getterSocket()
+        val data = AddErrand(
+            memberList,
+            AddErrandData(
+                questId = questId,
+                userNickname = App.user.nickname!!,
+                title = titleValue,
+                requesterId = requesterId
+            )
+        )
+        socket.emit("addQuest",
+            JSONObject (
+                Gson().toJson(data)
+            )
+        )
+        Log.d("SOCKET_TEST",Gson().toJson(data))
     }
 
 
@@ -197,3 +233,10 @@ class CreateErrandActivity : AppCompatActivity() {
         })
     }
 }
+
+data class AddErrandData(
+    val questId: Int,
+    val userNickname: String,
+    val title : String,
+    val requesterId : Int,
+)
