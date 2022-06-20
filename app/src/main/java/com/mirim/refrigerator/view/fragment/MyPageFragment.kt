@@ -114,7 +114,33 @@ class MyPageFragment: Fragment() {
                 response: Response<UserInfoResponse>
             ) {
                 val body = response.body()
-                Log.e(TAG,body?.userImagePath.toString())
+                when(response.raw().code()) {
+                    200 -> {
+                        if(body?.king?.questKingResponse != null && body?.king?.questKingResponse?.userId == App.user.userId) {
+                            binding.kingQue.visibility = View.VISIBLE
+                        }
+                        if(body?.king?.choreKingResponse != null) {
+                            for(item in body.king.choreKingResponse) {
+                                if(item.category == "COOK" && item.userId == App.user.userId)
+                                    binding.kingYor.visibility = View.VISIBLE
+                                if(item.category == "DISH_WASHING" && item.userId == App.user.userId)
+                                    binding.kingSul.visibility = View.VISIBLE
+                                if(item.category == "SHOPPING" && item.userId == App.user.userId)
+                                    binding.kingJan.visibility = View.VISIBLE
+                            }
+                        }
+                        if(body?.king?.questKingResponse == null && body?.king?.choreKingResponse == null) {
+                            binding.mypageKing.visibility = View.GONE
+                        }
+
+                    }
+                    400 -> {
+                        Toast.makeText(context,"날짜 형식이 잘못되었습니다.",Toast.LENGTH_SHORT).show()
+                    }
+                    404 -> {
+                        Toast.makeText(context,"사용자 정보가 잘못되었습니다.",Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
 
             override fun onFailure(call: Call<UserInfoResponse>, t: Throwable) {
@@ -146,7 +172,8 @@ class MyPageFragment: Fragment() {
                     userViewModel.setFamilyList(response.body()!!)
                     familyAdapter = MyPageFamilyAdapter(context,App.family)
                     binding.recyclerFamilyMember.adapter = familyAdapter
-                    binding.recyclerFamilyMember.layoutManager = object : LinearLayoutManager(context){ override fun canScrollVertically(): Boolean { return false } }
+                    //binding.recyclerFamilyMember.layoutManager = object : LinearLayoutManager(context){ override fun canScrollVertically(): Boolean { return false } }
+                    binding.recyclerFamilyMember.layoutManager = LinearLayoutManager(context)
                 }
             }
             override fun onFailure(call: Call<List<FamilyMember>>, t: Throwable) {
