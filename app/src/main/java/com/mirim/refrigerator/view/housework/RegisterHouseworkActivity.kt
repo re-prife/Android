@@ -47,12 +47,15 @@ class RegisterHouseworkActivity : AppCompatActivity() {
             val objDate = dateFormat.parse(binding.editHouseworkPerformDate.text.toString())
             val dateFormat2 = SimpleDateFormat("yyyy-MM-dd")
             val finalDate = dateFormat2.format(objDate)
+            Log.d("RegisterHouseworkActivity", App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString()).toString())
+            val familyId = App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString())
             createChore(CreateHouseworkRequest(
                 choreTitle = binding.editHouseworkName.text.toString(),
                 choreCategory = Housework.categoryEnglishConverter(binding.spinnerHouseworkCategory.selectedItem.toString()),
                 choreDate =  finalDate,
-                choreUserId = App.getFamilyId(binding.spinnerHouseworkAssignee.selectedItem.toString())
-            ))
+                choreUserId = if (familyId == null) App.user.userId else familyId
+            )
+            )
         }
         binding.btnCancel.setOnClickListener {
             finish()

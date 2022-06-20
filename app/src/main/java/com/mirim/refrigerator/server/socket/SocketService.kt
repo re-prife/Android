@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 import com.google.gson.Gson
+import com.google.gson.JsonParser
 import com.mirim.refrigerator.network.SocketHandler
 import com.mirim.refrigerator.view.housework.AcceptChoreActivity
 import com.mirim.refrigerator.view.housework.CertifyChoreActivity
@@ -52,17 +53,19 @@ class SocketService : Service() {
                 Log.d("mySocket", e.toString())
             }
         }
+
         socket.on("acceptChore") { args ->
-            val data: JSONObject = args as JSONObject
-            Log.d("mySocket", data.toString())
-            var requesterId = data.getInt("requesterId")
-            var acceptChore = Gson().fromJson<AcceptChore>(Gson().toJson(data.getJSONObject("data")), AcceptChore::class.java)
+            val data: JSONObject = args[0] as JSONObject
+            Log.d("mySocket-accept", data.toString())
+            // var requesterId = JsonParser().parse(Gson().toJson(data))
+            var acceptChore = Gson().fromJson<AcceptChore>(data.toString(), AcceptChore::class.java)
 
             acceptChorePopup.putExtra("category", acceptChore.category)
             acceptChorePopup.putExtra("title", acceptChore.title)
+            acceptChoreActivity = PendingIntent.getActivity(applicationContext, 1, acceptChorePopup, PendingIntent.FLAG_ONE_SHOT)
 
             try {
-                certifyChoreActivity.send()
+                acceptChoreActivity.send()
             } catch (e: Exception) {
                 Log.d("mySocket", e.toString())
             }

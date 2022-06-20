@@ -2,6 +2,7 @@ package com.mirim.refrigerator.network
 
 import com.mirim.refrigerator.model.Housework
 import com.mirim.refrigerator.server.request.CreateHouseworkRequest
+import com.mirim.refrigerator.server.responses.ChoreReactionResponse
 import com.mirim.refrigerator.server.responses.HouseworkResponse
 import com.mirim.refrigerator.server.responses.Response
 import retrofit2.Call
@@ -47,5 +48,5 @@ interface HouseworkAPI {
     fun reactionChore(
         @Path("groupId") groupId: Int?,
         @Path("choreId") choreId: Int?
-    ) : Call<Response>
+    ) : Call<ChoreReactionResponse>
 }
