@@ -21,9 +21,7 @@ class MyPageFamilyAdapter(val context: Context?, private val familyList : List<F
         val nickname : TextView = itemView.findViewById(R.id.txt_family_member_nickname)
         val name : TextView = itemView.findViewById(R.id.txt_family_member_name)
 
-
         fun bind(item : FamilyMember) {
-            imageView.clipToOutline = true
             Glide.with(itemView)
                 .load(RetrofitService.IMAGE_BASE_URL+item.userImagePath)
                 .error(R.drawable.icon_profile)

@@ -20,35 +20,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.07" />
+                app:layout_constraintGuide_percent="0.1" />
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.93" />
+                app:layout_constraintGuide_percent="0.9" />
 
-            <ImageView
-                app:layout_constraintTop_toBottomOf="@id/toolbar"
-                android:id="@+id/image_ingredient"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@color/deep_gray"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                app:layout_constraintTop_toBottomOf="@id/image_ingredient"
-                app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-                android:id="@+id/icon_camera"
-                android:layout_width="32dp"
-                android:layout_height="30dp"
-                android:src="@drawable/icon_camera"
-                android:translationY="-20dp"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/linear_image_ingredient"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+                <ImageView
+                    android:id="@+id/image_ingredient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/image_circle"
+                    android:src="@drawable/sample_image" />
 
+                <ImageView
+                    android:id="@+id/icon_camera"
+                    android:layout_width="32dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_camera"
+                    android:layout_marginTop="-20dp"
+                    android:layout_marginLeft="80dp"/>
+            </LinearLayout>
             <TextView
                 android:id="@+id/txt_name_info"
-                app:layout_constraintTop_toBottomOf="@+id/image_ingredient"
+                app:layout_constraintTop_toBottomOf="@+id/linear_image_ingredient"
                 app:layout_constraintLeft_toLeftOf="@id/edit_name"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="50dp"
@@ -57,22 +64,20 @@
                 android:text="이름"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
-
             <EditText
                 android:id="@+id/edit_name"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
-                android:background="@drawable/background_edit_text_ingredient"
-                android:imeOptions="actionDone"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:singleLine="true"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+                android:imeOptions="actionDone"
+                android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
+                app:layout_constraintLeft_toLeftOf="@id/guideline_left"
                 app:layout_constraintTop_toBottomOf="@id/txt_name_info"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/txt_amount_info"
@@ -86,9 +91,8 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
             <EditText
-                android:textSize="15sp"
                 android:id="@+id/edit_amount"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
                 android:paddingLeft="5dp"
@@ -98,7 +102,8 @@
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/txt_amount_info"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_amount_info"
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/txt_day_info"
@@ -116,32 +121,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_day_info"
                 app:layout_constraintLeft_toLeftOf="@id/guideline_left"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="3dp">
                 <EditText
                     android:textSize="15sp"
                     android:id="@+id/edit_bought_day"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="160dp"
                     android:layout_height="40dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
+                    android:textColor="@color/black"
                     android:background="@drawable/background_edit_text_ingredient_left"
-                    android:inputType="date"
-                    android:hint="yyyy-mm-dd"/>
+                    android:hint="yyyy-mm-dd"
+                    android:inputType="date"/>
                 <EditText
+                    android:hint="yyyy-mm-dd"
+                    android:inputType="date"
                     android:textSize="15sp"
                     android:id="@+id/edit_end_day"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:layout_width="160dp"
                     android:layout_height="40dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:background="@drawable/background_edit_text_ingredient_right"
-                    android:inputType="date"
-                    android:hint="yyyy-mm-dd"/>
+                    android:background="@drawable/background_edit_text_ingredient_right" />
             </LinearLayout>
 
             <TextView
@@ -158,7 +163,7 @@
             <Spinner
                 android:textSize="15sp"
                 android:id="@+id/spinner_category"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
                 android:paddingLeft="5dp"
@@ -184,7 +189,7 @@
             <Spinner
                 android:textSize="15sp"
                 android:id="@+id/spinner_keep_type"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="3dp"
                 android:paddingLeft="5dp"
@@ -210,14 +215,14 @@
             <EditText
                 android:textSize="15sp"
                 android:id="@+id/edit_memo"
-                android:layout_width="0dp"
+                android:layout_width="320dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="3dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:maxLines="3"
                 android:maxWidth="310dp"
-                android:inputType="text"
+                android:inputType="text|textMultiLine"
                 android:imeOptions="actionDone"
                 android:background="@drawable/background_edit_text_ingredient"
                 app:layout_constraintRight_toRightOf="@id/guideline_right"
@@ -242,13 +247,13 @@
             android:layout_height="match_parent"
             android:layout_weight="5"
             android:background="@color/main">
+
             <TextView
-                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="저장"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/btn_cancel_ingredient"
@@ -256,14 +261,12 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:background="@color/white">
-
             <TextView
-                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="취소"
-                android:textColor="@color/main" />
+                android:textColor="@color/main"/>
         </RelativeLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,8 +16,7 @@
         android:id="@+id/image_ingredient_search"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:scaleType="centerCrop" />
+        android:layout_marginBottom="12dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

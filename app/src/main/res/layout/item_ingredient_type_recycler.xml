@@ -24,8 +24,7 @@
         app:layout_constraintTop_toBottomOf="@id/txt_ingredient_type"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:verticalSpacing="20dp"
-        android:horizontalSpacing="5dp"/>
+        android:verticalSpacing="20dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
