@@ -32,8 +32,16 @@ class ErrandFragment: Fragment() {
 
     companion object {
         val TAG = "태그"
+        fun refreshFragment(fragment: Fragment) {
+            fragment.onResume()
+        }
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        setErrandList()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,9 +50,6 @@ class ErrandFragment: Fragment() {
     ): View? {
         _binding = FragmentErrandBinding.inflate(inflater,container,false)
         val view = binding.root
-
-
-        setErrandList()
 
 
         binding.btnAddErrand.setOnClickListener {
@@ -77,13 +82,13 @@ class ErrandFragment: Fragment() {
                     200 -> {
                         if(body != null) {
                             errandListAdapter = ErrandListAdapter(
-                                activity,
+                                context = activity,
                                 errandList = body,
+                                fragment = this@ErrandFragment,
                             )
                             binding.listRecycle.adapter = errandListAdapter
                             binding.listRecycle.layoutManager = LinearLayoutManager(context)
                         }
-
                     }
                     404 -> {
                         Toast.makeText(activity,"심부름 조회 중 오류가 발생했습니다.",Toast.LENGTH_SHORT).show()

@@ -36,6 +36,24 @@
         app:layout_constraintTop_toTopOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="@id/toolbar"/>
 
+    <RelativeLayout
+        android:id="@+id/status_bar_waiting"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:background="#FFA967"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="현재 수락 대기중인 심부름입니다."
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:gravity="center"/>
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/txt_requester"
@@ -72,7 +90,7 @@
         android:id="@+id/txt_errand_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="올때 메로나"
+        android:text=" "
         app:layout_constraintLeft_toLeftOf="@+id/txt_requester"
         app:layout_constraintTop_toBottomOf="@+id/txt_requester"
         android:layout_marginTop="20dp"
@@ -87,7 +105,7 @@
         android:paddingRight="50dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:text="이것은 테스트문구입니다. 지금 열려있는 이 앱은 냉장고 식재료와 집안일을 가족간 공유 및 관리할 수 있는 기능들을 제공합니다. 이것은 테스트문구입니다. 지금 열려있는 이 앱은 냉장고 식재료와 집안일을 가족간 공유 및 관리할 수 있는 기능들을 제공합니다. 이것은 테스트문구입니다. 지금 열려있는 이 앱은 냉장고 식재료와 집안일을 가족간 공유 및 관리할 수 있는 기능들을 제공합니다. "
+        android:text=" "
         app:layout_constraintLeft_toLeftOf="@+id/txt_errand_title"
         app:layout_constraintTop_toBottomOf="@+id/txt_errand_title"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"
@@ -99,8 +117,8 @@
         android:layout_height="wrap_content"
         android:text="2022.04.11 요청됨"
         app:layout_constraintRight_toRightOf="@+id/guideline_right"
-        app:layout_constraintTop_toBottomOf="@+id/txt_errand_content"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/btn_cancel_errand"
+        android:layout_marginBottom="80dp"/>
 
     <RelativeLayout
         android:id="@+id/btn_cancel_errand"
@@ -109,6 +127,7 @@
         android:background="@color/main"
         app:layout_constraintBottom_toBottomOf="parent">
         <TextView
+            android:id="@+id/inner_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="취소하기"
@@ -116,5 +135,39 @@
             android:textSize="15sp"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/layout_linear_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <RelativeLayout
+            android:id="@+id/btn_update_errand"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="@color/main">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="수정"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/btn_delete_errand"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/white">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="삭제"
+                android:textColor="@color/main"/>
+        </RelativeLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

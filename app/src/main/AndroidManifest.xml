@@ -30,7 +30,6 @@
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>
-
         <activity android:name=".view.housework.RegisterHouseworkActivity" />
         <activity
             android:name=".view.ingredient.IngredientModifyActivity"
