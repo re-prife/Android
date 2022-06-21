@@ -46,7 +46,7 @@ class Ingredient(
                 "GRAIN" -> "곡물"
                 "MEAT" -> "육류"
                 "SEASONING" -> "양념"
-                "BEVERAGE" -> "양념"
+                "BEVERAGE" -> "음료"
                 "PROCESSED_FOOD" -> "가공식품"
                 "SNACK" -> "간식"
                 "DAIRY_PRODUCT" -> "유제품"

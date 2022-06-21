@@ -33,6 +33,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
 
     private val REQUEST_GET_IMAGE = 999
     private lateinit var uploadFile : MultipartBody.Part
+    var isImageChanged = false
 
     val TAG = "IngredientRegisterActivity"
 
@@ -129,6 +130,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                             "upload_ingredient.jpg",
                             requestBody
                         )
+                        isImageChanged = true
                         binding.imageIngredient.setImageURI(uri)
                     } catch (e: Exception) {
                         Log.e(TAG, e.message.toString())
@@ -150,7 +152,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 response: Response<CreateIngredientResponse>
             ) {
                 if(response.raw().code() == 201) {
-                    uploadIngredientImage(response.body()?.ingredientId);
+                    if(isImageChanged) uploadIngredientImage(response.body()?.ingredientId)
                     Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
                 }
