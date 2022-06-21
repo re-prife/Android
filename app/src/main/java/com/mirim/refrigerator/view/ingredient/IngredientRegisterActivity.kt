@@ -42,6 +42,13 @@ class IngredientRegisterActivity : AppCompatActivity() {
         binding = ActivityIngredientRegisterBinding.inflate(layoutInflater)
         val view = binding.root
 
+        val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_category, android.R.layout.simple_spinner_item)
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerCategory.adapter = categoryAdapter
+
+        val saveTypeAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_saveType, android.R.layout.simple_spinner_item)
+        saveTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerKeepType.adapter = saveTypeAdapter
 
         // QR스캔 확인
         if(intent.getStringExtra("ingredientName") != null) {
@@ -51,15 +58,13 @@ class IngredientRegisterActivity : AppCompatActivity() {
             binding.editName.setText(intent.getStringExtra("ingredientName"))
             binding.editEndDay.setText(intent.getStringExtra("ingredientExpirationDate"))
             binding.editBoughtDay.setText(intent.getStringExtra("ingredientPurchaseDate"))
+
+            binding.spinnerCategory.setSelection(Ingredient.categoryIndex(intent_category))
+            binding.spinnerKeepType.setSelection(Ingredient.categoryIndex(intent_saveType))
+
         }
 
-        val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_category, android.R.layout.simple_spinner_item)
-        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerCategory.adapter = categoryAdapter
 
-        val saveTypeAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_saveType, android.R.layout.simple_spinner_item)
-        saveTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerKeepType.adapter = saveTypeAdapter
 
         binding.iconCamera.setOnClickListener {
             openGallery()
