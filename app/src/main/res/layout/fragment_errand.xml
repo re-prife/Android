@@ -22,8 +22,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_recycle"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
+        android:paddingTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never"

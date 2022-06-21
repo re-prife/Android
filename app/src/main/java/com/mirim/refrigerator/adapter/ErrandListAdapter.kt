@@ -65,7 +65,7 @@ class ErrandListAdapter (val context: Context?, private val errandList : List<Er
                 requesterNickname = App.user.nickname
             }
 
-            var accepterNickname : String? = ""
+            var accepterNickname : String?
             if(item.acceptUserId == -1) {
                 accepterNickname = "수락자 없음"
             } else if(userViewModel.getFamilyMember(item.acceptUserId)?.userNickname == null) {
