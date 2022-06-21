@@ -39,7 +39,6 @@ class BottomAppBarActivity : AppCompatActivity() {
                 intent.putExtra("route",1)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 startActivity(intent)
-                finish()
             }
             "my page" -> {
                 supportFragmentManager.beginTransaction().add(R.id.frame, MyPageFragment()).commit()
@@ -65,10 +64,12 @@ class BottomAppBarActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-            finish()
+            // finish()
+            val intent = Intent(application,HomeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
             overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
         }
-
 
     }
 }

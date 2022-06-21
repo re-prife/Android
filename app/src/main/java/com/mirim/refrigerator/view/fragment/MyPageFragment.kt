@@ -123,6 +123,11 @@ class MyPageFragment: Fragment() {
                 val body = response.body()
                 when(response.raw().code()) {
                     200 -> {
+                        if(body?.king?.questKingResponse == null && body?.king?.choreKingResponse == null) {
+                            binding.mypageKing.visibility = View.GONE
+                        } else {
+                            binding.mypageKing.visibility = View.VISIBLE
+                        }
                         if(body?.king?.questKingResponse != null && body?.king?.questKingResponse?.userId == App.user.userId) {
                             binding.kingQue.visibility = View.VISIBLE
                         }
@@ -135,9 +140,6 @@ class MyPageFragment: Fragment() {
                                 if(item.category == "SHOPPING" && item.userId == App.user.userId)
                                     binding.kingJan.visibility = View.VISIBLE
                             }
-                        }
-                        if(body?.king?.questKingResponse == null && body?.king?.choreKingResponse == null) {
-                            binding.mypageKing.visibility = View.GONE
                         }
 
                     }

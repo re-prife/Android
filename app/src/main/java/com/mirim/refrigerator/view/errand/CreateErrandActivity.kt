@@ -216,7 +216,7 @@ class CreateErrandActivity : AppCompatActivity() {
                 // 다른 멤버 존재 여부 확인
                 if(body?.size==0) {
                     binding.btnSendErrand.isEnabled = false
-                    binding.btnSendErrand.setBackgroundColor(Color.parseColor(R.color.deep_deep_gray.toString()))
+                    binding.btnSendErrand.setBackgroundColor(applicationContext.resources.getColor(R.color.deep_deep_gray))
                     binding.btnSendErrand.text = "그룹원이 없어 심부름 요청이 불가능합니다."
                 } else {
                     App.family = response.body()!!
