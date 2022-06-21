@@ -14,7 +14,8 @@
         android:layout_height="46dp"
         android:id="@+id/image_family_member"
         android:layout_marginLeft="8dp"
-        android:src="@drawable/sample_image"/>
+        android:src="@drawable/sample_image"
+        android:scaleType="centerCrop"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

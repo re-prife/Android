@@ -47,7 +47,12 @@ class IngredientGridAdapter(val context: Context?, val ingredients: List<Ingredi
         statusView.setBackgroundTintList(context.getResources().getColorStateList(Ingredient.statusColor(ingredient.ingredientColor)))
         var imagePath = RetrofitService.IMAGE_BASE_URL+ingredient.ingredientImagePath
         Log.d("imagePath", imagePath)
-        Glide.with(context).load(imagePath).into(imageIngredient);
+        Glide
+            .with(context)
+            .load(imagePath)
+            .error(R.drawable.placeholder)
+            .fallback(R.drawable.placeholder)
+            .into(imageIngredient);
 
         return view
     }
