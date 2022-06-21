@@ -129,7 +129,7 @@
                     android:paddingRight="5dp"
                     android:background="@drawable/background_edit_text_ingredient_left"
                     android:inputType="date"
-                    android:hint="yyyy-mm-dd"/>
+                    android:hint="yyyymmdd"/>
                 <EditText
                     android:id="@+id/edit_end_day"
                     android:layout_width="match_parent"
@@ -139,7 +139,7 @@
                     android:paddingRight="5dp"
                     android:background="@drawable/background_edit_text_ingredient_right"
                     android:inputType="date"
-                    android:hint="yyyy-mm-dd"/>
+                    android:hint="yyyymmdd"/>
             </LinearLayout>
 
             <TextView

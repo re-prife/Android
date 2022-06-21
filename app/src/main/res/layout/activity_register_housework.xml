@@ -135,7 +135,7 @@
             app:layout_constraintLeft_toLeftOf="@id/guideline_left"
             app:layout_constraintTop_toBottomOf="@id/txt_perform_date"
             android:inputType="datetime"
-            android:hint="yyyy-mm-dd"/>
+            android:hint="yyyymmdd"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"

@@ -105,7 +105,7 @@ class IngredientModifyActivity : AppCompatActivity() {
         }
 
         binding.btnCancelIngredient.setOnClickListener {
-            Toast.makeText(applicationContext, "취소", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
     }
