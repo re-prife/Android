@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -44,6 +45,7 @@ class SignupActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSignup.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             checkSignup()
         }
 
@@ -90,6 +92,9 @@ class SignupActivity : AppCompatActivity() {
             progressSignup(data)
 
         }
+        else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 
     private fun progressSignup(data : SignupRequest) {
@@ -109,6 +114,8 @@ class SignupActivity : AppCompatActivity() {
 
                         val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        binding.progressBar.visibility = View.GONE
+                        Toast.makeText(applicationContext, "회원가입 되었습니다.", Toast.LENGTH_SHORT).show()
                         startActivity(intent)
                         overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
                         finish()
@@ -121,6 +128,7 @@ class SignupActivity : AppCompatActivity() {
                     }
 
                 }
+                binding.progressBar.visibility = View.GONE
 
             }
 
@@ -128,6 +136,7 @@ class SignupActivity : AppCompatActivity() {
                 Log.d(TAG,t.message.toString())
                 Log.d(TAG,"fail")
                 Toast.makeText(applicationContext,"회원가입에 실패했습니다.",Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
             }
 
         })

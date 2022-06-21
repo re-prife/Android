@@ -29,6 +29,7 @@ class MyPageFamilyAdapter(val context: Context?, private val familyList : List<F
                 .into(imageView)
             nickname.text = item.userNickname
             name.text = item.userName
+            imageView.clipToOutline = true
         }
     }
 
