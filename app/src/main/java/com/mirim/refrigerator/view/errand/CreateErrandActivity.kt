@@ -24,6 +24,7 @@ import com.mirim.refrigerator.server.request.MakeErrandRequest
 import com.mirim.refrigerator.server.responses.MakeErrandResponse
 import com.mirim.refrigerator.server.socket.AddErrand
 import com.mirim.refrigerator.view.BottomAppBarActivity
+import com.mirim.refrigerator.view.HomeActivity
 import com.mirim.refrigerator.viewmodel.App
 import com.mirim.refrigerator.viewmodel.UserViewModel
 import org.json.JSONObject
@@ -67,19 +68,17 @@ class CreateErrandActivity : AppCompatActivity() {
 
 
         binding.toolbar.btnBack.setOnClickListener {
-            if(isUpdate) {
-                finish()
-                overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+            if(backType == 0) {
+                val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+                intent.putExtra("clicked button", "errand")
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                startActivity(intent)
             } else {
-                if(backType == 0) {
-                    val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
-                    intent.putExtra("clicked button", "errand")
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-                    startActivity(intent)
-                } else {
-                    finish()
-                    overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
-                }
+                val intent = Intent(application, HomeActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
             }
         }
 

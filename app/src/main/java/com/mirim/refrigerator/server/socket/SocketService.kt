@@ -65,8 +65,8 @@ class SocketService : Service() {
             val data: JSONObject = args[0] as JSONObject
             Log.d("mySocket-accept", data.toString())
             // var requesterId = JsonParser().parse(Gson().toJson(data))
-            var acceptChore = Gson().fromJson<AcceptChore>(data.getJSONObject("data").toString(), AcceptChore::class.java)
-            Log.d("mySocket-accept", acceptChore.toString())
+            var acceptChore = Gson().fromJson<AcceptChore>(data.toString(), AcceptChore::class.java)
+
             acceptChorePopup.putExtra("category", acceptChore.category)
             acceptChorePopup.putExtra("title", acceptChore.title)
             acceptChoreActivity = PendingIntent.getActivity(applicationContext, 1, acceptChorePopup, PendingIntent.FLAG_ONE_SHOT)
