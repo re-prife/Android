@@ -65,7 +65,12 @@ class IngredientModifyActivity : AppCompatActivity() {
         binding.spinnerCategory.setSelection(Ingredient.categoryIndex(ingredient?.ingredientCategory))
         binding.spinnerKeepType.setSelection(Ingredient.storeIndex(ingredient?.ingredientSaveType))
         binding.editMemo.setText(ingredient?.ingredientMemo)
-        Glide.with(applicationContext).load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath).into(binding.imageIngredient);
+        Glide
+            .with(applicationContext)
+            .load(RetrofitService.IMAGE_BASE_URL+ingredient?.ingredientImagePath)
+            .error(R.drawable.placeholder)
+            .fallback(R.drawable.placeholder)
+            .into(binding.imageIngredient);
 
         binding.toolbar.toolbarTitle.text = "식재료 수정"
         binding.toolbar.btnBack.setOnClickListener {
