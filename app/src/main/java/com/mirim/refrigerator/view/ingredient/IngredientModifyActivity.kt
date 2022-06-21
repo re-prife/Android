@@ -77,7 +77,7 @@ class IngredientModifyActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.linearImageIngredient.setOnClickListener {
+        binding.iconCamera.setOnClickListener {
             openGallery()
         }
 
