@@ -105,7 +105,7 @@
             android:layout_marginTop="20dp"/>
         <EditText
             android:id="@+id/edit_password"
-            android:inputType="textVisiblePassword"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"

@@ -54,7 +54,7 @@
     <EditText
         android:id="@+id/edittxt_input_code"
         android:inputType="textPersonName"
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@drawable/background_edit_text"
         app:layout_constraintLeft_toLeftOf="@id/guideline_left"
