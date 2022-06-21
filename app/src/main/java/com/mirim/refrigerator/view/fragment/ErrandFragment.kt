@@ -66,7 +66,6 @@ class ErrandFragment: Fragment() {
             override fun onResponse(call: Call<List<Errand>>, response: Response<List<Errand>>) {
                 val body = response.body()
                 val raw = response.raw()
-                Log.e(TAG,body.toString())
                 when(raw.code()) {
                     200 -> {
                         if(body != null) {

@@ -91,7 +91,7 @@ class SocketService : Service() {
             try {
                 addErrandActivity.send()
             } catch (e : Exception) {
-                Log.e("SSSSSSSSSSSS","Socket Service addQuest 예외 발생")
+                Log.e("mySocket","Socket Service addQuest 예외 발생")
             }
         }
 
@@ -101,12 +101,12 @@ class SocketService : Service() {
             val data : JSONObject = args[0] as JSONObject
             val acceptErrand = Gson().fromJson(data.toString(),AcceptErrandData::class.java)
             acceptErrandPopup.putExtra("title",acceptErrand.title)
-            acceptErrandPopup.putExtra("userNickname",acceptErrand.userNickname)
+            acceptErrandPopup.putExtra("nickname",acceptErrand.userNickname)
             acceptErrandActivity = PendingIntent.getActivity(applicationContext,3,acceptErrandPopup,PendingIntent.FLAG_ONE_SHOT)
             try {
                 acceptErrandActivity.send()
             } catch (e : Exception) {
-                Log.e("SSSSSSSSSSSS","Socket Service acceptQuest 예외 발생")
+                Log.e("mySocket","Socket Service acceptQuest 예외 발생")
             }
         }
 
