@@ -65,7 +65,7 @@ class SelectIngredientActivity : AppCompatActivity() {
                 for(selected in selectedIngredients) {
                     list.add(DeleteIngredientsRequest(selected.ingredientId))
                 }
-                val dialog = IngredientDeleteDialog(ingredientName = "선택한 식재료 모두", list, applicationContext)
+                val dialog = IngredientDeleteDialog(ingredientName = "선택한 식재료 모두", list, this)
                 dialog.show(supportFragmentManager, "")
             }
 

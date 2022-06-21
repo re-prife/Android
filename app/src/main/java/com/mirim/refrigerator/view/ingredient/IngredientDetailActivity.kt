@@ -33,7 +33,7 @@ class IngredientDetailActivity : AppCompatActivity() {
             finish()
         }
         binding.btnDelete.setOnClickListener {
-            val dialog = IngredientDeleteDialog(ingredientName = ingredient?.ingredientName, listOf(DeleteIngredientsRequest(ingredient?.ingredientId)), applicationContext)
+            val dialog = IngredientDeleteDialog(ingredientName = ingredient?.ingredientName, listOf(DeleteIngredientsRequest(ingredient?.ingredientId)), this)
             dialog.show(supportFragmentManager, "")
         }
 
