@@ -21,6 +21,7 @@ import com.mirim.refrigerator.model.FamilyMember
 import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.responses.UserInfoResponse
+import com.mirim.refrigerator.view.login.SigninActivity
 import com.mirim.refrigerator.view.mypage.PolicyActivity
 import com.mirim.refrigerator.view.mypage.ProfileModifyActivity
 import com.mirim.refrigerator.viewmodel.UserViewModel
@@ -99,6 +100,12 @@ class MyPageFragment: Fragment() {
             var intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain"
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("s2009@e-mirim.hs.kr"))
+            startActivity(intent)
+        }
+
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(context,SigninActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
 
