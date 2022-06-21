@@ -2,6 +2,7 @@ package com.mirim.refrigerator.view.housework
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivityAcceptChoreBinding
 import com.mirim.refrigerator.model.Housework
@@ -17,6 +18,7 @@ class AcceptChoreActivity : AppCompatActivity() {
 
         val category = intent.getStringExtra("category")
         val title = intent.getStringExtra("title")
+        Log.d("AcceptChoreActivity", title.toString())
 
         binding.txtHouseworkCategory.text = Housework.categoryKoreanConverter(category)
         binding.txtHouseworkTitle.text = title + " 인증이 수락되었습니다."

@@ -15,7 +15,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/sample_image"
-            android:id="@+id/image_ingredient_item"/>
+            android:id="@+id/image_ingredient_item"
+            android:scaleType="centerCrop"/>
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"

@@ -39,7 +39,7 @@ class CertifyChoreActivity : AppCompatActivity() {
         val choreId = intent.getIntExtra("choreId", -1)
 
         binding.txtHouseworkCategory.text = Housework.categoryKoreanConverter(category)
-        binding.txtHouseworkTitle.text = nickname + "님이 " + title+"을 완료했습니다."
+        binding.txtHouseworkTitle.text = nickname + "님이 " + title + "을 완료했습니다."
 
         binding.btnApprove.setOnClickListener {
             RetrofitService.houseworkAPI.reactionChore(App.user.groupId, choreId = choreId).enqueue(object : Callback<ChoreReactionResponse> {

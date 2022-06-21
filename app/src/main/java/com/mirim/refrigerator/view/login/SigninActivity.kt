@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.databinding.ActivitySigninBinding
@@ -37,6 +38,7 @@ class SigninActivity : AppCompatActivity() {
             finish()
         }
         binding.btnSignin.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             checkSignin()
         }
 
@@ -54,14 +56,17 @@ class SigninActivity : AppCompatActivity() {
             emailValue.isEmpty() -> {
                 binding.editEmail.error = "이메일을 입력하세요."
                 check = false
+                binding.progressBar.visibility = View.GONE
             }
             !emailValue.contains('@') -> {
                 binding.editEmail.error = "이메일 양식을 확인해주세요."
                 check = false
+                binding.progressBar.visibility = View.GONE
             }
             pwValue.isEmpty() -> {
                 binding.editPassword.error = "비밀번호를 입력하세요."
                 check = false
+                binding.progressBar.visibility = View.GONE
             }
         }
 
@@ -91,12 +96,16 @@ class SigninActivity : AppCompatActivity() {
                         if(body?.groupId == null) {
                             val intent = Intent(applicationContext,SelectRegisterTypeActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(applicationContext, "로그인 되었습니다.", Toast.LENGTH_SHORT).show()
                             startActivity(intent)
                             overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
                             finish()
                         } else {
                             val intent = Intent(applicationContext, HomeActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(applicationContext, "로그인 되었습니다.", Toast.LENGTH_SHORT).show()
                             startActivity(intent)
                             overridePendingTransition(R.anim.translate_none, R.anim.translate_none)
                             finish()
@@ -112,11 +121,13 @@ class SigninActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"입력하신 계정은 존재하지 않습니다",Toast.LENGTH_SHORT).show()
                     }
                 }
+                binding.progressBar.visibility = View.GONE
             }
 
             override fun onFailure(call: Call<SigninResponse>, t: Throwable) {
                 Log.d(TAG,t.message.toString())
                 Toast.makeText(applicationContext,"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.GONE
             }
 
         })
