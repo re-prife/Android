@@ -23,12 +23,13 @@ import com.mirim.refrigerator.network.RetrofitService
 import com.mirim.refrigerator.server.request.DeleteIngredientsRequest
 import com.mirim.refrigerator.server.responses.CreateIngredientResponse
 import com.mirim.refrigerator.server.responses.DeleteIngredientsResponse
+import com.mirim.refrigerator.view.ingredient.SelectIngredientActivity
 import com.mirim.refrigerator.viewmodel.App
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class IngredientDeleteDialog(var ingredientName: String?, var data: List<DeleteIngredientsRequest>, val mContext: Context) : DialogFragment() {
+class IngredientDeleteDialog(var ingredientName: String?, var data: List<DeleteIngredientsRequest>, val mContext: Activity) : DialogFragment() {
 
     lateinit var binding: DialogIngredientDeleteBinding
 
@@ -40,7 +41,7 @@ class IngredientDeleteDialog(var ingredientName: String?, var data: List<DeleteI
 
             binding.txtIngredientName.text = ingredientName
             binding.btnConfirm.setOnClickListener {
-                deleteIngredient(data, mContext)
+                deleteIngredient(data)
                 dialog?.dismiss()
             }
 
@@ -59,7 +60,7 @@ class IngredientDeleteDialog(var ingredientName: String?, var data: List<DeleteI
         }?: throw IllegalStateException("Activity cannot be null")
     }
 
-    fun deleteIngredient(data: List<DeleteIngredientsRequest>, curContext: Context) {
+    fun deleteIngredient(data: List<DeleteIngredientsRequest>) {
         RetrofitService.ingredientAPI.deleteIngredients(App.user.groupId, data).enqueue(object :
             Callback<DeleteIngredientsResponse> {
             override fun onResponse(
@@ -67,7 +68,8 @@ class IngredientDeleteDialog(var ingredientName: String?, var data: List<DeleteI
                 response: Response<DeleteIngredientsResponse>
             ) {
                 Log.d("IngredientModifyActivity-deleteIngredient", response.toString())
-                (curContext as Activity).finish()
+                dialog?.dismiss()
+                mContext.finish()
             }
 
             override fun onFailure(call: Call<DeleteIngredientsResponse>, t: Throwable) {

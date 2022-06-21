@@ -33,6 +33,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
 
     private val REQUEST_GET_IMAGE = 999
     private lateinit var uploadFile : MultipartBody.Part
+    var isImageChanged = false
 
     val TAG = "IngredientRegisterActivity"
 
@@ -40,6 +41,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIngredientRegisterBinding.inflate(layoutInflater)
         val view = binding.root
+        setContentView(view)
 
 
         // QR스캔 확인
@@ -50,6 +52,10 @@ class IngredientRegisterActivity : AppCompatActivity() {
             binding.editName.setText(intent.getStringExtra("ingredientName"))
             binding.editEndDay.setText(intent.getStringExtra("ingredientExpirationDate"))
             binding.editBoughtDay.setText(intent.getStringExtra("ingredientPurchaseDate"))
+
+            binding.spinnerCategory.setSelection(Ingredient.categoryIndex(intent_category))
+            binding.spinnerKeepType.setSelection(Ingredient.categoryIndex(intent_saveType))
+
         }
 
         val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_category, android.R.layout.simple_spinner_item)
@@ -59,6 +65,8 @@ class IngredientRegisterActivity : AppCompatActivity() {
         val saveTypeAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_saveType, android.R.layout.simple_spinner_item)
         saveTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerKeepType.adapter = saveTypeAdapter
+
+
 
         binding.iconCamera.setOnClickListener {
             openGallery()
@@ -98,7 +106,6 @@ class IngredientRegisterActivity : AppCompatActivity() {
             finish()
         }
 
-        setContentView(view)
     }
 
     fun openGallery() {
@@ -129,6 +136,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                             "upload_ingredient.jpg",
                             requestBody
                         )
+                        isImageChanged = true
                         binding.imageIngredient.setImageURI(uri)
                     } catch (e: Exception) {
                         Log.e(TAG, e.message.toString())
@@ -150,7 +158,7 @@ class IngredientRegisterActivity : AppCompatActivity() {
                 response: Response<CreateIngredientResponse>
             ) {
                 if(response.raw().code() == 201) {
-                    uploadIngredientImage(response.body()?.ingredientId);
+                    if(isImageChanged) uploadIngredientImage(response.body()?.ingredientId)
                     Toast.makeText(applicationContext, "저장되었습니다.", Toast.LENGTH_SHORT).show()
                     finish()
                 }
