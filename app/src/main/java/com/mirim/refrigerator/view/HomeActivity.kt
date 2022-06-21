@@ -51,6 +51,15 @@ class HomeActivity : AppCompatActivity() {
         val internetPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.INTERNET)
         val snsPermission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
 
+        if(galleryPermission == PackageManager.PERMISSION_DENIED && cameraPermission == PackageManager.PERMISSION_DENIED &&
+            internetPermission == PackageManager.PERMISSION_DENIED && snsPermission == PackageManager.PERMISSION_DENIED) {
+            // 권한 dialog
+            val dialog = PermissionCheckDialog()
+            dialog.show(supportFragmentManager,"")
+        }
+
+
+
         if(galleryPermission == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),0)
         }
@@ -90,15 +99,7 @@ class HomeActivity : AppCompatActivity() {
 
 
         setFamilyData()
-
-
-
-        // 권한 dialog
-        val dialog = PermissionCheckDialog()
-        dialog.show(supportFragmentManager,"")
         checkPermission()
-
-
 
 
         binding.imageKing1.clipToOutline = true

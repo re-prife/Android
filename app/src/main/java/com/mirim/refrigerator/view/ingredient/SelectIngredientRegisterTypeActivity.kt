@@ -100,7 +100,7 @@ class SelectIngredientRegisterTypeActivity : AppCompatActivity() {
         return formatDate(currentTime)
     }
     private fun formatDate(time : Long) : String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+        val sdf = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
         return sdf.format(time)
     }
 }
