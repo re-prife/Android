@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mirim.refrigerator.R
 import com.mirim.refrigerator.model.FamilyMember
-import com.mirim.refrigerator.model.User
 import com.mirim.refrigerator.network.RetrofitService
+import com.mirim.refrigerator.view.errand.CreateErrandActivity
 
 class MakeErrandFamilyAdapter (val context: Context?, private val familyList : ArrayList<FamilyMember>) :
     RecyclerView.Adapter<MakeErrandFamilyAdapter.ViewHolder>() {
@@ -22,10 +22,10 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val profileImage : ImageView = itemView.findViewById(R.id.img_profile)
+        private val profileImage : ImageView = itemView.findViewById(R.id.img_profile)
         val nickname : TextView = itemView.findViewById(R.id.txt_nickname)
-        val selectedProfile : ImageView = itemView.findViewById(R.id.img_selected_profile)
-        val selectedIcon : ImageView = itemView.findViewById(R.id.icon_selected)
+        private val selectedProfile : ImageView = itemView.findViewById(R.id.img_selected_profile)
+        private val selectedIcon : ImageView = itemView.findViewById(R.id.icon_selected)
 
 
         fun bind(item : FamilyMember) {
@@ -39,6 +39,13 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
 
 
             itemView.setOnClickListener {
+
+                if(selectedMemberList.contains(item.userId)) {
+                    selectedMemberList.remove(item.userId)
+                } else {
+                    selectedMemberList.add(item.userId)
+                }
+
                 if(selectedIcon.isVisible) {
                     selectedProfile.isVisible = false
                     selectedIcon.isVisible = false
@@ -46,6 +53,8 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
                     selectedProfile.isVisible = true
                     selectedIcon.isVisible = true
                 }
+
+                checkIsMemberSelected()
             }
         }
     }
@@ -64,5 +73,18 @@ class MakeErrandFamilyAdapter (val context: Context?, private val familyList : A
         holder.bind(familyList[position])
     }
 
+    fun checkIsMemberSelected() {
+        if(selectedMemberList.size == 0) {
+            CreateErrandActivity.binding.btnSendErrand.isEnabled = false
+            CreateErrandActivity.binding.btnSendErrand.setBackgroundColor(context!!.resources.getColor(R.color.gray))
+            CreateErrandActivity.binding.btnSendErrand.text = "심부름을 요청할 멤버를 선택해주세요"
+            CreateErrandActivity.binding.btnSendErrand.setTextColor(context.resources.getColor(R.color.deep_deep_gray))
+        } else {
+            CreateErrandActivity.binding.btnSendErrand.isEnabled = true
+            CreateErrandActivity.binding.btnSendErrand.setBackgroundColor(context!!.resources.getColor(R.color.main))
+            CreateErrandActivity.binding.btnSendErrand.text = "전송하기"
+            CreateErrandActivity.binding.btnSendErrand.setTextColor(context.resources.getColor(R.color.white))
+        }
 
+    }
 }

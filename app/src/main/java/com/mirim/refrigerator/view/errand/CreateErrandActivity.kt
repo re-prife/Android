@@ -55,7 +55,6 @@ class CreateErrandActivity : AppCompatActivity() {
         binding.toolbar.toolbarTitle.text = "심부름 보내기"
         userViewModel.loadUsers(App.user)
         setFamilyMember()
-        selectedMemberList = ArrayList()
     }
 
 
@@ -63,6 +62,7 @@ class CreateErrandActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateErrandBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        selectedMemberList = ArrayList()
         isUpdate = intent.getBooleanExtra("isUpdate",false)
 
 
