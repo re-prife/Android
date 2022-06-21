@@ -87,6 +87,7 @@ class SocketService : Service() {
             addErrandPopup.putExtra("title",addQuest.title)
             addErrandPopup.putExtra("nickname",addQuest.userNickname)
             addErrandPopup.putExtra("requester",addQuest.requesterId)
+            addErrandPopup.putExtra("questId",addQuest.questId)
             addErrandActivity = PendingIntent.getActivity(applicationContext,2,addErrandPopup,PendingIntent.FLAG_ONE_SHOT)
             try {
                 addErrandActivity.send()
