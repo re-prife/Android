@@ -11,7 +11,7 @@ object SocketHandler {
     @Synchronized
     fun setSocket() {
         try {
-            socket = IO.socket("http://52.204.65.160:3000/")
+            socket = IO.socket(RetrofitService.SOCKET_URL)
         } catch (e : URISyntaxException) {
             Log.d("mySocket", e.toString())
         }
