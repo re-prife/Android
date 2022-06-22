@@ -71,7 +71,7 @@
         android:layout_marginTop="30dp"/>
     <EditText
         android:id="@+id/edit_errand_title"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:singleLine="true"
         android:imeOptions="actionDone"
@@ -97,7 +97,7 @@
 
     <EditText
         android:id="@+id/edit_errand_content"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
         android:background="@drawable/background_edit_text"
         android:maxLines="5"
@@ -108,13 +108,15 @@
         android:paddingLeft="10dp"/>
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send_errand"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="전송하기"
         app:layout_constraintLeft_toLeftOf="@id/guideline_left"
         app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/background_config_button"
+        android:textColor="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>

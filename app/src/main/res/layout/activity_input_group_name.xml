@@ -62,7 +62,8 @@
         app:layout_constraintLeft_toLeftOf="@id/guideline_left"
         app:layout_constraintRight_toRightOf="@id/guideline_right"
         app:layout_constraintTop_toBottomOf="@id/txt_input_code_info"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:padding="10dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_join_group"

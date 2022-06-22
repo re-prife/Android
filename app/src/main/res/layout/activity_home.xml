@@ -34,11 +34,10 @@
                 android:id="@+id/main_notice_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/notice_img"
-                android:text="엄마의 잔소리"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                android:layout_centerVertical="true"/>
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/write_notice"
@@ -282,6 +281,7 @@
                         app:layout_constraintGuide_percent="0.75" />
 
                     <ImageView
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_profile"
                         android:layout_marginTop="12dp"
                         android:id="@+id/image_king_1"
@@ -349,6 +349,7 @@
                         app:layout_constraintGuide_percent="0.75" />
 
                     <ImageView
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_profile"
                         android:layout_marginTop="12dp"
                         android:id="@+id/image_king_2"
@@ -416,6 +417,7 @@
                         app:layout_constraintGuide_percent="0.75" />
 
                     <ImageView
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_profile"
                         android:layout_marginTop="12dp"
                         android:id="@+id/image_king_3"
@@ -483,6 +485,7 @@
                         app:layout_constraintGuide_percent="0.75" />
 
                     <ImageView
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_profile"
                         android:background="@drawable/image_circle"
                         android:layout_marginTop="12dp"

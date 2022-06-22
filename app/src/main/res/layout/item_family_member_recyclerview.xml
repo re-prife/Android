@@ -8,13 +8,15 @@
     android:gravity="center_vertical"
     android:background="@drawable/white_radius_16dp_background"
     android:elevation="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_margin="5dp">
     <ImageView
         android:layout_width="46dp"
         android:layout_height="46dp"
         android:id="@+id/image_family_member"
         android:layout_marginLeft="8dp"
-        android:src="@drawable/sample_image"/>
+        android:src="@drawable/sample_image"
+        android:scaleType="centerCrop"
+        android:background="@drawable/image_circle"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
