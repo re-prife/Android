@@ -49,7 +49,6 @@ class RefrigeratorFragment: Fragment() {
         binding.myToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_search -> {
-                    Toast.makeText(context, "검색", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(context, RefrigeratorSearchActivity::class.java))
                     true
                 }

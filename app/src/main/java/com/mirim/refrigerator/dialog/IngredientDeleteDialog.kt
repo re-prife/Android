@@ -67,9 +67,13 @@ class IngredientDeleteDialog(var ingredientName: String?, var data: List<DeleteI
                 call: Call<DeleteIngredientsResponse>,
                 response: Response<DeleteIngredientsResponse>
             ) {
+                if(response.raw().code() == 204) {
+                    Toast.makeText(mContext, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    dialog?.dismiss()
+                    mContext.finish()
+                }
                 Log.d("IngredientModifyActivity-deleteIngredient", response.toString())
-                dialog?.dismiss()
-                mContext.finish()
+
             }
 
             override fun onFailure(call: Call<DeleteIngredientsResponse>, t: Throwable) {
