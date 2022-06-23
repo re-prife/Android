@@ -43,18 +43,17 @@ class IngredientRegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         // QR스캔 확인
         if(intent.getStringExtra("ingredientName") != null) {
             val intent_saveType = intent.getStringExtra("ingredientSaveType")
             val intent_category = intent.getStringExtra("ingredientCategory")
+            Log.d("saveType", intent_saveType+Ingredient.categoryIndex(intent_category))
 
             binding.editName.setText(intent.getStringExtra("ingredientName"))
             binding.editEndDay.setText(intent.getStringExtra("ingredientExpirationDate"))
             binding.editBoughtDay.setText(intent.getStringExtra("ingredientPurchaseDate"))
 
-            binding.spinnerCategory.setSelection(Ingredient.categoryIndex(intent_category))
-            binding.spinnerKeepType.setSelection(Ingredient.categoryIndex(intent_saveType))
+
 
         }
 
@@ -66,6 +65,10 @@ class IngredientRegisterActivity : AppCompatActivity() {
         saveTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerKeepType.adapter = saveTypeAdapter
 
+        if(intent.getStringExtra("ingredientName") != null) {
+            binding.spinnerCategory.setSelection(Ingredient.categoryIndex(intent.getStringExtra("ingredientCategory")))
+            binding.spinnerKeepType.setSelection(Ingredient.storeIndex(intent.getStringExtra("ingredientSaveType")))
+        }
 
 
         binding.iconCamera.setOnClickListener {

@@ -25,9 +25,10 @@ class RetrofitService {
         var errandAPI : ErrandAPI
         var houseworkAPI: HouseworkAPI
 
-        val BASE_URL : String = "https://family.emirim.kr:8081/"
-        val IMAGE_BASE_URL : String = "https://family.emirim.kr:8081"
-        val SOCKET_URL : String = "http://freemiliy.emirim.kr/"
+        val BASE_URL : String = "http://family.emirim.kr:8081/"
+        val IMAGE_BASE_URL : String = "http://family.emirim.kr:8081"
+        val SOCKET_URL : String = "http://52.204.65.160:3000/"
+
         val retrofit : Retrofit
             get() = Retrofit.Builder()
                 .baseUrl(BASE_URL)

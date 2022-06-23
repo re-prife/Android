@@ -111,8 +111,18 @@ class CreateErrandActivity : AppCompatActivity() {
                             sendErrandToMember(titleValue, selectedMemberList, body!!.questId, App.user.userId!!)
 
                             Toast.makeText(applicationContext,"심부을 수정하였습니다.",Toast.LENGTH_SHORT).show()
-                            finish()
-                            overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+                            if(backType == 0) {
+                                val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
+                                intent.putExtra("clicked button", "errand")
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(application, HomeActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(intent)
+                                overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
+                            }
                         }
                         404 -> {
                             Toast.makeText(applicationContext,"잘못된 심부름 정보입니다.",Toast.LENGTH_SHORT).show()
@@ -153,10 +163,13 @@ class CreateErrandActivity : AppCompatActivity() {
                             if(backType == 0) {
                                 val intent = Intent(applicationContext, BottomAppBarActivity::class.java)
                                 intent.putExtra("clicked button", "errand")
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                                 startActivity(intent)
                             } else {
-                                finish()
+                                val intent = Intent(application, HomeActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(intent)
                                 overridePendingTransition(R.anim.translate_none,R.anim.translate_none)
                             }
                         }
