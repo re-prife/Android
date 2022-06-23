@@ -57,7 +57,6 @@ class IngredientRegisterActivity : AppCompatActivity() {
 
         }
 
-
         val categoryAdapter = ArrayAdapter.createFromResource(applicationContext, R.array.ingredient_category, android.R.layout.simple_spinner_item)
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerCategory.adapter = categoryAdapter
@@ -67,10 +66,9 @@ class IngredientRegisterActivity : AppCompatActivity() {
         binding.spinnerKeepType.adapter = saveTypeAdapter
 
         if(intent.getStringExtra("ingredientName") != null) {
-            binding.spinnerCategory.setSelection(Ingredient.categoryIndex(intent.getStringExtra("ingredientSaveType")))
-            binding.spinnerKeepType.setSelection(Ingredient.storeIndex(intent.getStringExtra("ingredientCategory")))
+            binding.spinnerCategory.setSelection(Ingredient.categoryIndex(intent.getStringExtra("ingredientCategory")))
+            binding.spinnerKeepType.setSelection(Ingredient.storeIndex(intent.getStringExtra("ingredientSaveType")))
         }
-
 
 
         binding.iconCamera.setOnClickListener {

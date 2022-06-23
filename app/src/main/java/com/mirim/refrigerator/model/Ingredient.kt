@@ -116,7 +116,8 @@ class Ingredient(
             return when(saveType) {
                 "FRIDGE" -> 0
                 "FREEZER" -> 1
-                else -> 2
+                "ROOM_TEMP" -> 2
+                else -> 0
             }
 
         }
