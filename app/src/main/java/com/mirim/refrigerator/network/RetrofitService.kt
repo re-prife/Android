@@ -25,8 +25,8 @@ class RetrofitService {
         var errandAPI : ErrandAPI
         var houseworkAPI: HouseworkAPI
 
-        val BASE_URL : String = "http://family.emirim.kr:8081/"
-        val IMAGE_BASE_URL : String = "http://family.emirim.kr:8081"
+        val BASE_URL : String = "http://52.204.65.160:8081/"
+        val IMAGE_BASE_URL : String = "http://52.204.65.160:8081"
         val SOCKET_URL : String = "http://52.204.65.160:3000/"
 
         val retrofit : Retrofit

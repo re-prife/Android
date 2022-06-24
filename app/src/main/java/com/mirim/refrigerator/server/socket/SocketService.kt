@@ -66,7 +66,7 @@ class SocketService : Service() {
             Log.d("mySocket-accept", data.toString())
             // var requesterId = JsonParser().parse(Gson().toJson(data))
             var acceptChore = Gson().fromJson<AcceptChore>(data.toString(), AcceptChore::class.java)
-
+            Log.d("mySocket-acceptChore", acceptChore.toString())
             acceptChorePopup.putExtra("category", acceptChore.category)
             acceptChorePopup.putExtra("title", acceptChore.title)
             acceptChoreActivity = PendingIntent.getActivity(applicationContext, 1, acceptChorePopup, PendingIntent.FLAG_ONE_SHOT)
